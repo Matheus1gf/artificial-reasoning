@@ -1,206 +1,151 @@
-# 🐦 Sistema de Identificação de Pássaros com IA
+# Raciocínio Artificial
 
-**TCC - 2025** | Sistema avançado de identificação de pássaros utilizando inteligência artificial com aprendizado contínuo.
+Um chatbot de uso geral com memória e raciocínio experimental. Responde à mensagem atual usando o contexto da conversa e o conhecimento de um modelo de linguagem. Os aprendizados persistentes ajudam quando são relevantes; deduções, oposições, analogias e composições são recursos adicionais, não um formato obrigatório de resposta.
 
-## 🚀 Início Rápido
+O primeiro domínio experimental foi a identificação de pássaros. Agora o ponto de entrada é uma aplicação conversacional independente dos modelos de visão. O protótipo anterior foi preservado para consulta e comparação.
+
+O [TODO principal de pesquisa e desenvolvimento](TODO.md) define a próxima arquitetura: compreensão e raciocínio próprios antes da resposta, com o Qwen restrito à redação de conteúdo aprovado. O plano inclui redes próprias, aprendizado contínuo, física, experimentos quânticos e validação de invenções. **Essa arquitetura ainda está planejada**; as instruções e capacidades descritas abaixo correspondem à implementação atual.
+
+## Executar
+
+Requer **Python 3.9 ou superior**. O núcleo, a interface web e os testes usam apenas a biblioteca padrão. Não é preciso instalar TensorFlow, YOLO, Streamlit ou Node para usar o chat.
+
+Para preparar o modelo local uma vez, em macOS Apple Silicon:
 
 ```bash
-# 1. Instalar dependências
-pip install -r requirements.txt
-
-# 2. Baixar modelos necessários (IMPORTANTE!)
-python3 download_models.py
-
-# 3. Executar sistema
-python3 -m streamlit run main.py
-# OU
-python3 start_system.py
+python3 scripts/setup_local_model.py
 ```
 
-## 📦 Modelos Necessários
+O instalador verifica uma distribuição oficial do Ollama por SHA-256, baixa o modelo `qwen3.5:9b` (cerca de 6,6 GB) e salva sua configuração. O executável fica em `.runtime/ollama` e os pesos em `data/chat-runtime/models`, ambos fora do Git. Nesta máquina essa preparação já foi feita. Referências: [modelo no catálogo oficial](https://ollama.com/library/qwen3.5:9b) e [distribuição Ollama utilizada](https://github.com/ollama/ollama/releases/tag/v0.33.3).
 
-⚠️ **IMPORTANTE**: Os modelos YOLO não estão incluídos no repositório devido ao limite de tamanho do GitHub.
+Depois, basta iniciar a aplicação; ela inicia seu Ollama local quando necessário:
 
-### Baixar Modelos Automaticamente:
 ```bash
-python3 download_models.py
+python3 main.py
 ```
 
-### Baixar Modelos Manualmente:
-- **yolov8n.pt** (recomendado para desenvolvimento): [Download](https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov8n.pt)
-- **yolov8s.pt** (melhor precisão): [Download](https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov8s.pt)
+Abra **http://127.0.0.1:8765**. No Windows, use `python` se esse for o nome do seu interpretador. `python3 app.py`, `python3 launcher.py` e `python3 run_frontend.py` também abrem o novo servidor.
 
-### Modelos Opcionais:
-- **yolov8m.pt**: [Download](https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov8m.pt)
-- **yolov8l.pt**: [Download](https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov8l.pt)
-- **yolov8x.pt**: [Download](https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov8x.pt)
+Em outros sistemas, instale Ollama pela distribuição oficial e baixe um modelo, ou configure a API da OpenAI na interface. O instalador incluído é específico para macOS Apple Silicon; o chatbot funciona com qualquer um desses provedores HTTP.
 
-## 📁 Estrutura do Projeto
+Para conversar pelo terminal, mantendo o mesmo banco de memória:
 
-```
-tcc_bird-identify/
-├── src/                          # Código fonte principal
-│   ├── core/                     # Módulos core do sistema
-│   │   ├── intuition.py          # Motor de intuição
-│   │   ├── annotator.py          # Anotador automático
-│   │   ├── curator.py            # Curador híbrido
-│   │   ├── learning.py           # Sistema de aprendizado
-│   │   ├── reasoning.py          # Sistema de raciocínio
-│   │   └── cache.py              # Cache de reconhecimento
-│   ├── interfaces/               # Interfaces de usuário
-│   │   ├── web_app.py            # Aplicação web principal
-│   │   ├── manual_analysis.py    # Sistema de análise manual
-│   │   └── tinder_interface.py   # Interface estilo Tinder
-│   ├── training/                 # Scripts de treinamento
-│   │   ├── yolo_trainer.py       # Treinamento YOLO
-│   │   └── keras_trainer.py      # Treinamento Keras
-│   └── utils/                    # Utilitários
-│       ├── patches.py            # Patches de compatibilidade
-│       └── logger.py             # Sistema de logs
-├── data/                         # Dados do projeto
-│   ├── datasets/                 # Datasets de treinamento
-│   ├── models/                   # Modelos treinados
-│   ├── learning_data/            # Dados de aprendizado
-│   └── manual_analysis/          # Análises manuais
-├── config/                       # Configurações
-│   ├── models.yaml               # Configuração dos modelos
-│   └── settings.yaml             # Configurações gerais
-├── docs/                         # Documentação
-├── scripts/                      # Scripts de instalação
-├── main.py                       # Ponto de entrada principal
-└── requirements.txt              # Dependências
-```
-
-## 🧠 Funcionalidades Principais
-
-### 1. **Sistema de Intuição**
-- Detecta fronteiras do conhecimento
-- Identifica quando a IA precisa aprender
-- Ativa ciclos de aprendizado automático
-
-### 2. **Análise Híbrida**
-- YOLO para detecção de partes
-- Keras para classificação de espécies
-- Validação com APIs externas
-
-### 3. **Aprendizado Contínuo**
-- Re-treinamento automático
-- Feedback detalhado do usuário
-- Sincronização de dados
-
-### 4. **Interface Intuitiva**
-- Upload e análise de imagens
-- Interface estilo Tinder para aprovação
-- Visualização de resultados
-
-## 🔧 Instalação
-
-### Requisitos
-- Python 3.9+
-- TensorFlow 2.x
-- PyTorch
-- OpenCV
-- Streamlit
-
-### Instalação Automática
 ```bash
-# Linux/Mac
-chmod +x scripts/install_linux.sh
-./scripts/install_linux.sh
-
-# Windows
-scripts\install_windows.bat
+python3 main.py --cli
 ```
 
-### Instalação Manual
+Use `/sair` para encerrar. Para um laboratório separado:
+
 ```bash
-pip install -r requirements.txt
+python3 main.py --port 8766 --data-dir ./data/chat-experimento
 ```
 
-## 🎯 Como Usar
+## Conversar
 
-### 1. **Análise de Imagens**
-1. Acesse a aplicação web
-2. Faça upload de uma imagem
-3. Clique em "Analisar Imagem"
-4. Veja os resultados da detecção
+Experimente uma sequência como:
 
-### 2. **Análise Manual**
-1. Vá para a aba "Análise Manual"
-2. Use a interface estilo Tinder
-3. Aprove ou rejeite imagens
-4. Forneça feedback detalhado
+1. `O que é fotossíntese? Explique em duas frases.`
+2. `Resuma sua última resposta em cinco palavras.`
+3. `Agora escreva uma função Python que conte as palavras de um texto.`
 
-### 3. **Feedback de Aprendizado**
-1. Acesse a aba "Feedback de Aprendizado"
-2. Visualize dados coletados
-3. Monitore o progresso do ML
-4. Analise características identificadas
+A última mensagem determina o que responder. Expressões como “isso”, “a última resposta” e “explique melhor” usam o histórico da conversa atual, enviado ao modelo com os papéis reais de usuário e assistente. Uma nova conversa começa com outro histórico. Conhecimentos salvos podem ser recuperados entre conversas, mas não substituem a pergunta atual. As respostas aparecem progressivamente na tela.
 
-## 📊 Monitoramento
+O modelo responde a perguntas gerais mesmo sem conhecimentos ensinados anteriormente. O conhecimento prévio do modelo vem de seu treinamento; ele não foi aprendido do zero pelo projeto.
 
-### Sincronização
-- Monitore o aprendizado contínuo
-- Veja estatísticas de sincronização
-- Controle o re-treinamento
+## Experimentar o aprendizado e as inferências
 
-### Cache de Reconhecimento
-- Visualize imagens já reconhecidas
-- Veja estatísticas por espécie
-- Gerencie o cache
+Para testar especificamente o recurso de oposição, use estas mensagens:
 
-## 🛠️ Desenvolvimento
+1. `Um buraco negro absorve matéria.`
+2. `Qual seria o oposto de um buraco negro?`
 
-### Estrutura de Módulos
-- **Core**: Lógica principal do sistema
-- **Interfaces**: Interfaces de usuário
-- **Training**: Scripts de treinamento
-- **Utils**: Utilitários e patches
+O motor usa a premissa ensinada e as relações linguísticas `absorve ↔ expulsa` e `negro ↔ branco` para propor **“buraco branco expulsa matéria”**. A proposta fica marcada como **hipótese por oposição**, com referência à mensagem de origem e indicação de que o nome e a inversão não demonstram a existência do objeto. Não há uma resposta astronômica pronta nem fatos sobre buracos negros pré-carregados no banco.
 
-### Configuração
-- Edite `config/settings.yaml` para ajustar configurações
-- Modifique `config/models.yaml` para configurações dos modelos
+Experimente também um domínio fictício, para observar o que foi aprendido no próprio laboratório:
 
-## 📈 Roadmap
+| Mensagem | Comportamento esperado |
+| --- | --- |
+| `Todo cristal emite luz.` | Guarda uma regra universal explícita. |
+| Em uma nova conversa: `Neral é um cristal.` | Deduz condicionalmente que Neral emite luz, citando as duas premissas. |
+| `Corrigindo: todo cristal não emite luz.` | Retira a versão anterior e as deduções dependentes; aplica a nova premissa. |
+| `Neral armazena energia. Vetra armazena energia.` | Registra relações compartilhadas que podem sustentar analogias. |
+| `Compare Neral e Vetra por analogia.` | Explora uma propriedade transferível, quando houver, como hipótese. |
+| `Um filtro filtra água. Uma turbina produz energia.` | Registra funções de componentes. |
+| `Crie algo combinando filtro e turbina.` | Propõe uma composição funcional e um plano de verificação. |
+| `O oposto de filtrar é misturar.` | Acrescenta uma relação de oposição ensinada pelo usuário. |
 
-- [x] Sistema de intuição
-- [x] Análise híbrida
-- [x] Aprendizado contínuo
-- [x] Interface web
-- [x] Feedback detalhado
-- [ ] API REST
-- [ ] Mobile app
-- [ ] Cloud deployment
+A aba **Memória** permite buscar conhecimentos, consultar mensagens de origem e retirar uma premissa. Conclusões dependentes são revistas automaticamente. O histórico preserva as respostas originais; os cartões de evidência mostram o estado atual.
 
-## 🧪 Testes
+## O que significa aprender nesta versão
 
-### Automação
-- O repositório inclui uma suíte Pytest em `tests/` e um fluxo GitHub Actions (`.github/workflows/tests.yml`) que executa `python -m pytest` e `python src/utils/warning_suppressor.py` em cada push/PR para `master`.
+- **Toda mensagem enviada com sucesso vira experiência registrada**, inclusive perguntas e mensagens que o extrator não entende.
+- **Afirmações extraídas viram memória estruturada**, compartilhada entre conversas do mesmo laboratório e preservada após reiniciar o servidor.
+- **Relações alimentam novas inferências**. Deduções precisam de premissas explícitas; analogias, oposições e composições continuam sendo hipóteses.
+- **Correções revisam as consequências do aprendizado anterior**. Afirmações contraditórias são sinalizadas e deixam de fundamentar novas conclusões enquanto o conflito não for resolvido.
 
-### Execução local
+Isso é aprendizado por memória e revisão de conhecimento. **Os pesos de uma rede neural não são atualizados a cada mensagem.** Uma afirmação do usuário tampouco equivale a uma verdade verificada. O sistema não promove automaticamente suas próprias respostas ou hipóteses a fatos, nem usa repetição como prova.
+
+## Configurar o modelo
+
+O padrão da aplicação web é **Ollama com `qwen3.5:9b`**, para conversar usando um modelo neural local. Configurações salvas anteriormente continuam sendo respeitadas. Abra **Configurações** para mudar de modelo ou provedor. O modo simbólico fica disponível como ferramenta técnica de memória e regras, sem conversa geral:
+
+| Modo | Necessário | Uso dos dados |
+| --- | --- | --- |
+| Simbólico | Apenas Python | Nenhuma chamada de rede para modelos. |
+| Ollama | Servidor Ollama em execução e um modelo instalado com suporte adequado a JSON estruturado | Mensagem, referente e contexto relevante enviados ao endereço configurado; um servidor local mantém esse processamento no computador. |
+| OpenAI | Modelo compatível com Responses e Structured Outputs; chave em `OPENAI_API_KEY` no ambiente do servidor | Mensagem, histórico recente e memórias relevantes enviados à API configurada. Pode haver cobrança pelo provedor. |
+
+Informe o **nome exato de um modelo disponível**, salve e use **Testar conexão salva**. Os padrões de endereço são `http://127.0.0.1:11434` para Ollama e `https://api.openai.com/v1` para OpenAI. A chave não é solicitada na interface, salva no banco ou incluída nas respostas da aplicação.
+
+Também é possível configurar antes de iniciar:
+
 ```bash
-python3 -m pip install -r requirements.txt
-python3 -m pip install pytest
-python3 -m pytest
-python3 src/utils/warning_suppressor.py  # Verificação complementar
+AR_PROVIDER=ollama AR_MODEL=NOME_DO_MODELO_INSTALADO python3 main.py
 ```
 
-## 🤝 Contribuição
+`AR_PROVIDER`, `AR_MODEL` e `AR_BASE_URL` prevalecem sobre a configuração salva na inicialização. Alterações feitas na interface valem imediatamente; se essas variáveis continuarem definidas, voltarão a prevalecer no próximo início.
 
-1. Fork o projeto
-2. Crie uma branch para sua feature
-3. Commit suas mudanças
-4. Push para a branch
-5. Abra um Pull Request
+O modelo recebe a pergunta atual por último, o histórico desta conversa em ordem e memórias auxiliares selecionadas por relevância. Perguntas não exigem uma chamada adicional de extração. Se a extração de afirmações falhar, a conversa neural continua com aviso; se a geração da resposta falhar, a interface mostra um erro e permite tentar novamente, sem inventar uma resposta padronizada. Os modelos são baixados apenas quando o instalador é executado. Com Ollama local, as conversas são processadas neste computador.
 
-## 📄 Licença
+## Estrutura e dados
 
-Este projeto é parte de um TCC acadêmico.
+```text
+main.py / app.py          Entradas da aplicação conversacional
+src/chat/domain.py       Representação de afirmações e hipóteses
+src/chat/extraction.py   Extração local e validação da extração neural
+src/chat/memory.py       SQLite, origem, dependências e revisões
+src/chat/reasoner.py     Recuperação, dedução, oposição, analogia, composição
+src/chat/engine.py       Ciclo de aprendizado e resposta
+src/chat/provider.py     Adaptadores HTTP Ollama e OpenAI
+src/chat/runtime.py      Inicialização do modelo local instalado no projeto
+src/chat/server.py       Servidor local e terminal
+src/chat/web/            Interface de conversas, memória e configurações
+scripts/setup_local_model.py      Preparação do modelo local
+scripts/evaluate_conversation.py  Avaliação qualitativa com um modelo real
+tests/chat/              Testes do chatbot sem serviços externos
+data/chat/               Banco e configurações locais, ignorados pelo Git
+```
 
-## 👨‍💻 Autor
+O laboratório é **pessoal e local**: todas as conversas no mesmo banco compartilham conhecimento. O servidor escuta apenas em `127.0.0.1`. Ainda não há contas, isolamento entre usuários, criptografia do banco, embeddings ou verificação externa de fatos. Retirar um conhecimento preserva o registro para auditoria; não é uma operação de apagar dados pessoais. Para fazer backup consistente, pare o servidor e copie a pasta de dados inteira.
 
-**Matheus Ferreira** - TCC 2025
+## Verificar
 
----
+```bash
+python3 -m unittest discover -s tests/chat -v
+```
 
-**Sistema de Identificação de Pássaros com IA** 🐦✨
+A suíte testa aprendizado com um exemplo, persistência, inferências, correções, separação de conceitos com palavras semelhantes, histórico por conversa, contexto enviado ao modelo, streaming e falhas. Os testes unitários dos provedores usam respostas simuladas e não medem a qualidade de um modelo real. A CI executa a suíte do chat em Python 3.9 e 3.12.
+
+Para registrar respostas reais em um banco temporário, sem alterar suas conversas:
+
+```bash
+python3 scripts/evaluate_conversation.py
+```
+
+O modelo deve estar em execução. O roteiro inclui mudança de assunto, referência à resposta anterior, resumo e código. Salva prompts, respostas, latências e memórias recuperadas em `.runtime/conversation-evaluation.json`. A revisão é qualitativa, sem converter uma pequena amostra em uma alegação de exatidão geral. Consulte os [resultados e limites observados](docs/CHATBOT_VALIDATION.md).
+
+Leia a [arquitetura atual e os limites de pesquisa](docs/CHATBOT_ARCHITECTURE.md), o [roteiro de evolução](docs/CHATBOT_ROADMAP.md) e o [TODO detalhado do núcleo próprio](TODO.md). Os resultados funcionais não são uma demonstração de raciocínio humano geral, criatividade científica validada ou exatidão com qualquer conjunto pequeno de dados.
+
+## Protótipo de pássaros
+
+O [README histórico](docs/README_PASSAROS.md), os módulos de visão, modelos, dados e relatórios anteriores foram preservados. As entradas antigas são `bird_main.py`, `bird_app.py`, `bird_launcher.py` e `bird_run_frontend.py`; as dependências estão em `requirements-birds.txt`. O chat não importa nem executa esses módulos. Relatórios e scripts antigos de instalação se referem à fase de visão; não são necessários para iniciar o chatbot e não foram revalidados nesta migração.

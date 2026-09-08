@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 # Ignorar arquivos específicos
 antigo/
-=======
 # Modelos YOLO grandes (causam limite de espaço no GitHub)
 *.pt
 yolov8*.pt
@@ -9,7 +7,6 @@ yolov5*.pt
 yolov9*.pt
 yolov10*.pt
 yolov11*.pt
->>>>>>> 0a80e70b442b7710f312b1665515fc35d1ed6244
 
 # Modelos Keras/HDF5
 *.h5
@@ -107,4 +104,12 @@ installation_log.json
 # Arquivos de documentação temporários
 docs/demo_*.json
 docs/santo_graal_*.json
-docs/installation_log.jsontemp_uploads/
+docs/installation_log.json
+temp_uploads/
+
+# Memória pessoal do chatbot e configurações locais
+data/chat/
+data/chat-*/
+.venv/
+.pytest_cache/
+.runtime/

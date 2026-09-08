@@ -1,3 +1,7 @@
+> Documento histórico da fase de identificação de pássaros. Para a aplicação conversacional atual, consulte o [README do chatbot](README.md). Capacidades e resultados descritos aqui não constituem validação do chatbot.
+
+> O backlog atual está no [TODO do núcleo próprio de raciocínio artificial](TODO.md), com prioridades, dependências e critérios de validação. Este checklist permanece como registro da fase anterior.
+
 # 🎯 CHECKLIST DE DESENVOLVIMENTO - IA NEURO-SIMBÓLICA AVANÇADA
 
 ## 📊 **ANÁLISE DO ESTADO ATUAL DO PROJETO**

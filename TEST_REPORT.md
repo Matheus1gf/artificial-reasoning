@@ -1,3 +1,5 @@
+> Documento histórico da fase de identificação de pássaros. Para a aplicação conversacional atual, consulte o [README do chatbot](README.md). Capacidades e resultados descritos aqui não constituem validação do chatbot.
+
 # 📋 Relatório de Testes – Sistema IA Neuro-Simbólica
 
 - **Data/Hora:** Fri Nov 14 23:50:50 -03 2025

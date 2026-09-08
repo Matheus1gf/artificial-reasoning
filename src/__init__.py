@@ -1,4 +1,3 @@
 """
-Sistema de Identificação de Pássaros com IA
-TCC - 2025
+Raciocínio Artificial: aprendizado conversacional e protótipos de pesquisa.
 """

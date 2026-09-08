@@ -1,3 +1,5 @@
+> Documento histórico da fase de identificação de pássaros. Para a aplicação conversacional atual, consulte o [README do chatbot](README.md). Capacidades e resultados descritos aqui não constituem validação do chatbot.
+
 # 🧠 Frontend do Sistema Santo Graal da IA
 
 ## 🚀 Interface Web Moderna e Interativa

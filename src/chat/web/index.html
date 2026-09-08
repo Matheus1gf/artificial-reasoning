@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Raciocínio Artificial · Conversar é aprender</title>
+  <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+</head>
+<body>
+  <button id="nav-backdrop" class="nav-backdrop" aria-label="Fechar navegação" hidden></button>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="Raciocínio Artificial início"><span class="brand-mark">r<span>·</span>a</span><span>RACIOCÍNIO<br>ARTIFICIAL</span></a>
+    <div class="project-badge"><i></i> LABORATÓRIO DE IDEIAS <span>01</span></div>
+    <button class="new-chat" id="new-chat"><span>＋</span> Nova conversa <kbd>N</kbd></button>
+    <div class="section-label">SUAS CONVERSAS</div>
+    <nav id="conversations" aria-label="Conversas anteriores"></nav>
+    <div class="sidebar-bottom">
+      <div class="memory-indicator"><span class="pulse-dot"></span><div>Memória contínua<small>Aprendizados conectam conversas</small></div></div>
+      <button id="settings-open" class="settings-open">⚙ <span>Configurações</span><span>↗</span></button>
+      <div class="profile"><span>EU</span><div>Meu laboratório<small>Espaço pessoal · neste computador</small></div></div>
+    </div>
+  </aside>
+  <main>
+    <header class="topbar"><button id="nav-toggle" aria-label="Abrir conversas e configurações" aria-expanded="false">☰</button><div class="breadcrumb">Laboratório <span>/</span> <strong id="conversation-title">Nova conversa</strong></div><div class="top-actions"><span id="provider-badge" class="provider-badge">Motor local</span><button id="memory-toggle" aria-label="Mostrar ou ocultar memória">Memória ↗</button></div></header>
+    <section class="chat-scroll" id="chat-scroll">
+      <div id="welcome" class="welcome">
+        <div class="eyebrow"><span></span> UMA CONVERSA, MUITAS POSSIBILIDADES</div>
+        <h1>O que vamos<br><em>descobrir hoje?</em></h1>
+        <p>Pergunte, escreva e desenvolva suas ideias.<br>A conversa acompanha seu contexto e os aprendizados ficam conectados.</p>
+        <div class="suggestions">
+          <button data-example="Explique como a fotossíntese funciona, de forma simples."><span class="example-icon">↗</span><strong>Entender um assunto</strong><small>Explore um conceito com uma explicação clara.</small><span class="arrow">↗</span></button>
+          <button data-example="Ajude-me a desenvolver uma ideia de aplicativo para organizar meus estudos."><span class="example-icon">⇄</span><strong>Desenvolver uma ideia</strong><small>Construa possibilidades a partir de um objetivo.</small><span class="arrow">↗</span></button>
+          <button data-example="Escreva uma função em Python para contar as palavras de um texto e explique como funciona."><span class="example-icon">∴</span><strong>Resolver um problema</strong><small>Peça ajuda com escrita, código ou uma tarefa.</small><span class="arrow">↗</span></button>
+        </div>
+        <div class="welcome-note"><span>◎</span> As ideias ficam conectadas. As hipóteses continuam abertas a revisão.</div>
+      </div>
+      <div id="messages" class="messages" aria-live="polite" aria-relevant="additions"></div>
+    </section>
+    <div class="composer-wrap">
+      <div id="error" class="error-banner" role="alert" hidden></div>
+      <div id="learning-status" class="learning-status"><span></span> Pronto para aprender com você</div>
+      <form id="chat-form" class="composer">
+        <textarea id="message-input" rows="2" maxlength="8000" placeholder="Pergunte algo ou continue nossa conversa…" aria-label="Sua mensagem"></textarea>
+        <div class="composer-bottom"><span>↳ <span id="composer-mode">Memória e raciocínio ativos</span></span><button type="submit" id="send" aria-label="Enviar mensagem">↑</button></div>
+      </form>
+      <div class="composer-foot"><span>Conhecimento tem origem. Hipóteses precisam de evidência.</span><span>Enter para enviar · Shift + Enter para nova linha</span></div>
+    </div>
+  </main>
+  <aside class="knowledge-panel" id="knowledge-panel">
+    <div class="knowledge-heading"><span>Memória em construção</span><span class="live-label"><i></i> ATIVA</span></div>
+    <p class="knowledge-intro">O que aprendemos acompanha<br>as próximas conversas.</p>
+    <div class="stats"><div><strong id="stat-assertions">0</strong><span>Conhecimentos</span></div><div><strong id="stat-hypotheses">0</strong><span>Hipóteses</span></div><div><strong id="stat-messages">0</strong><span>Interações</span></div></div>
+    <div class="memory-tabs" role="tablist" aria-label="Tipos de memória"><button id="tab-all" class="active" role="tab" aria-selected="true">Aprendizados</button><button id="tab-hypotheses" role="tab" aria-selected="false">Hipóteses</button></div>
+    <input id="knowledge-search" class="knowledge-search" type="search" placeholder="Buscar na memória…" aria-label="Buscar na memória">
+    <div id="knowledge-list" class="knowledge-list"></div>
+    <div class="knowledge-footer"><span>◇</span><div>Uma memória que pode mudar<small>Revise uma premissa para revisar<br>as conclusões que dependem dela.</small></div></div>
+  </aside>
+  <dialog id="settings-dialog">
+    <form id="settings-form">
+      <div class="dialog-heading"><h2>Como vamos conversar?</h2><button id="settings-close" type="button" aria-label="Fechar configurações">×</button></div>
+      <p>O modelo interpreta a linguagem. A memória e as relações permanecem neste laboratório.</p>
+      <label>Modo de linguagem<select id="setting-provider"><option value="ollama">Ollama · conversa com modelo local</option><option value="openai">OpenAI · conversa com API externa</option><option value="symbolic">Simbólico · ferramentas de memória</option></select></label>
+      <div id="neural-settings" hidden><label>Nome do modelo<input id="setting-model" placeholder="Nome exato do modelo instalado ou disponível"></label><label>Endereço do provedor<input id="setting-url" type="url"></label></div>
+      <p id="provider-explanation" class="provider-explanation"></p>
+      <div id="settings-status" role="status"></div>
+      <div class="dialog-actions"><button id="test-connection" type="button" class="secondary">Testar conexão salva</button><button class="primary" type="submit">Salvar configuração</button></div>
+    </form>
+  </dialog>
+</body>
+</html>
