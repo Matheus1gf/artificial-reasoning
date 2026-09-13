@@ -1,0 +1,6 @@
+# Keep source files stable across platforms, including source-hash registrations.
+* text=auto eol=lf
+
+# Research artifacts have byte-level checksums; preserve the original bytes,
+# including the CRLF format of the upstream NIST corpus.
+/experiments/** -text

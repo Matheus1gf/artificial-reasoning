@@ -112,16 +112,21 @@ class ExperienceStore:
             Path(path).parent.mkdir(parents=True, exist_ok=True)
         self.db = sqlite3.connect(self.path, timeout=10, check_same_thread=False)
         self.db.row_factory = sqlite3.Row
+        try:
+            self._initialize()
+        except BaseException:
+            self.close()
+            raise
+
+    def _initialize(self):
         tables = {r[0] for r in self.db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
         if tables and "store_meta" not in tables:
-            self.db.close()
             raise ValueError("Not a cognition sidecar database; chat data must not be migrated here")
         version = 0
         if "store_meta" in tables:
             row = self.db.execute("SELECT value FROM store_meta WHERE key='schema_version'").fetchone()
             version = int(row[0]) if row else -1
             if version not in (1, SCHEMA_VERSION):
-                self.db.close()
                 raise ValueError("Unsupported cognition schema version")
         self.migration_backup = None
         if version and version < SCHEMA_VERSION and self.path != ":memory:":

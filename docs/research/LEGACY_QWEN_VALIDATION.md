@@ -20,7 +20,7 @@ Os testes unitários usam respostas simuladas onde necessário. Eles verificam o
 
 Modelo: `qwen3.5:9b`, via Ollama 0.33.3 em macOS Apple Silicon com 24 GB de memória. A avaliação usou memória temporária. Antes das perguntas, foram registradas a premissa sobre buraco negro e uma hipótese de oposição pelo motor simbólico, reproduzindo o contexto que originou o problema.
 
-Roteiro: `python3 scripts/evaluate_conversation.py --model qwen3.5:9b`. As respostas completas da execução estão no arquivo local `.runtime/conversation-evaluation-9b.json`, ignorado pelo Git.
+Roteiro utilizado na versão histórica: `python3 scripts/evaluate_conversation.py --model qwen3.5:9b`. Esse avaliador foi removido da árvore atual; permanece no histórico Git. A avaliação conversacional atual usa `scripts/evaluate_conceptual_chat.py`. As respostas completas daquela execução foram registradas no arquivo local `.runtime/conversation-evaluation-9b.json`, ignorado pelo Git.
 
 | Caso | Observação |
 | --- | --- |

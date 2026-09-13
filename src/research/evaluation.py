@@ -11,7 +11,7 @@ import time
 from pathlib import Path
 
 from .baselines import BASELINES
-from .worlds import (FAMILIES, GENERATOR_VERSION, TASK_KINDS, fingerprint,
+from .worlds import (FAMILIES, GENERATOR_VERSION, TASK_KINDS,
                      generate_case, hidden_success, integer, observed_success)
 
 

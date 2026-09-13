@@ -1,3 +1,2 @@
 # O chatbot utiliza somente a biblioteca padrão do Python 3.9+.
 # Ollama e OpenAI são acessados por HTTP, sem SDK obrigatório.
-# Dependências do protótipo de pássaros: requirements-birds.txt.

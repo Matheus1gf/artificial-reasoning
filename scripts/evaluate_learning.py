@@ -5,11 +5,15 @@ import hashlib
 import json
 import platform
 import random
-import resource
 import sys
 import tempfile
 import time
 from pathlib import Path
+
+try:
+    import resource
+except ImportError:  # Process RSS is unavailable in the Windows standard library.
+    resource = None
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -160,8 +164,10 @@ def main():
         "explicit_drift_adapted": drift["obsolete_model_disabled"] and drift["adaptation"]["status"] == "adopted"}
     report = {"schema_version": 1, "kind": "synthetic_learning_control_pilot", "official_reserved_test_used": False,
               "results": results, "drift": drift, "decisions": decisions,
-              "seconds": time.monotonic() - started, "peak_rss_native": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
-              "rss_unit": "bytes" if sys.platform == "darwin" else "KiB", "limitations": protocol["limits"]}
+              "seconds": time.monotonic() - started,
+              "peak_rss_native": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss if resource is not None else None,
+              "rss_unit": ("bytes" if sys.platform == "darwin" else "KiB") if resource is not None else None,
+              "limitations": protocol["limits"]}
     dump(args.output / "report.json", report)
     print(json.dumps({"output": str(args.output.resolve()), "decisions": decisions, "seconds": report["seconds"]}, indent=2))
     return 0 if all(decisions.values()) else 1

@@ -2,6 +2,8 @@
 
 F00-02. Base auditada: commit `d2c32a33171819a25ba7b896991647019cac1ffb`, 08/09/2026. O novo laboratório está separado em `src/research/`; nenhuma alteração F00 muda o caminho de resposta do chat.
 
+Este inventário descreve a versão auditada. O protótipo de pássaros, seus arquivos auxiliares e os scripts históricos `evaluate_conversation.py` e `setup_local_model.py` foram removidos da árvore atual na higienização de 13/09/2026; continuam consultáveis no histórico Git. Para executar e validar a aplicação atual, consulte o [README](../../README.md) e a [validação do chatbot](../CHATBOT_VALIDATION.md).
+
 ## 1. Critérios de classificação
 
 **Implementada:** existe execução e verificação funcional para um contrato delimitado. **Limitada:** existe mecanismo, mas escopo/evidência não sustentam a capacidade geral. **Planejada:** consta do TODO e falta implementação no caminho ativo. **Sem evidência:** a afirmação existe em documentação ou nome de módulo, porém não há demonstração reproduzível aplicável ao objetivo atual. As categorias não são percentuais de inteligência.

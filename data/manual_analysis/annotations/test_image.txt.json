@@ -1,7 +1,0 @@
-{
-  "species": "generic_bird",
-  "confidence": 0.8,
-  "notes": "Teste de aprovação",
-  "annotation_path": "./manual_analysis/annotations/test_image.txt",
-  "timestamp": "2025-09-07T17:20:07.302640"
-}

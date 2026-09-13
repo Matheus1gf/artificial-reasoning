@@ -8,6 +8,8 @@ from pathlib import Path
 import sqlite3
 import tempfile
 import unittest
+from contextlib import closing
+from unittest.mock import patch
 
 from src.cognition.store import ExperienceStore, SCHEMA_VERSION
 
@@ -297,7 +299,7 @@ class MigrationTests(unittest.TestCase):
             store = ExperienceStore(path)
             try:
                 self.assertTrue(Path(store.migration_backup).exists())
-                with sqlite3.connect(store.migration_backup) as backup:
+                with closing(sqlite3.connect(store.migration_backup)) as backup:
                     self.assertEqual(backup.execute("SELECT value FROM store_meta WHERE key='schema_version'").fetchone()[0], "1")
                     self.assertEqual(len(backup.execute("PRAGMA table_info(records)").fetchall()), 10)
                 self.assertEqual(store.get("E-original")["payload"]["text"], "Dado anterior que deve ser preservado.")
@@ -317,13 +319,29 @@ class MigrationTests(unittest.TestCase):
     def test_existing_legacy_chat_database_is_rejected_without_modification(self):
         with tempfile.TemporaryDirectory(prefix="ar-legacy-qa-") as folder:
             path = Path(folder) / "chat.sqlite3"
-            with sqlite3.connect(path) as db:
+            with closing(sqlite3.connect(path)) as db, db:
                 db.execute("CREATE TABLE conversations(id TEXT PRIMARY KEY,title TEXT)")
                 db.execute("INSERT INTO conversations VALUES('original','conversa preservada')")
             original = path.read_bytes()
             with self.assertRaises(ValueError):
                 ExperienceStore(path)
             self.assertEqual(path.read_bytes(), original)
+
+    def test_initialization_failure_closes_database_connection(self):
+        with tempfile.TemporaryDirectory(prefix="ar-invalid-schema-qa-") as folder:
+            path = Path(folder) / "invalid.sqlite3"
+            with closing(sqlite3.connect(path)) as db, db:
+                db.execute("CREATE TABLE store_meta(key TEXT PRIMARY KEY,value TEXT NOT NULL)")
+                db.execute("INSERT INTO store_meta VALUES('schema_version','invalid')")
+            connection = sqlite3.connect(path)
+            try:
+                with patch("src.cognition.store.sqlite3.connect", return_value=connection):
+                    with self.assertRaises(ValueError):
+                        ExperienceStore(path)
+                with self.assertRaises(sqlite3.ProgrammingError):
+                    connection.execute("SELECT 1")
+            finally:
+                connection.close()
 
 
 if __name__ == "__main__":

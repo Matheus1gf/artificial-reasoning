@@ -7,8 +7,8 @@ import hashlib
 import math
 
 from .contracts import AnswerPackage, canonical
-from .operators import fit_operator, observations, predict_operator, synthesize, VERSION
-from .reasoning import _symbol as symbol, number
+from .operators import fit_operator, observations, predict_operator, synthesize
+from .reasoning import _symbol as symbol
 
 
 def _model(store, cid, name):

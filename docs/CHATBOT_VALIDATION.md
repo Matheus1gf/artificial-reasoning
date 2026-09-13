@@ -2,6 +2,14 @@
 
 A referência de aceite é a [matriz independente F01–F11](research/F01_F11_QA.md), que registra testes, defeitos, correções e requisitos ainda incompletos. A F00 mantém seu [relatório histórico de QA](research/F00_QA.md) e seu protocolo congelado. Os resultados de conversa livre anteriores à separação do Qwen foram preservados em [LEGACY_QWEN_VALIDATION.md](research/LEGACY_QWEN_VALIDATION.md); não representam o novo núcleo.
 
+## Higienização do repositório — 13/09/2026
+
+O código, os instaladores, os testes e os dados do protótipo de pássaros foram retirados, junto das cópias e dos relatórios sem uso no sistema atual. Foram mantidos os módulos conversacionais e científicos, os recursos carregados por eles, as avaliações reproduzíveis e suas evidências.
+
+Após a limpeza, **287 testes passaram em Python 3.12.14 no Windows, com UTF-8 habilitado**: 92 de chat, 120 de cognição, 40 de ciência e 35 de pesquisa. A validação também conferiu a sintaxe dos 78 arquivos Python restantes, a compatibilidade sintática com Python 3.9, o JavaScript e os quatro pontos de entrada.
+
+Essa execução identificou e corrigiu o fechamento de conexões SQLite em testes e em falhas de inicialização, a ausência de `resource` no Windows e a conversão de quebras de linha que invalidava checksums. `.gitattributes` preserva os bytes originais dos artefatos científicos, inclusive o corpus NIST em CRLF; dados e hashes registrados não foram alterados. A CI passou a incluir Windows e Linux. Os registros científicos anteriores continuam vinculados às versões de código em que foram produzidos; esses testes verificam regressões de software, sem renovar alegações científicas.
+
 ## Três níveis de evidência
 
 | Nível | Verificação | Interpretação permitida |
