@@ -1,7 +1,7 @@
 """Small, explicit knowledge representation shared by memory and reasoning."""
 import re
 import unicodedata
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from typing import List
 
 
@@ -15,7 +15,7 @@ def concept(text: str) -> str:
     return re.sub(r"^(?:um|uma|o|a|os|as)\s+", "", normalize(text)).strip()
 
 
-STOPWORDS = set("a o as os um uma de da do das dos em no na e que qual quais como por para com se ele ela isso esse essa sobre me voce eu meu minha pode seria existe explique sabe saber aprenda seria podemos sabemos".split())
+STOPWORDS = set("a o as os um uma de da do das dos em no na e que qual quais como por para com se ele ela isso esse essa sobre me voce eu meu minha pode seria existe explique sabe saber aprenda podemos sabemos".split())
 
 
 def tokens(text: str) -> set:

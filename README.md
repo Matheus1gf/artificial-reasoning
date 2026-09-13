@@ -4,13 +4,13 @@ Laboratório conversacional de **compreensão, memória, raciocínio e aprendiza
 
 A implementação trabalha com português controlado e tarefas estruturadas de lógica, planejamento, cálculo, física e sistemas quânticos pequenos. Há aprendizes numéricos próprios e experimentos de generalização delimitados. **Não é ainda um chatbot de conhecimento geral equivalente ao ChatGPT, nem uma IA com descoberta científica autônoma comprovada.** Fora de sua cobertura, identifica a informação que falta em vez de completar a resposta com conhecimento do redator.
 
-O projeto começou com identificação de pássaros; os módulos antigos permanecem preservados e não participam do novo chat. O [TODO principal](TODO.md) registra o estado real de cada requisito, com aceite independente em [F01_F11_QA.md](docs/research/F01_F11_QA.md).
+O repositório contém a aplicação conversacional, seus módulos de pesquisa e os recursos necessários para execução, treinamento e validação. O [TODO principal](TODO.md) registra o estado real de cada requisito, com aceite independente em [F01_F11_QA.md](docs/research/F01_F11_QA.md).
 
 O [plano para o objetivo completo](docs/OBJECTIVE_PLAN.md) separa entregas de engenharia, capacidades demonstradas e contribuições científicas. O TODO detalha F13–F21 para dados, compreensão aprendida, descoberta de regras, investigação, invenção e aprendizagem contínua. Essas fases permanecem abertas; o número de itens concluídos não mede proximidade a inteligência geral.
 
 ## Executar sem Qwen
 
-Requer Python 3.9 ou superior. O chat, os novos módulos de pesquisa e suas suítes usam a biblioteca padrão. Não é necessário instalar TensorFlow, YOLO, Node ou um modelo de linguagem.
+Requer Python 3.9 ou superior. O chat, os módulos de pesquisa e suas suítes usam a biblioteca padrão. Não há pacotes obrigatórios para instalar nem necessidade de baixar um modelo de linguagem.
 
 ```sh
 python3 main.py
@@ -96,7 +96,7 @@ Essa restrição preserva o conteúdo e reduz a liberdade de estilo. Redação l
 | Ollama | Servidor e modelo instalado, com saída JSON | Trechos aprovados; mantém processamento local se o endereço for local |
 | API compatível configurada | Credencial no ambiente, quando necessária | Trechos aprovados podem conter dados da conversa; o serviço pode cobrar |
 
-`AR_PROVIDER`, `AR_MODEL` e `AR_BASE_URL` continuam disponíveis para configuração na inicialização. Essas variáveis não desligam o modo de pesquisa. O instalador anterior `scripts/setup_local_model.py` permanece opcional, específico para macOS Apple Silicon, e não é executado pelo núcleo de pesquisa. Nenhum novo download de modelo é necessário para testar esta implementação.
+`AR_PROVIDER`, `AR_MODEL` e `AR_BASE_URL` continuam disponíveis para configuração na inicialização. Essas variáveis não desligam o modo de pesquisa. O organizador opcional usa um servidor e modelo já disponíveis, configurados pela interface. Nenhum download de modelo é necessário para testar esta implementação.
 
 ## O que significa aprender
 
@@ -123,7 +123,12 @@ src/cognition/sandbox.py     Execução isolada de uma DSL numérica limitada
 src/science/                Física, quântica e descoberta numérica
 src/research/               Referências e protocolo inicial F00 congelados
 experiments/                Configurações, corpus, registros e resultados
+scripts/                    Treinamento, avaliação e administração do núcleo
+tests/                      Regressões do chat, cognição, ciência e pesquisa
+docs/                       Operação, arquitetura e evidências de validação
 ```
+
+Os arquivos de `experiments/` incluem pesos carregados pelo núcleo, dados com origem verificada, protocolos usados pelos avaliadores e resultados que sustentam a documentação. Os registros anteriores permitem reproduzir e comparar experimentos, inclusive os que tiveram resultado negativo. Seus bytes são preservados pelo Git para não invalidar checksums ao trabalhar no Windows.
 
 O histórico antigo fica em `memory.sqlite3`; o sidecar `memory.cognition.sqlite3` armazena as novas experiências e modelos. O servidor escuta somente em `127.0.0.1`. É um laboratório pessoal, sem contas ou autenticação multiusuário. Backups, exportação, restauração, escopos e os limites da exclusão estão documentados em [Memória, aprendizado e operação](docs/research/MEMORY_LEARNING_OPERATIONS.md). Para copiar a pasta inteira de dados, pare o servidor primeiro; o backup oferecido na interface cobre experiências e modelos, com escopo explícito.
 
@@ -138,7 +143,7 @@ python3 -m unittest discover -s tests/science -v
 python3 -m unittest discover -s tests/research -v
 ```
 
-A CI configura Python 3.9 e 3.12. Testes dos provedores usam respostas controladas para verificar contratos; não medem a capacidade geral do Qwen. Consulte [validação atual](docs/CHATBOT_VALIDATION.md) e a [matriz de QA](docs/research/F01_F11_QA.md) para resultados reproduzidos e requisitos ainda parciais.
+A CI configura Python 3.9 e 3.12 no Linux e no Windows, com UTF-8 habilitado. Testes dos provedores usam respostas controladas para verificar contratos; não medem a capacidade geral do Qwen. Consulte [validação atual](docs/CHATBOT_VALIDATION.md) e a [matriz de QA](docs/research/F01_F11_QA.md) para resultados reproduzidos e requisitos ainda parciais.
 
 ```sh
 # F00: avaliação inicial; o conjunto científico reservado não é pontuado
@@ -153,7 +158,3 @@ python3 scripts/evaluate_learning.py --output .runtime/learning-pilot-novo
 ```
 
 Os comandos recusam sobrescrever resultados. Experimentos usam sementes, registram limitações e preservam resultados negativos. Os [resultados científicos](docs/research/SCIENCE_RESULTS.md) incluem comparações em que o modelo clássico é equivalente ou melhor. Não foi demonstrada vantagem geral quântica, descoberta de uma lei nova ou inovação científica superior à humana.
-
-## Protótipo de pássaros
-
-O [README histórico](docs/README_PASSAROS.md), módulos de visão, modelos e relatórios anteriores foram preservados. Suas entradas são `bird_main.py`, `bird_app.py`, `bird_launcher.py` e `bird_run_frontend.py`, com dependências em `requirements-birds.txt`. O novo chat não importa esses módulos. Resultados antigos de visão e de conversa livre com Qwen são históricos e não constituem evidência do núcleo próprio atual.

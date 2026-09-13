@@ -1,3 +1,3 @@
 """
-Raciocínio Artificial: aprendizado conversacional e protótipos de pesquisa.
+Raciocínio Artificial: aprendizado conversacional e módulos de pesquisa.
 """

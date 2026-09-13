@@ -8,7 +8,7 @@ import re
 from dataclasses import asdict
 
 from .contracts import ProblemSpec
-from src.chat.domain import concept, normalize
+from src.chat.domain import normalize
 from src.chat.extraction import extract_local_details, is_correction
 from src.chat.discourse import question_frame
 from src.chat.reasoner import requested_subject

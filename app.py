@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Alias for the new chatbot. Run with Python, not Streamlit."""
+"""Start the conversational application through its app entry point."""
 from src.chat.server import main
 
 if __name__ == "__main__":

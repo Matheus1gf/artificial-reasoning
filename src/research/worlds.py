@@ -10,7 +10,7 @@ import hashlib
 import json
 import random
 from dataclasses import dataclass
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 
 GENERATOR_VERSION = "f00-worlds-1"

@@ -1,115 +1,33 @@
-# Ignorar arquivos específicos
-antigo/
-# Modelos YOLO grandes (causam limite de espaço no GitHub)
-*.pt
-yolov8*.pt
-yolov5*.pt
-yolov9*.pt
-yolov10*.pt
-yolov11*.pt
-
-# Modelos Keras/HDF5
-*.h5
-*.keras
-modelo_classificacao_passaros.*
-
-# Arquivos temporários de imagens
-temp_*.jpg
-temp_*.jpeg
-temp_*.png
-temp_*.gif
-
-# Cache e dados temporários
-data/cache/
-learning_data/
-manual_analysis/approved/
-manual_analysis/rejected/
-manual_analysis/pending/
-
-# Logs
+# Dados pessoais, modelos opcionais e resultados de execucoes locais
+/data/chat/
+/data/chat-*/
+/.runtime/
 *.log
-logs/
-debug_system.log
 
-# Arquivos de teste temporários
-test_results_*.json
-test_*.jpg
-test_*.jpeg
-test_*.png
-
-# Arquivos Python temporários
+# Python: caches, ambientes e pacotes gerados
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# Ambientes virtuais
+.pytest_cache/
+.venv/
 venv/
 env/
-ENV/
-env.bak/
-venv.bak/
+build/
+dist/
+*.egg-info/
 
-# IDEs
+# Configuracoes locais e credenciais
+.env
+.env.*
 .vscode/
 .idea/
+
+# Arquivos temporarios de editores e do sistema operacional
 *.swp
 *.swo
 *~
-
-# Sistema operacional
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Arquivos de configuração local
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Arquivos de backup
 *.bak
 *.backup
-*.old
-
-# Arquivos de análise temporários
-system_analysis_report.json
-modelo_architecture.json
-
-# Arquivos de instalação temporários
-installation_log.json
-
-# Arquivos de documentação temporários
-docs/demo_*.json
-docs/santo_graal_*.json
-docs/installation_log.json
-temp_uploads/
-
-# Memória pessoal do chatbot e configurações locais
-data/chat/
-data/chat-*/
-.venv/
-.pytest_cache/
-.runtime/
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini

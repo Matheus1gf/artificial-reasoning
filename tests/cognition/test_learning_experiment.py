@@ -7,6 +7,11 @@ import sys
 import tempfile
 import unittest
 
+try:
+    import resource
+except ImportError:
+    resource = None
+
 
 class LearningExperimentTests(unittest.TestCase):
     def test_registered_cli_reports_all_conditions_and_measured_retention(self):
@@ -16,6 +21,12 @@ class LearningExperimentTests(unittest.TestCase):
             process=subprocess.run(command,cwd=root,capture_output=True,text=True,timeout=30)
             self.assertEqual(process.returncode,0,process.stderr)
             report=json.loads((output/'report.json').read_text()); registration=json.loads((output/'registration.json').read_text())
+            if resource is None:
+                self.assertIsNone(report['peak_rss_native'])
+                self.assertIsNone(report['rss_unit'])
+            else:
+                self.assertGreater(report['peak_rss_native'],0)
+                self.assertEqual(report['rss_unit'],'bytes' if sys.platform=='darwin' else 'KiB')
             self.assertTrue(all(report['decisions'].values()))
             self.assertEqual(len(report['results']),15)
             for path,digest in registration['sha256'].items():self.assertEqual(hashlib.sha256((root/path).read_bytes()).hexdigest(),digest)

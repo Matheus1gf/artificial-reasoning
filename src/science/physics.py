@@ -1,7 +1,5 @@
 """A declared one-dimensional Newtonian laboratory, not a universal simulator."""
 
-import math
-
 from .numerics import bounded, finite, integer, least_squares
 
 UNITS = {"x": "m", "v": "m/s", "a": "m/s^2", "dt": "s", "mass": "kg"}

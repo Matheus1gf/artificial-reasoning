@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Start the chat interface without installing the historical vision stack."""
+"""Start the conversational web interface."""
 from src.chat.server import main
 
 if __name__ == "__main__":

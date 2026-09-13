@@ -4,7 +4,6 @@ The operator vocabulary, finite candidate classes and causal semantics below
 are declared priors. Learned parameters are not claims of general intelligence.
 """
 import ast
-import copy
 import heapq
 import itertools
 import math

@@ -16,6 +16,7 @@ class LearningTests(unittest.TestCase):
         self.cid = self.memory.create_conversation()["id"]
 
     def tearDown(self):
+        self.engine.close()
         self.memory.close()
         self.temp.cleanup()
 
@@ -58,6 +59,7 @@ class LearningTests(unittest.TestCase):
         self.say("Todo cristal emite luz.")
         second = self.memory.create_conversation()["id"]
         self.say("Neral é um cristal.", second)
+        self.engine.close()
         self.memory.close()
         self.memory = Memory(self.path)
         self.engine = ChatEngine(self.memory)
