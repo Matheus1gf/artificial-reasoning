@@ -1,0 +1,20 @@
+{
+  "protocol_id": "human-context-reanalysis-v1",
+  "registered_date": "2026-09-09",
+  "registered_before_scoring": true,
+  "reason": "Extend F08-05 using aggregate statistics from the authors' two published laboratory experiments; preserve prior pilots.",
+  "source_doi": "10.1111/tops.12040",
+  "source_table": "Table1, printed page700, final two columns",
+  "dataset_ids": ["lab_racial_hostility", "lab_affirmative_action"],
+  "models": ["quantum", "classical_context"],
+  "free_parameters_per_model": 2,
+  "grid_size": 21,
+  "seeds": [6101, 6121, 6131, 6151, 6163],
+  "partition": "Reconstruct unique integer counts compatible with four-decimal proportions and sample sizes; allocate half of each order group's response tokens randomly to fitting, remainder to evaluation.",
+  "data_limit": "Published aggregates, not new or private individual records. Token indices are artificial, not participant IDs. Repeated partitions are not independent replications or extra human participants.",
+  "primary_metric": "held-partition negative log-likelihood per response on identical evidence",
+  "comparison": "Report both models, full-data fit and all partitions. Equivalent classical model is a strong null and should tie numerically.",
+  "model_fit_diagnostic": "Full-data maximum absolute joint-probability residual above0.10 flags the restricted model for rejection, without a population-level p-value.",
+  "interpretation_limit": "A 2D real pure-state model is narrower than general quantum cognition. Poor fit does not refute the original paper's higher-dimensional model. Good fit is not proof of a quantum brain or superior invention.",
+  "reserved_policy": "No F00 reserved benchmark is opened."
+}

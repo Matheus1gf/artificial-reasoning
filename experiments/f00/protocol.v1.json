@@ -1,0 +1,22 @@
+{
+  "protocol_id": "f00-initial-v1",
+  "registered_date": "2026-09-08",
+  "generator_version": "f00-worlds-1",
+  "status": "frozen_before_initial_validation",
+  "splits": {
+    "development": {"family": "unary_rewrite", "seeds": [11, 29, 47, 71, 101, 139, 173, 211, 257, 307]},
+    "validation": {"family": "guarded_rewrite", "seeds": [401, 443, 487, 541, 593, 647, 701, 761, 821, 887]},
+    "reserved": {"family": "coupled_transfer", "seeds": [1009, 1061, 1123, 1193, 1259, 1321, 1381, 1451, 1511, 1583]}
+  },
+  "cases_per_seed": 12,
+  "evidence_budget": 8,
+  "max_plan_steps": 2,
+  "max_operations_per_case": 128,
+  "max_seconds_per_case": 1.0,
+  "bootstrap_repetitions": 1000,
+  "bootstrap_seed": 20260908,
+  "comparators": ["memory_only", "symbolic_search", "empirical_frequency"],
+  "primary_metric": "supported_task_success_rate",
+  "decision_rule": "Measurement readiness requires schema/provenance/resource checks; no scientific advancement claim from these hand-coded references. Any future claim must preregister comparator, minimally relevant effect and cluster-level uncertainty before opening a fresh reserved family.",
+  "reserved_policy": "not_executed_in_F00; future release needs a new versioned decision record before first scoring; local files are not an adversarial secrecy boundary"
+}

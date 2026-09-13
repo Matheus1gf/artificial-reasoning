@@ -1,0 +1,3538 @@
+{
+  "schema_version": 1,
+  "kind": "synthetic_learning_control_pilot",
+  "official_reserved_test_used": false,
+  "results": [
+    {
+      "seed": 71,
+      "condition": "new-task-only",
+      "coefficients_hidden_from_trainer": [
+        2,
+        -4
+      ],
+      "datasets": {
+        "training": [
+          [
+            {
+              "id": "seed71:train:task0:x1",
+              "inputs": [
+                0,
+                1
+              ],
+              "target": 2
+            },
+            {
+              "id": "seed71:train:task0:x2",
+              "inputs": [
+                0,
+                2
+              ],
+              "target": 4
+            },
+            {
+              "id": "seed71:train:task0:x3",
+              "inputs": [
+                0,
+                3
+              ],
+              "target": 6
+            },
+            {
+              "id": "seed71:train:task0:x4",
+              "inputs": [
+                0,
+                4
+              ],
+              "target": 8
+            }
+          ],
+          [
+            {
+              "id": "seed71:train:task1:x1",
+              "inputs": [
+                1,
+                1
+              ],
+              "target": -4
+            },
+            {
+              "id": "seed71:train:task1:x2",
+              "inputs": [
+                1,
+                2
+              ],
+              "target": -8
+            },
+            {
+              "id": "seed71:train:task1:x3",
+              "inputs": [
+                1,
+                3
+              ],
+              "target": -12
+            },
+            {
+              "id": "seed71:train:task1:x4",
+              "inputs": [
+                1,
+                4
+              ],
+              "target": -16
+            }
+          ]
+        ],
+        "validation": [
+          [
+            {
+              "id": "seed71:validation:task0:x5",
+              "inputs": [
+                0,
+                5
+              ],
+              "target": 10
+            },
+            {
+              "id": "seed71:validation:task0:x6",
+              "inputs": [
+                0,
+                6
+              ],
+              "target": 12
+            },
+            {
+              "id": "seed71:validation:task0:x7",
+              "inputs": [
+                0,
+                7
+              ],
+              "target": 14
+            }
+          ],
+          [
+            {
+              "id": "seed71:validation:task1:x5",
+              "inputs": [
+                1,
+                5
+              ],
+              "target": -20
+            },
+            {
+              "id": "seed71:validation:task1:x6",
+              "inputs": [
+                1,
+                6
+              ],
+              "target": -24
+            },
+            {
+              "id": "seed71:validation:task1:x7",
+              "inputs": [
+                1,
+                7
+              ],
+              "target": -28
+            }
+          ]
+        ],
+        "retention": [
+          {
+            "id": "seed71:retention:task0:x-1",
+            "inputs": [
+              0,
+              -1
+            ],
+            "target": -2
+          },
+          {
+            "id": "seed71:retention:task0:x-2",
+            "inputs": [
+              0,
+              -2
+            ],
+            "target": -4
+          },
+          {
+            "id": "seed71:retention:task0:x-3",
+            "inputs": [
+              0,
+              -3
+            ],
+            "target": -6
+          }
+        ]
+      },
+      "first_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-0bbea2cfcafe4cd684a0273787225511",
+        "previous_version": null,
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 146.66666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 18.666666666666668,
+          "train_examples": 4,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00021199999999998997,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-f08b480ec4a744e59388d5c8059ce932"
+        },
+        "selected_ids": [
+          "E-88834672fb4149328fe8924f2958c342",
+          "E-c3bb8f43cb764ee1909ed253d01c7d27",
+          "E-e7051ceb44aa4b5a91d9d41a0b80c3c4",
+          "E-29cfc73996e640208036ac2b37d19733"
+        ]
+      },
+      "second_task": {
+        "status": "rejected",
+        "weights_updated": false,
+        "model_version": "V-1c9b6dd64a274a9383c204255818cbeb",
+        "previous_version": "V-0bbea2cfcafe4cd684a0273787225511",
+        "metrics": {
+          "passed": true,
+          "retention_passed": false,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 586.6666666666666,
+          "retention_mse": 18.666666666666668,
+          "previous_retention_mse": 0.0,
+          "train_examples": 8,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.0005782500000000024,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-a12f0deb2b764f58988a17cacbf99902"
+        },
+        "selected_ids": [
+          "E-1b4cb18969b140548a49be7716700e23",
+          "E-359ad62ea2164f63a878dca658821260",
+          "E-fe15f439db754f1aae787bcdbd277ca3",
+          "E-64b15ddbccf94e7aa79aed53dc9097df",
+          "E-88834672fb4149328fe8924f2958c342",
+          "E-c3bb8f43cb764ee1909ed253d01c7d27",
+          "E-e7051ceb44aa4b5a91d9d41a0b80c3c4",
+          "E-29cfc73996e640208036ac2b37d19733"
+        ]
+      },
+      "adopted_old_task_mse": 0.0,
+      "adopted_new_task_mse": 586.6666666666666,
+      "rollback_exact": true,
+      "backup_restore_equal": true,
+      "withdrawal_disabled_active": true,
+      "dependent_weight_versions_remaining": 0,
+      "forget": {
+        "deleted_ids": [
+          "E-29cfc73996e640208036ac2b37d19733"
+        ],
+        "backup_deletion_required": true,
+        "retraining_required": true
+      },
+      "recorded_experiences": 8
+    },
+    {
+      "seed": 71,
+      "condition": "experience-replay",
+      "coefficients_hidden_from_trainer": [
+        2,
+        -4
+      ],
+      "datasets": {
+        "training": [
+          [
+            {
+              "id": "seed71:train:task0:x1",
+              "inputs": [
+                0,
+                1
+              ],
+              "target": 2
+            },
+            {
+              "id": "seed71:train:task0:x2",
+              "inputs": [
+                0,
+                2
+              ],
+              "target": 4
+            },
+            {
+              "id": "seed71:train:task0:x3",
+              "inputs": [
+                0,
+                3
+              ],
+              "target": 6
+            },
+            {
+              "id": "seed71:train:task0:x4",
+              "inputs": [
+                0,
+                4
+              ],
+              "target": 8
+            }
+          ],
+          [
+            {
+              "id": "seed71:train:task1:x1",
+              "inputs": [
+                1,
+                1
+              ],
+              "target": -4
+            },
+            {
+              "id": "seed71:train:task1:x2",
+              "inputs": [
+                1,
+                2
+              ],
+              "target": -8
+            },
+            {
+              "id": "seed71:train:task1:x3",
+              "inputs": [
+                1,
+                3
+              ],
+              "target": -12
+            },
+            {
+              "id": "seed71:train:task1:x4",
+              "inputs": [
+                1,
+                4
+              ],
+              "target": -16
+            }
+          ]
+        ],
+        "validation": [
+          [
+            {
+              "id": "seed71:validation:task0:x5",
+              "inputs": [
+                0,
+                5
+              ],
+              "target": 10
+            },
+            {
+              "id": "seed71:validation:task0:x6",
+              "inputs": [
+                0,
+                6
+              ],
+              "target": 12
+            },
+            {
+              "id": "seed71:validation:task0:x7",
+              "inputs": [
+                0,
+                7
+              ],
+              "target": 14
+            }
+          ],
+          [
+            {
+              "id": "seed71:validation:task1:x5",
+              "inputs": [
+                1,
+                5
+              ],
+              "target": -20
+            },
+            {
+              "id": "seed71:validation:task1:x6",
+              "inputs": [
+                1,
+                6
+              ],
+              "target": -24
+            },
+            {
+              "id": "seed71:validation:task1:x7",
+              "inputs": [
+                1,
+                7
+              ],
+              "target": -28
+            }
+          ]
+        ],
+        "retention": [
+          {
+            "id": "seed71:retention:task0:x-1",
+            "inputs": [
+              0,
+              -1
+            ],
+            "target": -2
+          },
+          {
+            "id": "seed71:retention:task0:x-2",
+            "inputs": [
+              0,
+              -2
+            ],
+            "target": -4
+          },
+          {
+            "id": "seed71:retention:task0:x-3",
+            "inputs": [
+              0,
+              -3
+            ],
+            "target": -6
+          }
+        ]
+      },
+      "first_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-f36aba0ee5d440be822bea6a81d1985a",
+        "previous_version": null,
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 146.66666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 18.666666666666668,
+          "train_examples": 4,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00012387500000005103,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-101a42cf7126489c9c92bc00fbf7fa57"
+        },
+        "selected_ids": [
+          "E-a09aababeaf44fc5a57f0a0e22bedbd4",
+          "E-12d1589aaf0d48b0b4ac6742e9f7693c",
+          "E-9778842fc4e14322be3220c79773dbe7",
+          "E-307d1fc4d34f4f1b9a5217d5dc642d2a"
+        ]
+      },
+      "second_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-6316e48e11504f02bf09b45c3d3c757e",
+        "previous_version": "V-f36aba0ee5d440be822bea6a81d1985a",
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 586.6666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 0.0,
+          "train_examples": 8,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00037258400000000913,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-85e5d6512f0c4edcb114c4143a25c13c"
+        },
+        "selected_ids": [
+          "E-969d93a59c4f4132a7e82dcbf5bf9a3c",
+          "E-7df76456f5dd4fb3a851ca8d8112354a",
+          "E-794b370c4eb5452fb92a884f7f461a19",
+          "E-e1235dca0fa74de1a9e6adffa9abc11f",
+          "E-a09aababeaf44fc5a57f0a0e22bedbd4",
+          "E-12d1589aaf0d48b0b4ac6742e9f7693c",
+          "E-9778842fc4e14322be3220c79773dbe7",
+          "E-307d1fc4d34f4f1b9a5217d5dc642d2a"
+        ]
+      },
+      "adopted_old_task_mse": 0.0,
+      "adopted_new_task_mse": 0.0,
+      "rollback_exact": true,
+      "backup_restore_equal": true,
+      "withdrawal_disabled_active": true,
+      "dependent_weight_versions_remaining": 0,
+      "forget": {
+        "deleted_ids": [
+          "E-307d1fc4d34f4f1b9a5217d5dc642d2a"
+        ],
+        "backup_deletion_required": true,
+        "retraining_required": true
+      },
+      "recorded_experiences": 8
+    },
+    {
+      "seed": 71,
+      "condition": "preserve-old-module",
+      "coefficients_hidden_from_trainer": [
+        2,
+        -4
+      ],
+      "datasets": {
+        "training": [
+          [
+            {
+              "id": "seed71:train:task0:x1",
+              "inputs": [
+                0,
+                1
+              ],
+              "target": 2
+            },
+            {
+              "id": "seed71:train:task0:x2",
+              "inputs": [
+                0,
+                2
+              ],
+              "target": 4
+            },
+            {
+              "id": "seed71:train:task0:x3",
+              "inputs": [
+                0,
+                3
+              ],
+              "target": 6
+            },
+            {
+              "id": "seed71:train:task0:x4",
+              "inputs": [
+                0,
+                4
+              ],
+              "target": 8
+            }
+          ],
+          [
+            {
+              "id": "seed71:train:task1:x1",
+              "inputs": [
+                1,
+                1
+              ],
+              "target": -4
+            },
+            {
+              "id": "seed71:train:task1:x2",
+              "inputs": [
+                1,
+                2
+              ],
+              "target": -8
+            },
+            {
+              "id": "seed71:train:task1:x3",
+              "inputs": [
+                1,
+                3
+              ],
+              "target": -12
+            },
+            {
+              "id": "seed71:train:task1:x4",
+              "inputs": [
+                1,
+                4
+              ],
+              "target": -16
+            }
+          ]
+        ],
+        "validation": [
+          [
+            {
+              "id": "seed71:validation:task0:x5",
+              "inputs": [
+                0,
+                5
+              ],
+              "target": 10
+            },
+            {
+              "id": "seed71:validation:task0:x6",
+              "inputs": [
+                0,
+                6
+              ],
+              "target": 12
+            },
+            {
+              "id": "seed71:validation:task0:x7",
+              "inputs": [
+                0,
+                7
+              ],
+              "target": 14
+            }
+          ],
+          [
+            {
+              "id": "seed71:validation:task1:x5",
+              "inputs": [
+                1,
+                5
+              ],
+              "target": -20
+            },
+            {
+              "id": "seed71:validation:task1:x6",
+              "inputs": [
+                1,
+                6
+              ],
+              "target": -24
+            },
+            {
+              "id": "seed71:validation:task1:x7",
+              "inputs": [
+                1,
+                7
+              ],
+              "target": -28
+            }
+          ]
+        ],
+        "retention": [
+          {
+            "id": "seed71:retention:task0:x-1",
+            "inputs": [
+              0,
+              -1
+            ],
+            "target": -2
+          },
+          {
+            "id": "seed71:retention:task0:x-2",
+            "inputs": [
+              0,
+              -2
+            ],
+            "target": -4
+          },
+          {
+            "id": "seed71:retention:task0:x-3",
+            "inputs": [
+              0,
+              -3
+            ],
+            "target": -6
+          }
+        ]
+      },
+      "first_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-5ed90b64000743b08abe5f9976034167",
+        "previous_version": null,
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 146.66666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 18.666666666666668,
+          "train_examples": 4,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.006501666000000017,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-04ff9d7ad8cc40a4a5105313a6417693"
+        },
+        "selected_ids": [
+          "E-6fe32fae86224e188b086e37711eaa0d",
+          "E-10fc39ecfd1f4243bebc1031203fa878",
+          "E-a7acd82986894f9fa79c51a37185da49",
+          "E-65f7aae132f949828269a81b4360266c"
+        ]
+      },
+      "second_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-73883ce35f1441bebdb8537e94c98af0",
+        "previous_version": "V-5ed90b64000743b08abe5f9976034167",
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 586.6666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 0.0,
+          "train_examples": 8,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.0001730410000000404,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-eee32b99c7be45bb99b898ee675482a6"
+        },
+        "selected_ids": [
+          "E-fd5198271f4945c7a635da4757a7caad",
+          "E-c4d01256e59749819eda5cd033946fc1",
+          "E-72eb084ed2624c1ba9922aa1e504dbe7",
+          "E-d8439cc896224087a39ff16d600584e4",
+          "E-6fe32fae86224e188b086e37711eaa0d",
+          "E-10fc39ecfd1f4243bebc1031203fa878",
+          "E-a7acd82986894f9fa79c51a37185da49",
+          "E-65f7aae132f949828269a81b4360266c"
+        ]
+      },
+      "adopted_old_task_mse": 0.0,
+      "adopted_new_task_mse": 0.0,
+      "rollback_exact": true,
+      "backup_restore_equal": true,
+      "withdrawal_disabled_active": true,
+      "dependent_weight_versions_remaining": 0,
+      "forget": {
+        "deleted_ids": [
+          "E-65f7aae132f949828269a81b4360266c"
+        ],
+        "backup_deletion_required": true,
+        "retraining_required": true
+      },
+      "recorded_experiences": 8
+    },
+    {
+      "seed": 83,
+      "condition": "new-task-only",
+      "coefficients_hidden_from_trainer": [
+        3,
+        4
+      ],
+      "datasets": {
+        "training": [
+          [
+            {
+              "id": "seed83:train:task0:x1",
+              "inputs": [
+                0,
+                1
+              ],
+              "target": 3
+            },
+            {
+              "id": "seed83:train:task0:x2",
+              "inputs": [
+                0,
+                2
+              ],
+              "target": 6
+            },
+            {
+              "id": "seed83:train:task0:x3",
+              "inputs": [
+                0,
+                3
+              ],
+              "target": 9
+            },
+            {
+              "id": "seed83:train:task0:x4",
+              "inputs": [
+                0,
+                4
+              ],
+              "target": 12
+            }
+          ],
+          [
+            {
+              "id": "seed83:train:task1:x1",
+              "inputs": [
+                1,
+                1
+              ],
+              "target": 4
+            },
+            {
+              "id": "seed83:train:task1:x2",
+              "inputs": [
+                1,
+                2
+              ],
+              "target": 8
+            },
+            {
+              "id": "seed83:train:task1:x3",
+              "inputs": [
+                1,
+                3
+              ],
+              "target": 12
+            },
+            {
+              "id": "seed83:train:task1:x4",
+              "inputs": [
+                1,
+                4
+              ],
+              "target": 16
+            }
+          ]
+        ],
+        "validation": [
+          [
+            {
+              "id": "seed83:validation:task0:x5",
+              "inputs": [
+                0,
+                5
+              ],
+              "target": 15
+            },
+            {
+              "id": "seed83:validation:task0:x6",
+              "inputs": [
+                0,
+                6
+              ],
+              "target": 18
+            },
+            {
+              "id": "seed83:validation:task0:x7",
+              "inputs": [
+                0,
+                7
+              ],
+              "target": 21
+            }
+          ],
+          [
+            {
+              "id": "seed83:validation:task1:x5",
+              "inputs": [
+                1,
+                5
+              ],
+              "target": 20
+            },
+            {
+              "id": "seed83:validation:task1:x6",
+              "inputs": [
+                1,
+                6
+              ],
+              "target": 24
+            },
+            {
+              "id": "seed83:validation:task1:x7",
+              "inputs": [
+                1,
+                7
+              ],
+              "target": 28
+            }
+          ]
+        ],
+        "retention": [
+          {
+            "id": "seed83:retention:task0:x-1",
+            "inputs": [
+              0,
+              -1
+            ],
+            "target": -3
+          },
+          {
+            "id": "seed83:retention:task0:x-2",
+            "inputs": [
+              0,
+              -2
+            ],
+            "target": -6
+          },
+          {
+            "id": "seed83:retention:task0:x-3",
+            "inputs": [
+              0,
+              -3
+            ],
+            "target": -9
+          }
+        ]
+      },
+      "first_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-0ddabffd1d7c4c93a8023f85adf1604c",
+        "previous_version": null,
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 330.0,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 42.0,
+          "train_examples": 4,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00017541700000001104,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-1acaa653362c467b8309fe203a0b5b92"
+        },
+        "selected_ids": [
+          "E-471280ffc5984a0a833110292f8dab03",
+          "E-e6517605801f4c2ea6d573cebfc9422c",
+          "E-33d3b30d708a495c972e18fa4a5d0fb1",
+          "E-5a4cd89925ea4acabc14a8b2437c3831"
+        ]
+      },
+      "second_task": {
+        "status": "rejected",
+        "weights_updated": false,
+        "model_version": "V-2584ef81ba0e42dca46938136a1e279c",
+        "previous_version": "V-0ddabffd1d7c4c93a8023f85adf1604c",
+        "metrics": {
+          "passed": true,
+          "retention_passed": false,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 586.6666666666666,
+          "retention_mse": 42.0,
+          "previous_retention_mse": 0.0,
+          "train_examples": 8,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00015850000000000586,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-28b230ef77de4599b243fad7335f209d"
+        },
+        "selected_ids": [
+          "E-c540d17cc7554b448088243aaea99bc3",
+          "E-7bfdb871250f4f45a3be71c1d095ab37",
+          "E-2c20545f1d19434a9e64b4182d7bae7b",
+          "E-a700ad2a92bf4c44a765acc70c0ec334",
+          "E-471280ffc5984a0a833110292f8dab03",
+          "E-e6517605801f4c2ea6d573cebfc9422c",
+          "E-33d3b30d708a495c972e18fa4a5d0fb1",
+          "E-5a4cd89925ea4acabc14a8b2437c3831"
+        ]
+      },
+      "adopted_old_task_mse": 0.0,
+      "adopted_new_task_mse": 586.6666666666666,
+      "rollback_exact": true,
+      "backup_restore_equal": true,
+      "withdrawal_disabled_active": true,
+      "dependent_weight_versions_remaining": 0,
+      "forget": {
+        "deleted_ids": [
+          "E-5a4cd89925ea4acabc14a8b2437c3831"
+        ],
+        "backup_deletion_required": true,
+        "retraining_required": true
+      },
+      "recorded_experiences": 8
+    },
+    {
+      "seed": 83,
+      "condition": "experience-replay",
+      "coefficients_hidden_from_trainer": [
+        3,
+        4
+      ],
+      "datasets": {
+        "training": [
+          [
+            {
+              "id": "seed83:train:task0:x1",
+              "inputs": [
+                0,
+                1
+              ],
+              "target": 3
+            },
+            {
+              "id": "seed83:train:task0:x2",
+              "inputs": [
+                0,
+                2
+              ],
+              "target": 6
+            },
+            {
+              "id": "seed83:train:task0:x3",
+              "inputs": [
+                0,
+                3
+              ],
+              "target": 9
+            },
+            {
+              "id": "seed83:train:task0:x4",
+              "inputs": [
+                0,
+                4
+              ],
+              "target": 12
+            }
+          ],
+          [
+            {
+              "id": "seed83:train:task1:x1",
+              "inputs": [
+                1,
+                1
+              ],
+              "target": 4
+            },
+            {
+              "id": "seed83:train:task1:x2",
+              "inputs": [
+                1,
+                2
+              ],
+              "target": 8
+            },
+            {
+              "id": "seed83:train:task1:x3",
+              "inputs": [
+                1,
+                3
+              ],
+              "target": 12
+            },
+            {
+              "id": "seed83:train:task1:x4",
+              "inputs": [
+                1,
+                4
+              ],
+              "target": 16
+            }
+          ]
+        ],
+        "validation": [
+          [
+            {
+              "id": "seed83:validation:task0:x5",
+              "inputs": [
+                0,
+                5
+              ],
+              "target": 15
+            },
+            {
+              "id": "seed83:validation:task0:x6",
+              "inputs": [
+                0,
+                6
+              ],
+              "target": 18
+            },
+            {
+              "id": "seed83:validation:task0:x7",
+              "inputs": [
+                0,
+                7
+              ],
+              "target": 21
+            }
+          ],
+          [
+            {
+              "id": "seed83:validation:task1:x5",
+              "inputs": [
+                1,
+                5
+              ],
+              "target": 20
+            },
+            {
+              "id": "seed83:validation:task1:x6",
+              "inputs": [
+                1,
+                6
+              ],
+              "target": 24
+            },
+            {
+              "id": "seed83:validation:task1:x7",
+              "inputs": [
+                1,
+                7
+              ],
+              "target": 28
+            }
+          ]
+        ],
+        "retention": [
+          {
+            "id": "seed83:retention:task0:x-1",
+            "inputs": [
+              0,
+              -1
+            ],
+            "target": -3
+          },
+          {
+            "id": "seed83:retention:task0:x-2",
+            "inputs": [
+              0,
+              -2
+            ],
+            "target": -6
+          },
+          {
+            "id": "seed83:retention:task0:x-3",
+            "inputs": [
+              0,
+              -3
+            ],
+            "target": -9
+          }
+        ]
+      },
+      "first_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-7846de8839424545afd650e4081e2259",
+        "previous_version": null,
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 330.0,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 42.0,
+          "train_examples": 4,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.0001070829999999523,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-37ad23425379482bbdb872b9b3a6c12a"
+        },
+        "selected_ids": [
+          "E-c1f2afcd864f4281b090639bc758f60c",
+          "E-81b7b6ac5c6b45a58ed98fe8a0ee56c9",
+          "E-b73408b741c14ae695c1441009ea7685",
+          "E-c14fa4bca46b4ef79871abda4304ee98"
+        ]
+      },
+      "second_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-0c845d877a32485a942d6f6f7fd5d3df",
+        "previous_version": "V-7846de8839424545afd650e4081e2259",
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 586.6666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 0.0,
+          "train_examples": 8,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.0001442499999999569,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-d825e469f05b460ba7f2a0d799040c51"
+        },
+        "selected_ids": [
+          "E-2714938cb63f4f7b9d09a606c5dd25c3",
+          "E-e055db7a18d344b19bbb8242f984f287",
+          "E-2981cd7ff8e941fb88a765ad3d4e7d0f",
+          "E-a3a06c6b97604b7d9879ce0b7c103d96",
+          "E-c1f2afcd864f4281b090639bc758f60c",
+          "E-81b7b6ac5c6b45a58ed98fe8a0ee56c9",
+          "E-b73408b741c14ae695c1441009ea7685",
+          "E-c14fa4bca46b4ef79871abda4304ee98"
+        ]
+      },
+      "adopted_old_task_mse": 0.0,
+      "adopted_new_task_mse": 0.0,
+      "rollback_exact": true,
+      "backup_restore_equal": true,
+      "withdrawal_disabled_active": true,
+      "dependent_weight_versions_remaining": 0,
+      "forget": {
+        "deleted_ids": [
+          "E-c14fa4bca46b4ef79871abda4304ee98"
+        ],
+        "backup_deletion_required": true,
+        "retraining_required": true
+      },
+      "recorded_experiences": 8
+    },
+    {
+      "seed": 83,
+      "condition": "preserve-old-module",
+      "coefficients_hidden_from_trainer": [
+        3,
+        4
+      ],
+      "datasets": {
+        "training": [
+          [
+            {
+              "id": "seed83:train:task0:x1",
+              "inputs": [
+                0,
+                1
+              ],
+              "target": 3
+            },
+            {
+              "id": "seed83:train:task0:x2",
+              "inputs": [
+                0,
+                2
+              ],
+              "target": 6
+            },
+            {
+              "id": "seed83:train:task0:x3",
+              "inputs": [
+                0,
+                3
+              ],
+              "target": 9
+            },
+            {
+              "id": "seed83:train:task0:x4",
+              "inputs": [
+                0,
+                4
+              ],
+              "target": 12
+            }
+          ],
+          [
+            {
+              "id": "seed83:train:task1:x1",
+              "inputs": [
+                1,
+                1
+              ],
+              "target": 4
+            },
+            {
+              "id": "seed83:train:task1:x2",
+              "inputs": [
+                1,
+                2
+              ],
+              "target": 8
+            },
+            {
+              "id": "seed83:train:task1:x3",
+              "inputs": [
+                1,
+                3
+              ],
+              "target": 12
+            },
+            {
+              "id": "seed83:train:task1:x4",
+              "inputs": [
+                1,
+                4
+              ],
+              "target": 16
+            }
+          ]
+        ],
+        "validation": [
+          [
+            {
+              "id": "seed83:validation:task0:x5",
+              "inputs": [
+                0,
+                5
+              ],
+              "target": 15
+            },
+            {
+              "id": "seed83:validation:task0:x6",
+              "inputs": [
+                0,
+                6
+              ],
+              "target": 18
+            },
+            {
+              "id": "seed83:validation:task0:x7",
+              "inputs": [
+                0,
+                7
+              ],
+              "target": 21
+            }
+          ],
+          [
+            {
+              "id": "seed83:validation:task1:x5",
+              "inputs": [
+                1,
+                5
+              ],
+              "target": 20
+            },
+            {
+              "id": "seed83:validation:task1:x6",
+              "inputs": [
+                1,
+                6
+              ],
+              "target": 24
+            },
+            {
+              "id": "seed83:validation:task1:x7",
+              "inputs": [
+                1,
+                7
+              ],
+              "target": 28
+            }
+          ]
+        ],
+        "retention": [
+          {
+            "id": "seed83:retention:task0:x-1",
+            "inputs": [
+              0,
+              -1
+            ],
+            "target": -3
+          },
+          {
+            "id": "seed83:retention:task0:x-2",
+            "inputs": [
+              0,
+              -2
+            ],
+            "target": -6
+          },
+          {
+            "id": "seed83:retention:task0:x-3",
+            "inputs": [
+              0,
+              -3
+            ],
+            "target": -9
+          }
+        ]
+      },
+      "first_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-e57034bbbe44479dbd32a08610a8c6fc",
+        "previous_version": null,
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 330.0,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 42.0,
+          "train_examples": 4,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00013729200000001107,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-c28dd485cb1d414db88fa3a5c329918f"
+        },
+        "selected_ids": [
+          "E-4ce0abd4924a4afc9ee55b64615ddf1f",
+          "E-80d0e41e08ab416aacf5c82edf8b2f17",
+          "E-d593d807d3ef45628666e554b874453d",
+          "E-f5b4c0c87f9547329233f5edbeaf81aa"
+        ]
+      },
+      "second_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-66473cfd382848e98ec8171076287c45",
+        "previous_version": "V-e57034bbbe44479dbd32a08610a8c6fc",
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 586.6666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 0.0,
+          "train_examples": 8,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.0001998749999999605,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-8b23d88543164568bca52100a66bd08d"
+        },
+        "selected_ids": [
+          "E-353c95d3bf4245c4922b3dc094399758",
+          "E-01d7228ec6324627abb5438bf86c1a87",
+          "E-8db385c0187e4c1abf90e6d6f015ac05",
+          "E-ce7100f472724b2b9f85ff644aad0ea5",
+          "E-4ce0abd4924a4afc9ee55b64615ddf1f",
+          "E-80d0e41e08ab416aacf5c82edf8b2f17",
+          "E-d593d807d3ef45628666e554b874453d",
+          "E-f5b4c0c87f9547329233f5edbeaf81aa"
+        ]
+      },
+      "adopted_old_task_mse": 0.0,
+      "adopted_new_task_mse": 0.0,
+      "rollback_exact": true,
+      "backup_restore_equal": true,
+      "withdrawal_disabled_active": true,
+      "dependent_weight_versions_remaining": 0,
+      "forget": {
+        "deleted_ids": [
+          "E-f5b4c0c87f9547329233f5edbeaf81aa"
+        ],
+        "backup_deletion_required": true,
+        "retraining_required": true
+      },
+      "recorded_experiences": 8
+    },
+    {
+      "seed": 97,
+      "condition": "new-task-only",
+      "coefficients_hidden_from_trainer": [
+        -2,
+        4
+      ],
+      "datasets": {
+        "training": [
+          [
+            {
+              "id": "seed97:train:task0:x1",
+              "inputs": [
+                0,
+                1
+              ],
+              "target": -2
+            },
+            {
+              "id": "seed97:train:task0:x2",
+              "inputs": [
+                0,
+                2
+              ],
+              "target": -4
+            },
+            {
+              "id": "seed97:train:task0:x3",
+              "inputs": [
+                0,
+                3
+              ],
+              "target": -6
+            },
+            {
+              "id": "seed97:train:task0:x4",
+              "inputs": [
+                0,
+                4
+              ],
+              "target": -8
+            }
+          ],
+          [
+            {
+              "id": "seed97:train:task1:x1",
+              "inputs": [
+                1,
+                1
+              ],
+              "target": 4
+            },
+            {
+              "id": "seed97:train:task1:x2",
+              "inputs": [
+                1,
+                2
+              ],
+              "target": 8
+            },
+            {
+              "id": "seed97:train:task1:x3",
+              "inputs": [
+                1,
+                3
+              ],
+              "target": 12
+            },
+            {
+              "id": "seed97:train:task1:x4",
+              "inputs": [
+                1,
+                4
+              ],
+              "target": 16
+            }
+          ]
+        ],
+        "validation": [
+          [
+            {
+              "id": "seed97:validation:task0:x5",
+              "inputs": [
+                0,
+                5
+              ],
+              "target": -10
+            },
+            {
+              "id": "seed97:validation:task0:x6",
+              "inputs": [
+                0,
+                6
+              ],
+              "target": -12
+            },
+            {
+              "id": "seed97:validation:task0:x7",
+              "inputs": [
+                0,
+                7
+              ],
+              "target": -14
+            }
+          ],
+          [
+            {
+              "id": "seed97:validation:task1:x5",
+              "inputs": [
+                1,
+                5
+              ],
+              "target": 20
+            },
+            {
+              "id": "seed97:validation:task1:x6",
+              "inputs": [
+                1,
+                6
+              ],
+              "target": 24
+            },
+            {
+              "id": "seed97:validation:task1:x7",
+              "inputs": [
+                1,
+                7
+              ],
+              "target": 28
+            }
+          ]
+        ],
+        "retention": [
+          {
+            "id": "seed97:retention:task0:x-1",
+            "inputs": [
+              0,
+              -1
+            ],
+            "target": 2
+          },
+          {
+            "id": "seed97:retention:task0:x-2",
+            "inputs": [
+              0,
+              -2
+            ],
+            "target": 4
+          },
+          {
+            "id": "seed97:retention:task0:x-3",
+            "inputs": [
+              0,
+              -3
+            ],
+            "target": 6
+          }
+        ]
+      },
+      "first_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-b5dc67549126407e8836785b113e67e7",
+        "previous_version": null,
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 146.66666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 18.666666666666668,
+          "train_examples": 4,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.0003109999999999502,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-40e336839cfa47d4bd92878332fe63b7"
+        },
+        "selected_ids": [
+          "E-ad9faa55a99c4759b18149327f5f288f",
+          "E-1d47a37812214c6b88d59fc4883a7e6b",
+          "E-cf956ee056674487bc3f3158e1dc2db2",
+          "E-e65537e3f8fc445ebade162c982839ef"
+        ]
+      },
+      "second_task": {
+        "status": "rejected",
+        "weights_updated": false,
+        "model_version": "V-e1a8297468ea4562a546bd1c20db210a",
+        "previous_version": "V-b5dc67549126407e8836785b113e67e7",
+        "metrics": {
+          "passed": true,
+          "retention_passed": false,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 586.6666666666666,
+          "retention_mse": 18.666666666666668,
+          "previous_retention_mse": 0.0,
+          "train_examples": 8,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00023233299999991797,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-ba4da46904494a43bc269a9f431157e7"
+        },
+        "selected_ids": [
+          "E-057549ec18ae4d3083f1a8dcadbe7014",
+          "E-78753a5a3d8f4b48a67e934e38d369cf",
+          "E-1a244e52efa647228cfbfa5dc2261530",
+          "E-96a69395e5124845840bb6c09507682c",
+          "E-ad9faa55a99c4759b18149327f5f288f",
+          "E-1d47a37812214c6b88d59fc4883a7e6b",
+          "E-cf956ee056674487bc3f3158e1dc2db2",
+          "E-e65537e3f8fc445ebade162c982839ef"
+        ]
+      },
+      "adopted_old_task_mse": 0.0,
+      "adopted_new_task_mse": 586.6666666666666,
+      "rollback_exact": true,
+      "backup_restore_equal": true,
+      "withdrawal_disabled_active": true,
+      "dependent_weight_versions_remaining": 0,
+      "forget": {
+        "deleted_ids": [
+          "E-e65537e3f8fc445ebade162c982839ef"
+        ],
+        "backup_deletion_required": true,
+        "retraining_required": true
+      },
+      "recorded_experiences": 8
+    },
+    {
+      "seed": 97,
+      "condition": "experience-replay",
+      "coefficients_hidden_from_trainer": [
+        -2,
+        4
+      ],
+      "datasets": {
+        "training": [
+          [
+            {
+              "id": "seed97:train:task0:x1",
+              "inputs": [
+                0,
+                1
+              ],
+              "target": -2
+            },
+            {
+              "id": "seed97:train:task0:x2",
+              "inputs": [
+                0,
+                2
+              ],
+              "target": -4
+            },
+            {
+              "id": "seed97:train:task0:x3",
+              "inputs": [
+                0,
+                3
+              ],
+              "target": -6
+            },
+            {
+              "id": "seed97:train:task0:x4",
+              "inputs": [
+                0,
+                4
+              ],
+              "target": -8
+            }
+          ],
+          [
+            {
+              "id": "seed97:train:task1:x1",
+              "inputs": [
+                1,
+                1
+              ],
+              "target": 4
+            },
+            {
+              "id": "seed97:train:task1:x2",
+              "inputs": [
+                1,
+                2
+              ],
+              "target": 8
+            },
+            {
+              "id": "seed97:train:task1:x3",
+              "inputs": [
+                1,
+                3
+              ],
+              "target": 12
+            },
+            {
+              "id": "seed97:train:task1:x4",
+              "inputs": [
+                1,
+                4
+              ],
+              "target": 16
+            }
+          ]
+        ],
+        "validation": [
+          [
+            {
+              "id": "seed97:validation:task0:x5",
+              "inputs": [
+                0,
+                5
+              ],
+              "target": -10
+            },
+            {
+              "id": "seed97:validation:task0:x6",
+              "inputs": [
+                0,
+                6
+              ],
+              "target": -12
+            },
+            {
+              "id": "seed97:validation:task0:x7",
+              "inputs": [
+                0,
+                7
+              ],
+              "target": -14
+            }
+          ],
+          [
+            {
+              "id": "seed97:validation:task1:x5",
+              "inputs": [
+                1,
+                5
+              ],
+              "target": 20
+            },
+            {
+              "id": "seed97:validation:task1:x6",
+              "inputs": [
+                1,
+                6
+              ],
+              "target": 24
+            },
+            {
+              "id": "seed97:validation:task1:x7",
+              "inputs": [
+                1,
+                7
+              ],
+              "target": 28
+            }
+          ]
+        ],
+        "retention": [
+          {
+            "id": "seed97:retention:task0:x-1",
+            "inputs": [
+              0,
+              -1
+            ],
+            "target": 2
+          },
+          {
+            "id": "seed97:retention:task0:x-2",
+            "inputs": [
+              0,
+              -2
+            ],
+            "target": 4
+          },
+          {
+            "id": "seed97:retention:task0:x-3",
+            "inputs": [
+              0,
+              -3
+            ],
+            "target": 6
+          }
+        ]
+      },
+      "first_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-0701e51cf0af4d199d352d3081a1b0ed",
+        "previous_version": null,
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 146.66666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 18.666666666666668,
+          "train_examples": 4,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00012529199999999907,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-f39aa09614d2462bbb4659bf272098e6"
+        },
+        "selected_ids": [
+          "E-187d6857bd67442aba50cc09d5859fe6",
+          "E-16f06405804c45129fb808c89ba3eb2f",
+          "E-b25893fdd02b4613a2386fe94961f654",
+          "E-761246265fbb44f388c25ad4c59f7752"
+        ]
+      },
+      "second_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-c4fc581598bc419eab71828744a095c0",
+        "previous_version": "V-0701e51cf0af4d199d352d3081a1b0ed",
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 586.6666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 0.0,
+          "train_examples": 8,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00030166600000003374,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-0bc0e5f4cbc642bea18891529a2eda62"
+        },
+        "selected_ids": [
+          "E-c5b638f993cf446fa06acdac65d7d8c7",
+          "E-b1d420831d0a41619aef5e408e7256b8",
+          "E-e7ab1e3fef7c4179880a9bc1b94e8ece",
+          "E-0eb71c869f334a2cb12a3543f47159c3",
+          "E-187d6857bd67442aba50cc09d5859fe6",
+          "E-16f06405804c45129fb808c89ba3eb2f",
+          "E-b25893fdd02b4613a2386fe94961f654",
+          "E-761246265fbb44f388c25ad4c59f7752"
+        ]
+      },
+      "adopted_old_task_mse": 0.0,
+      "adopted_new_task_mse": 0.0,
+      "rollback_exact": true,
+      "backup_restore_equal": true,
+      "withdrawal_disabled_active": true,
+      "dependent_weight_versions_remaining": 0,
+      "forget": {
+        "deleted_ids": [
+          "E-761246265fbb44f388c25ad4c59f7752"
+        ],
+        "backup_deletion_required": true,
+        "retraining_required": true
+      },
+      "recorded_experiences": 8
+    },
+    {
+      "seed": 97,
+      "condition": "preserve-old-module",
+      "coefficients_hidden_from_trainer": [
+        -2,
+        4
+      ],
+      "datasets": {
+        "training": [
+          [
+            {
+              "id": "seed97:train:task0:x1",
+              "inputs": [
+                0,
+                1
+              ],
+              "target": -2
+            },
+            {
+              "id": "seed97:train:task0:x2",
+              "inputs": [
+                0,
+                2
+              ],
+              "target": -4
+            },
+            {
+              "id": "seed97:train:task0:x3",
+              "inputs": [
+                0,
+                3
+              ],
+              "target": -6
+            },
+            {
+              "id": "seed97:train:task0:x4",
+              "inputs": [
+                0,
+                4
+              ],
+              "target": -8
+            }
+          ],
+          [
+            {
+              "id": "seed97:train:task1:x1",
+              "inputs": [
+                1,
+                1
+              ],
+              "target": 4
+            },
+            {
+              "id": "seed97:train:task1:x2",
+              "inputs": [
+                1,
+                2
+              ],
+              "target": 8
+            },
+            {
+              "id": "seed97:train:task1:x3",
+              "inputs": [
+                1,
+                3
+              ],
+              "target": 12
+            },
+            {
+              "id": "seed97:train:task1:x4",
+              "inputs": [
+                1,
+                4
+              ],
+              "target": 16
+            }
+          ]
+        ],
+        "validation": [
+          [
+            {
+              "id": "seed97:validation:task0:x5",
+              "inputs": [
+                0,
+                5
+              ],
+              "target": -10
+            },
+            {
+              "id": "seed97:validation:task0:x6",
+              "inputs": [
+                0,
+                6
+              ],
+              "target": -12
+            },
+            {
+              "id": "seed97:validation:task0:x7",
+              "inputs": [
+                0,
+                7
+              ],
+              "target": -14
+            }
+          ],
+          [
+            {
+              "id": "seed97:validation:task1:x5",
+              "inputs": [
+                1,
+                5
+              ],
+              "target": 20
+            },
+            {
+              "id": "seed97:validation:task1:x6",
+              "inputs": [
+                1,
+                6
+              ],
+              "target": 24
+            },
+            {
+              "id": "seed97:validation:task1:x7",
+              "inputs": [
+                1,
+                7
+              ],
+              "target": 28
+            }
+          ]
+        ],
+        "retention": [
+          {
+            "id": "seed97:retention:task0:x-1",
+            "inputs": [
+              0,
+              -1
+            ],
+            "target": 2
+          },
+          {
+            "id": "seed97:retention:task0:x-2",
+            "inputs": [
+              0,
+              -2
+            ],
+            "target": 4
+          },
+          {
+            "id": "seed97:retention:task0:x-3",
+            "inputs": [
+              0,
+              -3
+            ],
+            "target": 6
+          }
+        ]
+      },
+      "first_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-9d78498e8f0e43d682c29dba384b6c79",
+        "previous_version": null,
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 146.66666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 18.666666666666668,
+          "train_examples": 4,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00011062500000003084,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-b85b6a80f0114352972f6d87ecd2049c"
+        },
+        "selected_ids": [
+          "E-791a49cf91884e8b955f7338cd337ff7",
+          "E-1a2918962240409bb5e89aee18824f0a",
+          "E-6743a2f5b13f45548f96e6e0133f7d53",
+          "E-e894f03140ee4590a838875381004a3a"
+        ]
+      },
+      "second_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-2a8181054476440f887f96afb9a32508",
+        "previous_version": "V-9d78498e8f0e43d682c29dba384b6c79",
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 586.6666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 0.0,
+          "train_examples": 8,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.000277209000000056,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-7fc8cfd3912c444588e36f007bd67c73"
+        },
+        "selected_ids": [
+          "E-3eae1e23ade74a44976ac98f7dc2d473",
+          "E-9ce145bf11cf4168bf6c9f94590e51b0",
+          "E-94025780b98745a1aa9ef9b272c135fc",
+          "E-fe1a1d78843547d6babb807291dfbe78",
+          "E-791a49cf91884e8b955f7338cd337ff7",
+          "E-1a2918962240409bb5e89aee18824f0a",
+          "E-6743a2f5b13f45548f96e6e0133f7d53",
+          "E-e894f03140ee4590a838875381004a3a"
+        ]
+      },
+      "adopted_old_task_mse": 0.0,
+      "adopted_new_task_mse": 0.0,
+      "rollback_exact": true,
+      "backup_restore_equal": true,
+      "withdrawal_disabled_active": true,
+      "dependent_weight_versions_remaining": 0,
+      "forget": {
+        "deleted_ids": [
+          "E-e894f03140ee4590a838875381004a3a"
+        ],
+        "backup_deletion_required": true,
+        "retraining_required": true
+      },
+      "recorded_experiences": 8
+    },
+    {
+      "seed": 109,
+      "condition": "new-task-only",
+      "coefficients_hidden_from_trainer": [
+        2,
+        -2
+      ],
+      "datasets": {
+        "training": [
+          [
+            {
+              "id": "seed109:train:task0:x1",
+              "inputs": [
+                0,
+                1
+              ],
+              "target": 2
+            },
+            {
+              "id": "seed109:train:task0:x2",
+              "inputs": [
+                0,
+                2
+              ],
+              "target": 4
+            },
+            {
+              "id": "seed109:train:task0:x3",
+              "inputs": [
+                0,
+                3
+              ],
+              "target": 6
+            },
+            {
+              "id": "seed109:train:task0:x4",
+              "inputs": [
+                0,
+                4
+              ],
+              "target": 8
+            }
+          ],
+          [
+            {
+              "id": "seed109:train:task1:x1",
+              "inputs": [
+                1,
+                1
+              ],
+              "target": -2
+            },
+            {
+              "id": "seed109:train:task1:x2",
+              "inputs": [
+                1,
+                2
+              ],
+              "target": -4
+            },
+            {
+              "id": "seed109:train:task1:x3",
+              "inputs": [
+                1,
+                3
+              ],
+              "target": -6
+            },
+            {
+              "id": "seed109:train:task1:x4",
+              "inputs": [
+                1,
+                4
+              ],
+              "target": -8
+            }
+          ]
+        ],
+        "validation": [
+          [
+            {
+              "id": "seed109:validation:task0:x5",
+              "inputs": [
+                0,
+                5
+              ],
+              "target": 10
+            },
+            {
+              "id": "seed109:validation:task0:x6",
+              "inputs": [
+                0,
+                6
+              ],
+              "target": 12
+            },
+            {
+              "id": "seed109:validation:task0:x7",
+              "inputs": [
+                0,
+                7
+              ],
+              "target": 14
+            }
+          ],
+          [
+            {
+              "id": "seed109:validation:task1:x5",
+              "inputs": [
+                1,
+                5
+              ],
+              "target": -10
+            },
+            {
+              "id": "seed109:validation:task1:x6",
+              "inputs": [
+                1,
+                6
+              ],
+              "target": -12
+            },
+            {
+              "id": "seed109:validation:task1:x7",
+              "inputs": [
+                1,
+                7
+              ],
+              "target": -14
+            }
+          ]
+        ],
+        "retention": [
+          {
+            "id": "seed109:retention:task0:x-1",
+            "inputs": [
+              0,
+              -1
+            ],
+            "target": -2
+          },
+          {
+            "id": "seed109:retention:task0:x-2",
+            "inputs": [
+              0,
+              -2
+            ],
+            "target": -4
+          },
+          {
+            "id": "seed109:retention:task0:x-3",
+            "inputs": [
+              0,
+              -3
+            ],
+            "target": -6
+          }
+        ]
+      },
+      "first_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-08d3c0dd83c34ddb9b11af9c9e57dc3e",
+        "previous_version": null,
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 146.66666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 18.666666666666668,
+          "train_examples": 4,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00020404200000001538,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-21c55bf014ec4a1b9494267d965cbc80"
+        },
+        "selected_ids": [
+          "E-7e48d41a8a994eea8012f6fafc90849e",
+          "E-0741f70b94ea434f9d214bee88118a0a",
+          "E-accd4b0db87e49f6b34fa5432dafd28e",
+          "E-4a62c54193cf49ccbcebfa2ce541203d"
+        ]
+      },
+      "second_task": {
+        "status": "rejected",
+        "weights_updated": false,
+        "model_version": "V-78fb1b9bd888434fa985ab693e7eb67f",
+        "previous_version": "V-08d3c0dd83c34ddb9b11af9c9e57dc3e",
+        "metrics": {
+          "passed": true,
+          "retention_passed": false,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 146.66666666666666,
+          "retention_mse": 18.666666666666668,
+          "previous_retention_mse": 0.0,
+          "train_examples": 8,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.0002751250000000427,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-bc6858aaef70437c9a7592e29283e318"
+        },
+        "selected_ids": [
+          "E-898274d5600f482498538f292f6d85a1",
+          "E-4f126506e11b4a74b2917a4988b6ac3d",
+          "E-4a89d9067e1d491ebc10a4e9c7e64f97",
+          "E-d5d30e0d89f5474f8bbb50a2832edbd2",
+          "E-7e48d41a8a994eea8012f6fafc90849e",
+          "E-0741f70b94ea434f9d214bee88118a0a",
+          "E-accd4b0db87e49f6b34fa5432dafd28e",
+          "E-4a62c54193cf49ccbcebfa2ce541203d"
+        ]
+      },
+      "adopted_old_task_mse": 0.0,
+      "adopted_new_task_mse": 146.66666666666666,
+      "rollback_exact": true,
+      "backup_restore_equal": true,
+      "withdrawal_disabled_active": true,
+      "dependent_weight_versions_remaining": 0,
+      "forget": {
+        "deleted_ids": [
+          "E-4a62c54193cf49ccbcebfa2ce541203d"
+        ],
+        "backup_deletion_required": true,
+        "retraining_required": true
+      },
+      "recorded_experiences": 8
+    },
+    {
+      "seed": 109,
+      "condition": "experience-replay",
+      "coefficients_hidden_from_trainer": [
+        2,
+        -2
+      ],
+      "datasets": {
+        "training": [
+          [
+            {
+              "id": "seed109:train:task0:x1",
+              "inputs": [
+                0,
+                1
+              ],
+              "target": 2
+            },
+            {
+              "id": "seed109:train:task0:x2",
+              "inputs": [
+                0,
+                2
+              ],
+              "target": 4
+            },
+            {
+              "id": "seed109:train:task0:x3",
+              "inputs": [
+                0,
+                3
+              ],
+              "target": 6
+            },
+            {
+              "id": "seed109:train:task0:x4",
+              "inputs": [
+                0,
+                4
+              ],
+              "target": 8
+            }
+          ],
+          [
+            {
+              "id": "seed109:train:task1:x1",
+              "inputs": [
+                1,
+                1
+              ],
+              "target": -2
+            },
+            {
+              "id": "seed109:train:task1:x2",
+              "inputs": [
+                1,
+                2
+              ],
+              "target": -4
+            },
+            {
+              "id": "seed109:train:task1:x3",
+              "inputs": [
+                1,
+                3
+              ],
+              "target": -6
+            },
+            {
+              "id": "seed109:train:task1:x4",
+              "inputs": [
+                1,
+                4
+              ],
+              "target": -8
+            }
+          ]
+        ],
+        "validation": [
+          [
+            {
+              "id": "seed109:validation:task0:x5",
+              "inputs": [
+                0,
+                5
+              ],
+              "target": 10
+            },
+            {
+              "id": "seed109:validation:task0:x6",
+              "inputs": [
+                0,
+                6
+              ],
+              "target": 12
+            },
+            {
+              "id": "seed109:validation:task0:x7",
+              "inputs": [
+                0,
+                7
+              ],
+              "target": 14
+            }
+          ],
+          [
+            {
+              "id": "seed109:validation:task1:x5",
+              "inputs": [
+                1,
+                5
+              ],
+              "target": -10
+            },
+            {
+              "id": "seed109:validation:task1:x6",
+              "inputs": [
+                1,
+                6
+              ],
+              "target": -12
+            },
+            {
+              "id": "seed109:validation:task1:x7",
+              "inputs": [
+                1,
+                7
+              ],
+              "target": -14
+            }
+          ]
+        ],
+        "retention": [
+          {
+            "id": "seed109:retention:task0:x-1",
+            "inputs": [
+              0,
+              -1
+            ],
+            "target": -2
+          },
+          {
+            "id": "seed109:retention:task0:x-2",
+            "inputs": [
+              0,
+              -2
+            ],
+            "target": -4
+          },
+          {
+            "id": "seed109:retention:task0:x-3",
+            "inputs": [
+              0,
+              -3
+            ],
+            "target": -6
+          }
+        ]
+      },
+      "first_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-f7f6b036c75a4cc89caba36329b8d3ce",
+        "previous_version": null,
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 146.66666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 18.666666666666668,
+          "train_examples": 4,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.0002195000000000391,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-e50436a5696b4d91a92792ec874269ff"
+        },
+        "selected_ids": [
+          "E-73a61ee583444d2695fd9166f49dee38",
+          "E-97b5f749228e4e19a746812e56811794",
+          "E-3e411ac008d7473cb676e1a6ce321fd4",
+          "E-d2a27c0a96ad42fb9e758f4f283fd033"
+        ]
+      },
+      "second_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-97770eedd25c40e29b08eabc0d8905ef",
+        "previous_version": "V-f7f6b036c75a4cc89caba36329b8d3ce",
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 146.66666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 0.0,
+          "train_examples": 8,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.0002371250000000602,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-575d6204367d4ab5b06a2cf7c6ad98bf"
+        },
+        "selected_ids": [
+          "E-379ee1522fe14097bdc31d8418e4a350",
+          "E-2bb8868ca55a41bdbaf235974d15b7ea",
+          "E-2136db393957452b835fd661e6c1b70b",
+          "E-58fa1dc9ae514d93b5c4e19cc0ce6edd",
+          "E-73a61ee583444d2695fd9166f49dee38",
+          "E-97b5f749228e4e19a746812e56811794",
+          "E-3e411ac008d7473cb676e1a6ce321fd4",
+          "E-d2a27c0a96ad42fb9e758f4f283fd033"
+        ]
+      },
+      "adopted_old_task_mse": 0.0,
+      "adopted_new_task_mse": 0.0,
+      "rollback_exact": true,
+      "backup_restore_equal": true,
+      "withdrawal_disabled_active": true,
+      "dependent_weight_versions_remaining": 0,
+      "forget": {
+        "deleted_ids": [
+          "E-d2a27c0a96ad42fb9e758f4f283fd033"
+        ],
+        "backup_deletion_required": true,
+        "retraining_required": true
+      },
+      "recorded_experiences": 8
+    },
+    {
+      "seed": 109,
+      "condition": "preserve-old-module",
+      "coefficients_hidden_from_trainer": [
+        2,
+        -2
+      ],
+      "datasets": {
+        "training": [
+          [
+            {
+              "id": "seed109:train:task0:x1",
+              "inputs": [
+                0,
+                1
+              ],
+              "target": 2
+            },
+            {
+              "id": "seed109:train:task0:x2",
+              "inputs": [
+                0,
+                2
+              ],
+              "target": 4
+            },
+            {
+              "id": "seed109:train:task0:x3",
+              "inputs": [
+                0,
+                3
+              ],
+              "target": 6
+            },
+            {
+              "id": "seed109:train:task0:x4",
+              "inputs": [
+                0,
+                4
+              ],
+              "target": 8
+            }
+          ],
+          [
+            {
+              "id": "seed109:train:task1:x1",
+              "inputs": [
+                1,
+                1
+              ],
+              "target": -2
+            },
+            {
+              "id": "seed109:train:task1:x2",
+              "inputs": [
+                1,
+                2
+              ],
+              "target": -4
+            },
+            {
+              "id": "seed109:train:task1:x3",
+              "inputs": [
+                1,
+                3
+              ],
+              "target": -6
+            },
+            {
+              "id": "seed109:train:task1:x4",
+              "inputs": [
+                1,
+                4
+              ],
+              "target": -8
+            }
+          ]
+        ],
+        "validation": [
+          [
+            {
+              "id": "seed109:validation:task0:x5",
+              "inputs": [
+                0,
+                5
+              ],
+              "target": 10
+            },
+            {
+              "id": "seed109:validation:task0:x6",
+              "inputs": [
+                0,
+                6
+              ],
+              "target": 12
+            },
+            {
+              "id": "seed109:validation:task0:x7",
+              "inputs": [
+                0,
+                7
+              ],
+              "target": 14
+            }
+          ],
+          [
+            {
+              "id": "seed109:validation:task1:x5",
+              "inputs": [
+                1,
+                5
+              ],
+              "target": -10
+            },
+            {
+              "id": "seed109:validation:task1:x6",
+              "inputs": [
+                1,
+                6
+              ],
+              "target": -12
+            },
+            {
+              "id": "seed109:validation:task1:x7",
+              "inputs": [
+                1,
+                7
+              ],
+              "target": -14
+            }
+          ]
+        ],
+        "retention": [
+          {
+            "id": "seed109:retention:task0:x-1",
+            "inputs": [
+              0,
+              -1
+            ],
+            "target": -2
+          },
+          {
+            "id": "seed109:retention:task0:x-2",
+            "inputs": [
+              0,
+              -2
+            ],
+            "target": -4
+          },
+          {
+            "id": "seed109:retention:task0:x-3",
+            "inputs": [
+              0,
+              -3
+            ],
+            "target": -6
+          }
+        ]
+      },
+      "first_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-b472be1f87e74b30bc677b2331772847",
+        "previous_version": null,
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 146.66666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 18.666666666666668,
+          "train_examples": 4,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.0003367090000000461,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-b14d4f2f143a43e4a76317e4508fa179"
+        },
+        "selected_ids": [
+          "E-ce12a4e772954c4da1431fea2f0db29e",
+          "E-b9922488fe1a40efabb214649505dfc4",
+          "E-f8800d534193425dafc314530777874f",
+          "E-8afb2e64274c490ba7d8edb18bbadb2a"
+        ]
+      },
+      "second_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-e259c564bc2b440bb03f6b1c4ddba59c",
+        "previous_version": "V-b472be1f87e74b30bc677b2331772847",
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 146.66666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 0.0,
+          "train_examples": 8,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00014966599999999275,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-946ca8d59bd74cc38c0e2185908d96dc"
+        },
+        "selected_ids": [
+          "E-b0966ca92b154c329a04e3caae4629fa",
+          "E-356337c43e7847c5a19d6adf1a312223",
+          "E-43781a59046c47db9b036d6e14395774",
+          "E-2ba90fc6fe7d47e085ff42ef4748a0fc",
+          "E-ce12a4e772954c4da1431fea2f0db29e",
+          "E-b9922488fe1a40efabb214649505dfc4",
+          "E-f8800d534193425dafc314530777874f",
+          "E-8afb2e64274c490ba7d8edb18bbadb2a"
+        ]
+      },
+      "adopted_old_task_mse": 0.0,
+      "adopted_new_task_mse": 0.0,
+      "rollback_exact": true,
+      "backup_restore_equal": true,
+      "withdrawal_disabled_active": true,
+      "dependent_weight_versions_remaining": 0,
+      "forget": {
+        "deleted_ids": [
+          "E-8afb2e64274c490ba7d8edb18bbadb2a"
+        ],
+        "backup_deletion_required": true,
+        "retraining_required": true
+      },
+      "recorded_experiences": 8
+    },
+    {
+      "seed": 127,
+      "condition": "new-task-only",
+      "coefficients_hidden_from_trainer": [
+        -3,
+        -4
+      ],
+      "datasets": {
+        "training": [
+          [
+            {
+              "id": "seed127:train:task0:x1",
+              "inputs": [
+                0,
+                1
+              ],
+              "target": -3
+            },
+            {
+              "id": "seed127:train:task0:x2",
+              "inputs": [
+                0,
+                2
+              ],
+              "target": -6
+            },
+            {
+              "id": "seed127:train:task0:x3",
+              "inputs": [
+                0,
+                3
+              ],
+              "target": -9
+            },
+            {
+              "id": "seed127:train:task0:x4",
+              "inputs": [
+                0,
+                4
+              ],
+              "target": -12
+            }
+          ],
+          [
+            {
+              "id": "seed127:train:task1:x1",
+              "inputs": [
+                1,
+                1
+              ],
+              "target": -4
+            },
+            {
+              "id": "seed127:train:task1:x2",
+              "inputs": [
+                1,
+                2
+              ],
+              "target": -8
+            },
+            {
+              "id": "seed127:train:task1:x3",
+              "inputs": [
+                1,
+                3
+              ],
+              "target": -12
+            },
+            {
+              "id": "seed127:train:task1:x4",
+              "inputs": [
+                1,
+                4
+              ],
+              "target": -16
+            }
+          ]
+        ],
+        "validation": [
+          [
+            {
+              "id": "seed127:validation:task0:x5",
+              "inputs": [
+                0,
+                5
+              ],
+              "target": -15
+            },
+            {
+              "id": "seed127:validation:task0:x6",
+              "inputs": [
+                0,
+                6
+              ],
+              "target": -18
+            },
+            {
+              "id": "seed127:validation:task0:x7",
+              "inputs": [
+                0,
+                7
+              ],
+              "target": -21
+            }
+          ],
+          [
+            {
+              "id": "seed127:validation:task1:x5",
+              "inputs": [
+                1,
+                5
+              ],
+              "target": -20
+            },
+            {
+              "id": "seed127:validation:task1:x6",
+              "inputs": [
+                1,
+                6
+              ],
+              "target": -24
+            },
+            {
+              "id": "seed127:validation:task1:x7",
+              "inputs": [
+                1,
+                7
+              ],
+              "target": -28
+            }
+          ]
+        ],
+        "retention": [
+          {
+            "id": "seed127:retention:task0:x-1",
+            "inputs": [
+              0,
+              -1
+            ],
+            "target": 3
+          },
+          {
+            "id": "seed127:retention:task0:x-2",
+            "inputs": [
+              0,
+              -2
+            ],
+            "target": 6
+          },
+          {
+            "id": "seed127:retention:task0:x-3",
+            "inputs": [
+              0,
+              -3
+            ],
+            "target": 9
+          }
+        ]
+      },
+      "first_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-0cc717e953924471accce037aa14d0bf",
+        "previous_version": null,
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 330.0,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 42.0,
+          "train_examples": 4,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00014133400000004848,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-a51ec0840b8b4eaf8898f488f04adb58"
+        },
+        "selected_ids": [
+          "E-93c54dfb299c48e3a6c004b07afd444f",
+          "E-3a064c38009f4f618252e69ce559e018",
+          "E-7baca9b27ca64c71b28e8c0b31e4c6cb",
+          "E-499eda500c4c4c3eb31b866e9ecf446f"
+        ]
+      },
+      "second_task": {
+        "status": "rejected",
+        "weights_updated": false,
+        "model_version": "V-0b47ef344d2d439a968e9db52e2d99dd",
+        "previous_version": "V-0cc717e953924471accce037aa14d0bf",
+        "metrics": {
+          "passed": true,
+          "retention_passed": false,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 586.6666666666666,
+          "retention_mse": 42.0,
+          "previous_retention_mse": 0.0,
+          "train_examples": 8,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00013570899999992836,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-394c91facd01482a8358be1c19bb6e30"
+        },
+        "selected_ids": [
+          "E-b90d393417a44343ae1c679e26526dd3",
+          "E-d33e4965958540dc8931bdc30f16b185",
+          "E-10454731bde341eaab7d825f4a2ab8e5",
+          "E-d07f8fe7f2054ea79c31753d8f6dc79d",
+          "E-93c54dfb299c48e3a6c004b07afd444f",
+          "E-3a064c38009f4f618252e69ce559e018",
+          "E-7baca9b27ca64c71b28e8c0b31e4c6cb",
+          "E-499eda500c4c4c3eb31b866e9ecf446f"
+        ]
+      },
+      "adopted_old_task_mse": 0.0,
+      "adopted_new_task_mse": 586.6666666666666,
+      "rollback_exact": true,
+      "backup_restore_equal": true,
+      "withdrawal_disabled_active": true,
+      "dependent_weight_versions_remaining": 0,
+      "forget": {
+        "deleted_ids": [
+          "E-499eda500c4c4c3eb31b866e9ecf446f"
+        ],
+        "backup_deletion_required": true,
+        "retraining_required": true
+      },
+      "recorded_experiences": 8
+    },
+    {
+      "seed": 127,
+      "condition": "experience-replay",
+      "coefficients_hidden_from_trainer": [
+        -3,
+        -4
+      ],
+      "datasets": {
+        "training": [
+          [
+            {
+              "id": "seed127:train:task0:x1",
+              "inputs": [
+                0,
+                1
+              ],
+              "target": -3
+            },
+            {
+              "id": "seed127:train:task0:x2",
+              "inputs": [
+                0,
+                2
+              ],
+              "target": -6
+            },
+            {
+              "id": "seed127:train:task0:x3",
+              "inputs": [
+                0,
+                3
+              ],
+              "target": -9
+            },
+            {
+              "id": "seed127:train:task0:x4",
+              "inputs": [
+                0,
+                4
+              ],
+              "target": -12
+            }
+          ],
+          [
+            {
+              "id": "seed127:train:task1:x1",
+              "inputs": [
+                1,
+                1
+              ],
+              "target": -4
+            },
+            {
+              "id": "seed127:train:task1:x2",
+              "inputs": [
+                1,
+                2
+              ],
+              "target": -8
+            },
+            {
+              "id": "seed127:train:task1:x3",
+              "inputs": [
+                1,
+                3
+              ],
+              "target": -12
+            },
+            {
+              "id": "seed127:train:task1:x4",
+              "inputs": [
+                1,
+                4
+              ],
+              "target": -16
+            }
+          ]
+        ],
+        "validation": [
+          [
+            {
+              "id": "seed127:validation:task0:x5",
+              "inputs": [
+                0,
+                5
+              ],
+              "target": -15
+            },
+            {
+              "id": "seed127:validation:task0:x6",
+              "inputs": [
+                0,
+                6
+              ],
+              "target": -18
+            },
+            {
+              "id": "seed127:validation:task0:x7",
+              "inputs": [
+                0,
+                7
+              ],
+              "target": -21
+            }
+          ],
+          [
+            {
+              "id": "seed127:validation:task1:x5",
+              "inputs": [
+                1,
+                5
+              ],
+              "target": -20
+            },
+            {
+              "id": "seed127:validation:task1:x6",
+              "inputs": [
+                1,
+                6
+              ],
+              "target": -24
+            },
+            {
+              "id": "seed127:validation:task1:x7",
+              "inputs": [
+                1,
+                7
+              ],
+              "target": -28
+            }
+          ]
+        ],
+        "retention": [
+          {
+            "id": "seed127:retention:task0:x-1",
+            "inputs": [
+              0,
+              -1
+            ],
+            "target": 3
+          },
+          {
+            "id": "seed127:retention:task0:x-2",
+            "inputs": [
+              0,
+              -2
+            ],
+            "target": 6
+          },
+          {
+            "id": "seed127:retention:task0:x-3",
+            "inputs": [
+              0,
+              -3
+            ],
+            "target": 9
+          }
+        ]
+      },
+      "first_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-c5286d5087e54c9983b72963edbfbcd5",
+        "previous_version": null,
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 330.0,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 42.0,
+          "train_examples": 4,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00011333400000002047,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-8839d12d2b35414c9674e95976f4b86f"
+        },
+        "selected_ids": [
+          "E-5d022997e50746968ff6fa7ef5a65003",
+          "E-6b2511d65415499a9f818e0065c0b658",
+          "E-33a3eead3c994107a2f9ceb37a8765fe",
+          "E-0f1fb28132ff4b1b9125094eb20637b1"
+        ]
+      },
+      "second_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-918b637388ac457a9967935b6131a260",
+        "previous_version": "V-c5286d5087e54c9983b72963edbfbcd5",
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 586.6666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 0.0,
+          "train_examples": 8,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00015304199999999213,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-b616d88646004f6885da703b303487e4"
+        },
+        "selected_ids": [
+          "E-b75dd53729e148fe8ff8e4b70dbf2d01",
+          "E-e82fe4c2a8ca4c7bb4a61a13bd317878",
+          "E-b9591cbf1856498bb4598792db9b76d3",
+          "E-dd82f355f1db478da488b743edd7b7f4",
+          "E-5d022997e50746968ff6fa7ef5a65003",
+          "E-6b2511d65415499a9f818e0065c0b658",
+          "E-33a3eead3c994107a2f9ceb37a8765fe",
+          "E-0f1fb28132ff4b1b9125094eb20637b1"
+        ]
+      },
+      "adopted_old_task_mse": 0.0,
+      "adopted_new_task_mse": 0.0,
+      "rollback_exact": true,
+      "backup_restore_equal": true,
+      "withdrawal_disabled_active": true,
+      "dependent_weight_versions_remaining": 0,
+      "forget": {
+        "deleted_ids": [
+          "E-0f1fb28132ff4b1b9125094eb20637b1"
+        ],
+        "backup_deletion_required": true,
+        "retraining_required": true
+      },
+      "recorded_experiences": 8
+    },
+    {
+      "seed": 127,
+      "condition": "preserve-old-module",
+      "coefficients_hidden_from_trainer": [
+        -3,
+        -4
+      ],
+      "datasets": {
+        "training": [
+          [
+            {
+              "id": "seed127:train:task0:x1",
+              "inputs": [
+                0,
+                1
+              ],
+              "target": -3
+            },
+            {
+              "id": "seed127:train:task0:x2",
+              "inputs": [
+                0,
+                2
+              ],
+              "target": -6
+            },
+            {
+              "id": "seed127:train:task0:x3",
+              "inputs": [
+                0,
+                3
+              ],
+              "target": -9
+            },
+            {
+              "id": "seed127:train:task0:x4",
+              "inputs": [
+                0,
+                4
+              ],
+              "target": -12
+            }
+          ],
+          [
+            {
+              "id": "seed127:train:task1:x1",
+              "inputs": [
+                1,
+                1
+              ],
+              "target": -4
+            },
+            {
+              "id": "seed127:train:task1:x2",
+              "inputs": [
+                1,
+                2
+              ],
+              "target": -8
+            },
+            {
+              "id": "seed127:train:task1:x3",
+              "inputs": [
+                1,
+                3
+              ],
+              "target": -12
+            },
+            {
+              "id": "seed127:train:task1:x4",
+              "inputs": [
+                1,
+                4
+              ],
+              "target": -16
+            }
+          ]
+        ],
+        "validation": [
+          [
+            {
+              "id": "seed127:validation:task0:x5",
+              "inputs": [
+                0,
+                5
+              ],
+              "target": -15
+            },
+            {
+              "id": "seed127:validation:task0:x6",
+              "inputs": [
+                0,
+                6
+              ],
+              "target": -18
+            },
+            {
+              "id": "seed127:validation:task0:x7",
+              "inputs": [
+                0,
+                7
+              ],
+              "target": -21
+            }
+          ],
+          [
+            {
+              "id": "seed127:validation:task1:x5",
+              "inputs": [
+                1,
+                5
+              ],
+              "target": -20
+            },
+            {
+              "id": "seed127:validation:task1:x6",
+              "inputs": [
+                1,
+                6
+              ],
+              "target": -24
+            },
+            {
+              "id": "seed127:validation:task1:x7",
+              "inputs": [
+                1,
+                7
+              ],
+              "target": -28
+            }
+          ]
+        ],
+        "retention": [
+          {
+            "id": "seed127:retention:task0:x-1",
+            "inputs": [
+              0,
+              -1
+            ],
+            "target": 3
+          },
+          {
+            "id": "seed127:retention:task0:x-2",
+            "inputs": [
+              0,
+              -2
+            ],
+            "target": 6
+          },
+          {
+            "id": "seed127:retention:task0:x-3",
+            "inputs": [
+              0,
+              -3
+            ],
+            "target": 9
+          }
+        ]
+      },
+      "first_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-8059ae2b2f7144d596f3570cf6e031d0",
+        "previous_version": null,
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 330.0,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 42.0,
+          "train_examples": 4,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00010412500000001046,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-42ae915061884a0d8817381e53252385"
+        },
+        "selected_ids": [
+          "E-b1247d4993f441ac9d1a540450a10ae1",
+          "E-e85c267dc3fb4a3cbcd39eb93872bbce",
+          "E-161febc2170a47e2a7288e614bf79497",
+          "E-80e925b603364f0b9fb4c9479562aff6"
+        ]
+      },
+      "second_task": {
+        "status": "adopted",
+        "weights_updated": true,
+        "model_version": "V-c9f9cf12d29741b8a4f19cd977bd6489",
+        "previous_version": "V-8059ae2b2f7144d596f3570cf6e031d0",
+        "metrics": {
+          "passed": true,
+          "retention_passed": true,
+          "validation_mse": 0.0,
+          "previous_validation_mse": 586.6666666666666,
+          "retention_mse": 0.0,
+          "previous_retention_mse": 0.0,
+          "train_examples": 8,
+          "validation_examples": 3,
+          "retention_examples": 3,
+          "seconds": 0.00016416699999999285,
+          "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+          "protocol_id": "continuous-learning-pilot-v1",
+          "validation_id": "E-cc8a61879d9f44e7a3f94e50e6b4cf68"
+        },
+        "selected_ids": [
+          "E-daf82272c1fc43a7817aa3088d38a4e0",
+          "E-974fac5b16ea45bd928544b7f4b55269",
+          "E-e48cd74262cb4787ac95e9c6ac2b6075",
+          "E-61cce8df748f49deaab02228f932a0ec",
+          "E-b1247d4993f441ac9d1a540450a10ae1",
+          "E-e85c267dc3fb4a3cbcd39eb93872bbce",
+          "E-161febc2170a47e2a7288e614bf79497",
+          "E-80e925b603364f0b9fb4c9479562aff6"
+        ]
+      },
+      "adopted_old_task_mse": 0.0,
+      "adopted_new_task_mse": 0.0,
+      "rollback_exact": true,
+      "backup_restore_equal": true,
+      "withdrawal_disabled_active": true,
+      "dependent_weight_versions_remaining": 0,
+      "forget": {
+        "deleted_ids": [
+          "E-80e925b603364f0b9fb4c9479562aff6"
+        ],
+        "backup_deletion_required": true,
+        "retraining_required": true
+      },
+      "recorded_experiences": 8
+    }
+  ],
+  "drift": {
+    "old_coefficient": 2,
+    "new_coefficient": -3,
+    "change_supplied_by_observer": true,
+    "obsolete_model_disabled": true,
+    "old_version": "V-dab0899573144ea1ae33771b6c86e455",
+    "adaptation": {
+      "status": "adopted",
+      "weights_updated": true,
+      "model_version": "V-fc3569742aea456d90c7caa6ea51fe06",
+      "previous_version": null,
+      "metrics": {
+        "passed": true,
+        "retention_passed": true,
+        "validation_mse": 0.0,
+        "previous_validation_mse": 916.6666666666666,
+        "retention_mse": 0.0,
+        "previous_retention_mse": 116.66666666666667,
+        "train_examples": 4,
+        "validation_examples": 3,
+        "retention_examples": 3,
+        "seconds": 0.00010866700000000673,
+        "policy_sha256": "ca1221a6207185a37afbca9089328c805f028a3e4b7229a4adb42c14994131a2",
+        "protocol_id": "continuous-learning-pilot-v1",
+        "validation_id": "E-020e405b1b614cb5b6b10c54b8c93115"
+      },
+      "selected_ids": [
+        "E-83ea2752498b44c3a7399b50ebf24acb",
+        "E-330e162344b64d9d909682eeb73d5328",
+        "E-42e452899980473f9c73bbe2774fb777",
+        "E-9e7e354ffa644fbc8c76c14d110420b7"
+      ]
+    },
+    "limit": "Relevance/domain change supplied explicitly; automatic drift detection not claimed"
+  },
+  "decisions": {
+    "initial_learning_adopted_all": true,
+    "unacceptable_forgetting_rejected_all": true,
+    "replay_and_modular_adopted_all": true,
+    "backup_rollback_withdrawal_all": true,
+    "explicit_drift_adapted": true
+  },
+  "seconds": 0.756359708,
+  "peak_rss_native": 20398080,
+  "rss_unit": "bytes",
+  "limitations": [
+    "Synthetic software and learning-control experiment, not a scientific reserved test or neural learning claim",
+    "Task identifier and linear hypothesis class are supplied, not discovered",
+    "Selected training rows are disjoint by source ID and numerical content from held-out and retention rows",
+    "Protocol and source hashes are saved before fitting; wall time and RSS depend on machine"
+  ]
+}

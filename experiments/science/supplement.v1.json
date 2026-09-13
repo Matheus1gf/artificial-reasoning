@@ -1,0 +1,16 @@
+{
+  "supplement_id": "science-data-budget-v1",
+  "registered_date": "2026-09-09",
+  "registered_before_supplement_scoring": true,
+  "reason": "Measure physical-feature neural sample budgets and out-of-training-condition behavior; retain original pilot including unfavorable NIST comparison unchanged.",
+  "seeds": [5101, 5113, 5147, 5167, 5189],
+  "training_counts": [4, 8, 16, 32, 64],
+  "noise_sigma": [0, 0.05],
+  "epochs": 800,
+  "validation_cases_per_seed": 32,
+  "training_domain": {"v": [-1, 1], "a": [-1, 1], "t": [0.1, 1]},
+  "validation_domain": {"v": [-3, 3], "a": [-2, 2], "t": [1.2, 2]},
+  "metrics": ["RMSE against noise-free reference", "training seconds", "supplied training examples", "physical boundary zero displacement at t=0"],
+  "comparators": ["raw-feature linear neural", "physical-feature linear neural", "physical-feature least squares"],
+  "decision": "No universal minimal-data claim; report every count/noise condition. True simulator-domain violations v=4 or dt=3 must be rejected rather than scored as valid physics. No modification to the frozen F00 suite."
+}

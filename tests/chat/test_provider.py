@@ -16,7 +16,7 @@ class FakeResponse(io.BytesIO):
 
 class ProviderTests(unittest.TestCase):
     def test_ollama_contract_has_schema_and_no_stream(self):
-        lm = LanguageModel(Settings(provider="ollama", model="installed-model"))
+        lm = LanguageModel(Settings(research_mode=False, provider="ollama", model="installed-model"))
         with patch("src.chat.provider.request.build_opener") as opener:
             opener.return_value.open.return_value = FakeResponse(json.dumps({"message": {"content": '{"assertions": []}'}}).encode())
             self.assertEqual(lm.complete("Extract", {"message": "oi"}, EXTRACTION_SCHEMA), {"assertions": []})
@@ -27,7 +27,7 @@ class ProviderTests(unittest.TestCase):
             self.assertEqual(body["format"], EXTRACTION_SCHEMA)
 
     def test_openai_responses_contract_and_output_extraction(self):
-        lm = LanguageModel(Settings(provider="openai", model="configured-model", base_url="https://api.openai.com/v1"))
+        lm = LanguageModel(Settings(research_mode=False, provider="openai", model="configured-model", base_url="https://api.openai.com/v1"))
         with patch.dict(os.environ, {"OPENAI_API_KEY": "unit-test-only"}), patch("src.chat.provider.request.build_opener") as opener:
             opener.return_value.open.return_value = FakeResponse(json.dumps({"status": "completed", "output": [{"type": "reasoning", "summary": []}, {"type": "message", "content": [{"type": "output_text", "text": "Resposta de teste"}]}]}).encode())
             self.assertEqual(lm.complete("Rules", {"message": "test"}), "Resposta de teste")
@@ -37,13 +37,13 @@ class ProviderTests(unittest.TestCase):
             self.assertEqual(req.get_header("Authorization"), "Bearer unit-test-only")
 
     def test_openai_refusal_falls_back_instead_of_empty_success(self):
-        lm = LanguageModel(Settings(provider="openai", model="configured-model", base_url="https://api.openai.com/v1"))
+        lm = LanguageModel(Settings(research_mode=False, provider="openai", model="configured-model", base_url="https://api.openai.com/v1"))
         with patch.dict(os.environ, {"OPENAI_API_KEY": "unit-test-only"}), patch("src.chat.provider.request.build_opener") as opener:
             opener.return_value.open.return_value = FakeResponse(b'{"output":[{"content":[{"type":"refusal","refusal":"No"}]}]}')
             with self.assertRaises(ProviderError): lm.complete("Rules", {})
 
     def test_errors_do_not_expose_remote_body_or_credentials(self):
-        lm = LanguageModel(Settings(provider="ollama", model="test"))
+        lm = LanguageModel(Settings(research_mode=False, provider="ollama", model="test"))
         with patch("src.chat.provider.request.build_opener") as opener:
             opener.return_value.open.side_effect = HTTPError("http://example", 401, "secret", {}, io.BytesIO(b"private"))
             with self.assertRaises(ProviderError) as exc: lm.complete("", {})
@@ -75,7 +75,7 @@ class ProviderTests(unittest.TestCase):
         self.assertEqual(len(validate_neural({"assertions":[raw]}, "Aprenda: Neral emite luz.")), 1)
 
     def test_openai_native_history_and_streamed_response(self):
-        lm = LanguageModel(Settings(provider="openai", model="test", base_url="https://api.openai.com/v1"))
+        lm = LanguageModel(Settings(research_mode=False, provider="openai", model="test", base_url="https://api.openai.com/v1"))
         events = b'data: {"type":"response.output_text.delta","delta":"Resposta "}\n\ndata: {"type":"response.output_text.delta","delta":"atual"}\n\ndata: {"type":"response.completed"}\n\n'
         chunks = []
         with patch.dict(os.environ, {"OPENAI_API_KEY": "unit-test-only"}), patch("src.chat.provider.request.build_opener") as opener:

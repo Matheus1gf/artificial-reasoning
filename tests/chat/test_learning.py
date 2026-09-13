@@ -25,12 +25,12 @@ class LearningTests(unittest.TestCase):
     def find(self, subject, predicate, obj, active=True):
         return [c for c in self.memory.claims(not active) if c["subject"] == subject and c["predicate"] == predicate and c["object"] == obj]
 
-    def test_black_hole_opposition_is_generated_from_one_example(self):
+    def test_unnamed_opposition_generates_function_without_inventing_known_entity_name(self):
         self.assertEqual(self.memory.claims(), [])
         source = self.say("Um buraco negro absorve matéria.")["learned"][0]
         r = self.say("Qual seria o oposto do buraco negro?")
         c = r["inferences"][0]
-        self.assertEqual((c["subject"], c["predicate"], c["object"]), ("buraco branco", "expulsa", "materia"))
+        self.assertEqual((c["subject"], c["predicate"], c["object"]), ("contraparte de buraco negro", "expulsa", "materia"))
         self.assertEqual(c["status"], "hypothesis")
         self.assertEqual(c["premises"], [source["id"]])
         self.assertEqual(c["sources"], [])
@@ -161,18 +161,21 @@ class LearningTests(unittest.TestCase):
         r = self.say("Qual meu nome?", self.memory.create_conversation()["id"])
         self.assertIn("matheus", r["content"])
 
-    def test_generation_failure_is_explicit_and_retryable_without_canned_answer(self):
+    def test_arranger_failure_falls_back_without_losing_validated_learning(self):
         class FailingModel:
             enabled = True
             def complete(self, *args):
                 raise ProviderError("Modelo indisponível.")
             def chat(self, *args, **kwargs):
-                raise ProviderError("Modelo indisponível.")
-        self.engine = ChatEngine(self.memory, Settings(provider="ollama", model="test"), FailingModel())
-        with self.assertRaises(ProviderError):
-            self.say("Neral absorve energia.")
-        self.assertEqual(self.memory.messages(self.cid), [])
-        self.assertEqual(self.memory.stats()["assertions"], 0)
+                raise AssertionError("Chat geral não deve executar")
+        self.engine.close()
+        self.engine = ChatEngine(self.memory, Settings(provider="ollama", model="test", research_mode=False), FailingModel())
+        first = self.say("Neral absorve energia.", request_id="failed-arranger")
+        retry = self.say("Neral absorve energia.", request_id="failed-arranger")
+        self.assertEqual(first, retry)
+        self.assertEqual(first["rendering"]["mode"], "deterministic_fallback")
+        self.assertEqual(len(self.memory.messages(self.cid)), 2)
+        self.assertEqual(self.memory.stats()["assertions"], 1)
 
     def test_failed_turn_is_atomic(self):
         def broken(*args):
@@ -206,25 +209,25 @@ class LearningTests(unittest.TestCase):
         self.say("Corrigindo: todo cristal não emite luz.")
         self.assertEqual(self.memory.claim(c["id"])["status"], "retracted")
 
-    def test_neural_response_receives_current_memory_and_is_not_learned(self):
+    def test_arranger_cannot_invent_or_relearn_withdrawn_knowledge(self):
         class RecordingModel:
             enabled = True
             def __init__(self): self.calls = []
             def complete(self, system, data, schema=None):
                 self.calls.append(data)
-                return {"assertions": []} if schema else "Um dragão produz ouro."
-            def chat(self, message, history, context, **kwargs):
-                self.calls.append(context)
                 return "Um dragão produz ouro."
+            def chat(self, *args, **kwargs):
+                raise AssertionError("Chat geral não deve executar")
         self.say("Neral emite luz.")
         self.say("Corrigindo: Neral não emite luz.")
         model = RecordingModel()
-        self.engine = ChatEngine(self.memory, Settings(provider="ollama", model="test"), model)
+        self.engine.close()
+        self.engine = ChatEngine(self.memory, Settings(provider="ollama", model="test", research_mode=False), model)
         r = self.say("O que sabe sobre Neral?")
-        self.assertEqual(r["provider"], "ollama")
-        context = model.calls[-1]
-        self.assertTrue(context["withdrawn"])
-        self.assertTrue(any(not c["polarity"] for c in context["memories"]))
+        self.assertEqual(r["provider"], "symbolic")
+        self.assertEqual(set(model.calls[-1]), {"package_sha256", "sentences"})
+        self.assertIn("não emite luz", r["content"])
+        self.assertNotIn("dragão", r["content"])
         self.assertFalse(any(c["subject"] == "dragao" for c in self.memory.claims()))
 
 

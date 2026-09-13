@@ -1,44 +1,31 @@
-# Evolução para um núcleo próprio de raciocínio
+# Evolução do núcleo próprio
 
-Atualizado em 08/09/2026. O [TODO principal](../TODO.md) é a referência de tarefas, dependências, experimentos e critérios de conclusão. Este roteiro resume a direção e substitui a prioridade anterior de ampliar a conversa baseada no conhecimento do modelo de linguagem.
+O [TODO principal](../TODO.md) é a fonte do estado de cada requisito. Os itens só recebem X após implementação e testes por QA independente; a [matriz de aceite](research/F01_F11_QA.md) explica evidências, limites e pendências. A F00 conserva sua [avaliação inicial](research/F00_RESULTS.md).
 
-## Direção definida
+O [plano do objetivo](OBJECTIVE_PLAN.md) corrige o escopo do roteiro inicial. As fases F13–F21 desdobram os requisitos amplos da F12, e os marcos C01–C08 distinguem capacidade demonstrada de mecanismo/experimento entregue. A sequência atual começa pelo contrato de avaliação e viabilidade F13, seguido de dados/compreensão e representação F14/F15 e aprendizagem/investigação F16/F17. Os aceites anteriores permanecem restritos a seus domínios; não indicam que o objetivo geral esteja quase concluído.
 
-O núcleo deverá compreender a questão e o contexto, recuperar conhecimentos, aprender relações, gerar hipóteses e verificar conclusões antes da resposta textual. O Qwen deverá apenas redigir o conteúdo de um pacote já aprovado. A independência será demonstrada com o Qwen desligado em todas as etapas, inclusive compreensão da entrada, e com uma saída determinística verificável.
+## Direção implementada
 
-O programa inclui física como modelo do mundo e instrumento de verificação, além de experimentos de mecânica quântica e formalismo quântico aplicado à cognição. Cada contribuição será comparada com alternativas adequadas. A ambição de inovação científica exige resultados reproduzíveis e avaliação de novidade e utilidade; não há um prazo ou uma garantia de inteligência geral definidos.
+O fluxo do chat agora passa pela compreensão própria, memória e verificação antes de formar a resposta. Qwen tem papel opcional de organizar trechos já aprovados, e o modo de pesquisa bloqueia modelos gerais. A [arquitetura atual](CHATBOT_ARCHITECTURE.md) descreve contratos, cancelamento e persistência recuperável.
 
-## Base existente a aproveitar
+Foram desenvolvidas frentes para memória tipada, operadores lógicos, redes pequenas próprias, experimentos físicos, propostas executáveis, quântica e aprendizado contínuo. O estado de uma fase depende de seus critérios completos: implementar simuladores e testar software não conclui automaticamente transferência para dados físicos reais, inovação em problema aberto ou avaliação por especialista externo.
 
-- Interface web e terminal independentes do domínio de pássaros.
-- Histórico por conversa e conhecimento persistente no laboratório.
-- Fontes, dependências, estados de afirmação e revisão em cascata.
-- Dedução limitada por regras explícitas e hipóteses de oposição, analogia e composição.
-- Adaptadores de modelos, execução local e testes funcionais do chat.
+## Evidência e promoção de escopo
 
-O estado implementado está em [CHATBOT_ARCHITECTURE.md](CHATBOT_ARCHITECTURE.md). O Qwen ainda responde com conhecimento próprio e pode participar da extração. O registro de conversas não atualiza pesos de uma rede própria nem demonstra aprendizagem de novos mecanismos de raciocínio.
+| Frente | Critério de progresso |
+| --- | --- |
+| F01/F02 | Conteúdo decidido antes do redator; última mensagem/contexto determinam o problema dentro da linguagem avaliada |
+| F03/F09 | Experiências com fontes e escopos; revisão e retirada atingem consequências; candidatos aprendidos passam em ganho e retenção |
+| F04/F05/F07 | Provas e planos verificados; aprendizagem e transferência medidas; propostas viram artefatos testáveis |
+| F06 | Simulador e modelos conferidos; só anunciar transferência após dados medidos comparáveis |
+| F08 | Estado/evolução/medição corretos; efeito cognitivo, ganho lógico e vantagem computacional avaliados separadamente |
+| F10 | Utilidade, referências, previsões refutáveis, parecer especializado e dados de replicação independente |
+| F11 | Bancos preservados, execução limitada, evidências inspecionáveis, custos medidos e protocolos reproduzíveis |
 
-## Etapas planejadas
+## Trabalho que depende de nova evidência
 
-Todas as etapas abaixo têm trabalho pendente. Os identificadores apontam para as fases detalhadas no [TODO](../TODO.md).
+A passagem para português aberto exige ampliar e anotar um corpus, medir cobertura e comparar modelos antes de adotá-los. Generalização em novas famílias de tarefas deve continuar separada de memorização de nomes e templates. O teste científico reservado F00 não deve ser consumido durante esse desenvolvimento.
 
-| Fase | Entrega | Evidência principal |
-| --- | --- | --- |
-| F00 | Especificação científica e avaliação inicial | Tarefas reservadas, comparações e critérios definidos antes dos resultados |
-| F01 | Separação entre núcleo e redator | Mesmo conteúdo semântico com Qwen ligado ou desligado |
-| F02 | Compreensão própria da pergunta e do contexto | Interpretação correta e ambiguidades reconhecidas no domínio declarado |
-| F03 | Conhecimento e memória revisáveis | Fontes e dependências rastreáveis, correções propagadas |
-| F04 | Dedução, indução, analogia, causalidade e planejamento | Derivações e planos conferidos por verificadores |
-| F05 | Redes próprias e aprendizado com poucos exemplos | Ganho em regras e tarefas inéditas, com treinamento documentado |
-| F06 | Modelos físicos e experimentos | Previsões testadas contra referências independentes |
-| F07 | Inovação orientada a metas | Artefato novo para a tarefa, executável e útil sob restrições |
-| F08 | Experimentos quânticos | Benefício ou ausência de benefício medidos por linha de pesquisa |
-| F09 | Aprendizado contínuo com estabilidade | Adaptação, retenção e reversão avaliadas |
-| F10 | Descoberta científica em domínio delimitado | Busca de trabalhos anteriores e replicação independente |
-| F11 | Engenharia e recursos, desde o início | Reprodução, recuperação de dados e custo por solução válida |
+A primeira transferência física já foi avaliada em uma trajetória medida e rejeitada: o modelo perdeu para persistência. Um novo ciclo requer dados e condições que permitam testar hipóteses físicas adequadas, com novo protocolo antes da avaliação. Problemas abertos e alegações de novidade precisam de busca de trabalhos anteriores, avaliação especializada e replicação com dados ou medições independentes. Quando um modelo clássico empata ou vence o candidato neural/quântico, o resultado deve orientar a decisão de integração e permanecer no relatório.
 
-## Primeiro trabalho
-
-Começar pela especificação e avaliação de F00, pela infraestrutura mínima de F11 e pelo contrato executável de F01. O primeiro marco comprova a separação entre raciocínio e redação. Depois, a aprendizagem de regras e modelos será avaliada em mundos com estados e ações novos, antes de avançar para problemas físicos e invenções.
-
-As dependências completas e os pontos que podem invalidar as hipóteses estão no [TODO principal](../TODO.md). A preparação teórica de física e quântica pode acompanhar o desenvolvimento; a adoção de um mecanismo dependerá do resultado de seus experimentos.
+A [revisão especializada por agente de IA](research/SCIENTIFIC_REVIEW_AI.md) foi realizada a pedido do usuário, com achados tratados e limitações explícitas. Escalas maiores continuam dependendo de medições de recurso, custo de dados e evidência pertinente ao novo domínio. A ambição de inovação científica é mantida, sem transformá-la em capacidade comprovada ou prazo prometido. As pendências específicas e seus critérios estão preservados no TODO.

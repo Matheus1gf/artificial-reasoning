@@ -3,14 +3,17 @@ import argparse
 import json
 import logging
 import secrets
+import threading
+import uuid
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 
 from .engine import ChatEngine
 from .memory import Memory
 from .provider import LanguageModel, ProviderError, Settings
 from .runtime import start_local_runtime, stop_local_runtime
+from src.cognition.contracts import AnswerPackage, ProblemSpec, render_with_arranger
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -20,6 +23,35 @@ STATIC = Path(__file__).parent / "web"
 def make_server(engine, port=8765, settings_path=None):
     token = secrets.token_urlsafe(32)
     settings_path = settings_path or ROOT / "data/chat/settings.json"
+    requests_lock = threading.Lock()
+    active_requests = {}
+
+    def run_turn(data, **callbacks):
+        request_id = data.get("request_id") or uuid.uuid4().hex
+        if not isinstance(request_id, str) or not 1 <= len(request_id) <= 100:
+            raise ValueError("Identificador de envio inválido.")
+        with requests_lock:
+            if sum(entry["waiters"] for entry in active_requests.values()) >= 8:
+                raise ValueError("A fila local está cheia. Aguarde a conclusão de um envio.")
+            entry = active_requests.get(request_id)
+            identity = (data.get("conversation_id"), data.get("message"))
+            if entry is None:
+                entry = {"identity": identity, "event": threading.Event(), "waiters": 0}
+                active_requests[request_id] = entry
+            elif entry["identity"] != identity:
+                raise ValueError("Identificador de envio já utilizado para outra mensagem.")
+            # Concurrent retries share cancellation but still reach the engine's
+            # serialization/cache, returning the same durable response to all.
+            entry["waiters"] += 1
+            cancellation = entry["event"]
+        try:
+            return engine.reply(data.get("conversation_id"), data.get("message"), request_id,
+                                cancel_event=cancellation, **callbacks)
+        finally:
+            with requests_lock:
+                entry["waiters"] -= 1
+                if not entry["waiters"]:
+                    active_requests.pop(request_id, None)
 
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *args):
@@ -71,7 +103,13 @@ def make_server(engine, port=8765, settings_path=None):
                         cid = path.rsplit("/", 1)[-1]
                         self.send(200, {"conversation": engine.memory.conversation(cid), "messages": engine.memory.messages(cid)})
                     elif path == "/api/health":
-                        self.send(200, {"status": "ok", "provider": engine.settings.provider})
+                        self.send(200, {"status": "ok", "provider": engine.settings.provider,
+                                        "research_mode": engine.settings.research_mode})
+                    elif path == "/api/experiences":
+                        query = parse_qs(urlsplit(self.path).query)
+                        cid = query.get("conversation_id", [""])[0]
+                        engine.memory.conversation(cid)
+                        self.send(200, {"experiences": engine.experience_store.retrieve(cid, {}, limit=100)})
                     else:
                         self.send(404, {"error": "Recurso não encontrado."})
             except ValueError as exc:
@@ -95,7 +133,18 @@ def make_server(engine, port=8765, settings_path=None):
                 if path == "/api/conversations":
                     result = engine.memory.create_conversation()
                 elif path == "/api/chat":
-                    result = engine.reply(data.get("conversation_id"), data.get("message"), data.get("request_id"))
+                    result = run_turn(data)
+                elif path == "/api/chat/cancel":
+                    request_id = data.get("request_id")
+                    if not isinstance(request_id, str):
+                        raise ValueError("Informe o identificador do envio a cancelar.")
+                    with requests_lock:
+                        entry = active_requests.get(request_id)
+                        cancellation = entry["event"] if entry else None
+                        if cancellation:
+                            cancellation.set()
+                    result = {"requested": cancellation is not None,
+                              "message": "Cancelamento solicitado. O núcleo encerrará no próximo ponto de controle." if cancellation else "O envio já terminou ou não está na fila."}
                 elif path == "/api/chat/stream":
                     self.stream_chat(data)
                     return
@@ -107,15 +156,33 @@ def make_server(engine, port=8765, settings_path=None):
                         engine.language_model = LanguageModel(settings)
                     result = settings.public()
                 elif path == "/api/connection":
+                    problem = ProblemSpec.build("Teste local de redação.", intent="greeting")
+                    package = AnswerPackage.build(problem, "answered", ["Núcleo disponível."])
+                    _, rendering = render_with_arranger(package, engine.language_model, engine.settings.research_mode)
+                    ok = rendering["mode"] != "deterministic_fallback"
+                    result = {"ok": ok, "rendering": rendering,
+                              "message": "Organizador disponível e fiel ao pacote." if rendering["mode"] == "approved_sentence_order"
+                              else "Núcleo próprio disponível; nenhuma chamada a modelos gerais." if ok
+                              else "Organizador indisponível ou fora do contrato. O núcleo continua funcionando."}
+                elif path == "/api/memory/export":
                     with engine.memory.lock:
-                        if engine.language_model.enabled:
-                            engine.language_model.complete("Responda apenas OK.", {"message": "Teste de conexão"})
-                    result = {"ok": True, "message": "Conexão funcionando." if engine.language_model.enabled else "Motor simbólico local disponível."}
+                        conversations = engine.memory.conversations()
+                        chat = [{"conversation": c, "messages": engine.memory.messages(c["id"])} for c in conversations]
+                        knowledge = engine.memory.claims()
+                    result = {"version": 1, "scope": "local personal laboratory", "conversations": chat,
+                              "knowledge": knowledge, "experiences": engine.experience_store.export(),
+                              "training_policy": "Conversation text does not authorize weight training."}
+                elif path == "/api/memory/backup":
+                    # Caller chooses the action, never an arbitrary filesystem path.
+                    directory = Path(settings_path).parent / "backups" / uuid.uuid4().hex
+                    result = engine.experience_store.backup(directory / "cognition.sqlite3")
+                    result["scope"] = "Memória tipada e modelos; exporte também o histórico de conversas."
                 elif path.startswith("/api/claims/") and path.endswith("/retract"):
                     claim_id = int(path.split("/")[3])
                     with engine.memory.transaction():
                         invalidated = engine.memory.retract(claim_id)
-                    result = {"retracted": claim_id, "invalidated": invalidated}
+                    typed = engine.experience_store.invalidate_sources(["M" + str(cid) for cid in [claim_id] + invalidated])
+                    result = {"retracted": claim_id, "invalidated": invalidated, "invalidated_experiences": typed}
                 else:
                     self.send(404, {"error": "Recurso não encontrado."})
                     return
@@ -150,8 +217,8 @@ def make_server(engine, port=8765, settings_path=None):
                         connected = False
 
             try:
-                result = engine.reply(data.get("conversation_id"), data.get("message"), data.get("request_id"),
-                                      on_token=lambda content: emit({"type": "delta", "content": content}))
+                result = run_turn(data, on_token=lambda content: emit({"type": "delta", "content": content}),
+                                  on_progress=lambda stage: emit({"type": "progress", "stage": stage}))
                 emit({"type": "done", "result": result})
             except (ProviderError, ValueError) as exc:
                 emit({"type": "error", "error": str(exc)})
@@ -195,6 +262,7 @@ def main():
         except (KeyboardInterrupt, EOFError):
             pass
         finally:
+            engine.close()
             memory.close()
             stop_local_runtime(local_runtime)
         return
@@ -207,6 +275,7 @@ def main():
         pass
     finally:
         server.server_close()
+        engine.close()
         memory.close()
         stop_local_runtime(local_runtime)
 

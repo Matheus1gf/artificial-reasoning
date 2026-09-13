@@ -1,0 +1,13 @@
+{
+  "recorded_at_utc": "2026-09-09T01:52:59.655288+00:00",
+  "official_runs": [
+    "development",
+    "validation"
+  ],
+  "reserved_official_evaluated": false,
+  "sha256": {
+    "experiments/f00/registration.v1.json": "f6fd8200639818867e89a51a29f821da5e6b772f2784d4efce12ec284e5a0eb3",
+    "experiments/f00/results/development-initial.v1.json": "2d3b0fcc6a2057db543ba303d008ed9aeca7398030aba5df253f4b4fbd6cedaa",
+    "experiments/f00/results/validation-initial.v1.json": "ae2b82f001179c764a952499b60b042b670bfef3a7c5fec6391cbb7aa9fe86cf"
+  }
+}

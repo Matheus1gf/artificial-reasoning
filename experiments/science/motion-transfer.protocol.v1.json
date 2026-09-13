@@ -1,0 +1,100 @@
+{
+  "protocol_id": "tum-motion-transfer-v1",
+  "registered_at": "2026-09-13T01:08:08.615612+00:00",
+  "status": "registered_before_scoring",
+  "scope": "F06-08: test transfer of supplied constant-acceleration dynamics to measured local motion; a failed gate is a valid result",
+  "dataset": "TUM RGB-D fr1/xyz",
+  "axis_selection": [
+    "x",
+    "y",
+    "z"
+  ],
+  "window_starts_s": [
+    0,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28
+  ],
+  "sample_offsets_s": [
+    0.0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    1.0,
+    1.1,
+    1.2,
+    1.3,
+    1.4,
+    1.5,
+    1.6,
+    1.7,
+    1.8,
+    1.9
+  ],
+  "training_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "evaluation_indices": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "sampling": "anchor at first observed timestamp at or after each window start; nearest observation to anchor+offset; no interpolation; ties choose earlier",
+  "max_association_error_s": 0.02,
+  "models": [
+    "constant_acceleration_midpoint",
+    "constant_velocity_midpoint",
+    "last_observation"
+  ],
+  "model_selection": "no selection after evaluation; fit x0,v0,a on the first 10 samples for each axis/window, never on future values",
+  "integrator_steps": 32,
+  "synthetic_control": "closed-form positions from each training fit at the same future times, only as numerical control",
+  "source_reported_absolute_error_bound_m": 0.01,
+  "measurement_bound_interpretation": "published setup-level empirical bound, not per-sample covariance or independent Gaussian noise",
+  "uncertainty_sensitivity": "absolute-error budget 0.01*(1+sum(abs(OLS prediction weights))) for training and future measured positions; conditional bound only; time jitter and correlated systematic errors not fully known",
+  "promotion_gate": {
+    "all_segments_inside_simulator_domain": true,
+    "aggregate_rmse_max_m": 0.03,
+    "relative_rmse_gain_vs_last_observation_min": 0.05,
+    "max_absolute_error_m": 0.1
+  },
+  "hypothesis_failure": "retain every rejected segment; if gate fails, constant-acceleration model is not promoted to measured-motion prediction; no new law is declared",
+  "larger_problem_policy": "blocked until the measured-motion gate passes on independent sequences with known forcing or validated applicability",
+  "knowledge_priors": [
+    "1D Newtonian kinematics",
+    "constant prescribed acceleration",
+    "least-squares estimation",
+    "published units and measurement-system bounds"
+  ],
+  "independence": "one public previously available trajectory, 24 correlated axis/windows; not a blind heldout dataset, not new measurement, not F10 independent replication",
+  "data_exposure_before_registration": "dataset downloaded during previous session; first raw lines inspected, no dynamics fitting or scoring performed before this registration",
+  "reporting": "all 24 segments including sampling/domain failures; report pooled RMSE, per-axis/per-window errors, numerical controls and negative cases; no confidence interval treating correlated samples as independent",
+  "language_model_calls": 0,
+  "reserved_f00_scored": false
+}

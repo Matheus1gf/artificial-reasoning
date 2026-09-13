@@ -1,0 +1,2404 @@
+{
+  "training": [
+    {
+      "id": "f30cab9a06858cdedda8",
+      "text": "Aran emite luz.",
+      "intent": "statement",
+      "template_id": "statement:0",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "de3d8e15900f4f46ecb2",
+      "text": "Beral emite luz.",
+      "intent": "statement",
+      "template_id": "statement:0",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "7285f834d60cd4783c6d",
+      "text": "Cetra emite luz.",
+      "intent": "statement",
+      "template_id": "statement:0",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "a0b648fd52c9096d4254",
+      "text": "Dorin emite luz.",
+      "intent": "statement",
+      "template_id": "statement:0",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "b19e941c21364351be76",
+      "text": "Elera emite luz.",
+      "intent": "statement",
+      "template_id": "statement:0",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "efab9eafa2f5296ac423",
+      "text": "Feron emite luz.",
+      "intent": "statement",
+      "template_id": "statement:0",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "be27738e1f46425f1ffb",
+      "text": "Aran absorve energia.",
+      "intent": "statement",
+      "template_id": "statement:1",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "efdac518b5d0f27642a2",
+      "text": "Beral absorve energia.",
+      "intent": "statement",
+      "template_id": "statement:1",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "35798b5f4d11e5065644",
+      "text": "Cetra absorve energia.",
+      "intent": "statement",
+      "template_id": "statement:1",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "134ba7fa693e53885666",
+      "text": "Dorin absorve energia.",
+      "intent": "statement",
+      "template_id": "statement:1",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "49a0a4e42bf7cb71790e",
+      "text": "Elera absorve energia.",
+      "intent": "statement",
+      "template_id": "statement:1",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "52c843bc13439e2f9e3a",
+      "text": "Feron absorve energia.",
+      "intent": "statement",
+      "template_id": "statement:1",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "ac4a5eacfba95fcec5ee",
+      "text": "Todo Aran conduz calor.",
+      "intent": "statement",
+      "template_id": "statement:2",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "ba8993ba9be7acc5a1ea",
+      "text": "Todo Beral conduz calor.",
+      "intent": "statement",
+      "template_id": "statement:2",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "0731937599699b4df5c8",
+      "text": "Todo Cetra conduz calor.",
+      "intent": "statement",
+      "template_id": "statement:2",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "8179d7ca38ea1bbd9c25",
+      "text": "Todo Dorin conduz calor.",
+      "intent": "statement",
+      "template_id": "statement:2",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "103cb479aa8fb517ab73",
+      "text": "Todo Elera conduz calor.",
+      "intent": "statement",
+      "template_id": "statement:2",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "56cb4382029516986f2e",
+      "text": "Todo Feron conduz calor.",
+      "intent": "statement",
+      "template_id": "statement:2",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "81f7c63523cee51ee175",
+      "text": "O que sabe sobre Aran?",
+      "intent": "question",
+      "template_id": "question:0",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "8f753b3de61b8aa9dc88",
+      "text": "O que sabe sobre Beral?",
+      "intent": "question",
+      "template_id": "question:0",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "da42f876028e3bdfe702",
+      "text": "O que sabe sobre Cetra?",
+      "intent": "question",
+      "template_id": "question:0",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "e6f6c6d560324f398932",
+      "text": "O que sabe sobre Dorin?",
+      "intent": "question",
+      "template_id": "question:0",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "5f3aa371b14753c4b219",
+      "text": "O que sabe sobre Elera?",
+      "intent": "question",
+      "template_id": "question:0",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "65f97573fc282f849408",
+      "text": "O que sabe sobre Feron?",
+      "intent": "question",
+      "template_id": "question:0",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "17e4bffe1a3c14c9d8b9",
+      "text": "Qual é a função de Aran?",
+      "intent": "question",
+      "template_id": "question:1",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "a63456043865c4aeec48",
+      "text": "Qual é a função de Beral?",
+      "intent": "question",
+      "template_id": "question:1",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "864cdf0e0089c79dc9ce",
+      "text": "Qual é a função de Cetra?",
+      "intent": "question",
+      "template_id": "question:1",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "8e5703520bf47ad1f768",
+      "text": "Qual é a função de Dorin?",
+      "intent": "question",
+      "template_id": "question:1",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "d210b45e699edb04a9bc",
+      "text": "Qual é a função de Elera?",
+      "intent": "question",
+      "template_id": "question:1",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "f51480491f087331d2e4",
+      "text": "Qual é a função de Feron?",
+      "intent": "question",
+      "template_id": "question:1",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "2e6e26e2296549baf6a8",
+      "text": "Explique Aran.",
+      "intent": "question",
+      "template_id": "question:2",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "3a6ebb0c03b247328a0c",
+      "text": "Explique Beral.",
+      "intent": "question",
+      "template_id": "question:2",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "94b646e5149dac090a0f",
+      "text": "Explique Cetra.",
+      "intent": "question",
+      "template_id": "question:2",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "8b9195b55832db85caf0",
+      "text": "Explique Dorin.",
+      "intent": "question",
+      "template_id": "question:2",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "426e55a1d24c559c4de9",
+      "text": "Explique Elera.",
+      "intent": "question",
+      "template_id": "question:2",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "172fb11e7d09f3135b75",
+      "text": "Explique Feron.",
+      "intent": "question",
+      "template_id": "question:2",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "e97fcc3c155030103559",
+      "text": "Calcule 2 + 3.",
+      "intent": "calculation",
+      "template_id": "calculation:0",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "3982cf5617e0263641b7",
+      "text": "Calcule 3 + 3.",
+      "intent": "calculation",
+      "template_id": "calculation:0",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "fbf6b5008e4d16705f68",
+      "text": "Calcule 4 + 3.",
+      "intent": "calculation",
+      "template_id": "calculation:0",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "b63dc0768453888049a4",
+      "text": "Calcule 5 + 3.",
+      "intent": "calculation",
+      "template_id": "calculation:0",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "5d9e4287a23f2dbf2c2b",
+      "text": "Calcule 6 + 3.",
+      "intent": "calculation",
+      "template_id": "calculation:0",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "6f252a8d90d22fc2873c",
+      "text": "Calcule 7 + 3.",
+      "intent": "calculation",
+      "template_id": "calculation:0",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "ac615ecbf83fe7c680dd",
+      "text": "Quanto é 2 vezes 2?",
+      "intent": "calculation",
+      "template_id": "calculation:1",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "7417fa2776ec5f94f7f2",
+      "text": "Quanto é 3 vezes 2?",
+      "intent": "calculation",
+      "template_id": "calculation:1",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "649bf7d6a76689d59322",
+      "text": "Quanto é 4 vezes 2?",
+      "intent": "calculation",
+      "template_id": "calculation:1",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "8ddb6706e7bb7bf206be",
+      "text": "Quanto é 5 vezes 2?",
+      "intent": "calculation",
+      "template_id": "calculation:1",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "c5889726ddf96554e691",
+      "text": "Quanto é 6 vezes 2?",
+      "intent": "calculation",
+      "template_id": "calculation:1",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "a96ade82a4795647681e",
+      "text": "Quanto é 7 vezes 2?",
+      "intent": "calculation",
+      "template_id": "calculation:1",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "fd28be678328fbd6862a",
+      "text": "Calcule 2 m + 20 cm.",
+      "intent": "calculation",
+      "template_id": "calculation:2",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "72698e8de1b0f6b3be7d",
+      "text": "Calcule 3 m + 20 cm.",
+      "intent": "calculation",
+      "template_id": "calculation:2",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "6618ef592d8a08e6daf2",
+      "text": "Calcule 4 m + 20 cm.",
+      "intent": "calculation",
+      "template_id": "calculation:2",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "03139f291d4e59fca43a",
+      "text": "Calcule 5 m + 20 cm.",
+      "intent": "calculation",
+      "template_id": "calculation:2",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "5b77d10ca55622f0fc8f",
+      "text": "Calcule 6 m + 20 cm.",
+      "intent": "calculation",
+      "template_id": "calculation:2",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "a0c2b406c42255a3a8cf",
+      "text": "Calcule 7 m + 20 cm.",
+      "intent": "calculation",
+      "template_id": "calculation:2",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "df00f392abfe9c354ce9",
+      "text": "Crie uma solução usando Aran.",
+      "intent": "creation",
+      "template_id": "creation:0",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "a5766e3c961e67865b07",
+      "text": "Crie uma solução usando Beral.",
+      "intent": "creation",
+      "template_id": "creation:0",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "aa5ed3c7b6ebd63c7916",
+      "text": "Crie uma solução usando Cetra.",
+      "intent": "creation",
+      "template_id": "creation:0",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "506d700b5bab89d3f860",
+      "text": "Crie uma solução usando Dorin.",
+      "intent": "creation",
+      "template_id": "creation:0",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "9c2e39d2245f43ee862b",
+      "text": "Crie uma solução usando Elera.",
+      "intent": "creation",
+      "template_id": "creation:0",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "3a4fe4c912848803b13f",
+      "text": "Crie uma solução usando Feron.",
+      "intent": "creation",
+      "template_id": "creation:0",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "28cff8f354f0785dedf3",
+      "text": "Invente uma máquina com Aran.",
+      "intent": "creation",
+      "template_id": "creation:1",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "efe753f331869315cef5",
+      "text": "Invente uma máquina com Beral.",
+      "intent": "creation",
+      "template_id": "creation:1",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "f865c7dec4e7282bc1f7",
+      "text": "Invente uma máquina com Cetra.",
+      "intent": "creation",
+      "template_id": "creation:1",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "2d0fdf817e12e5253f2e",
+      "text": "Invente uma máquina com Dorin.",
+      "intent": "creation",
+      "template_id": "creation:1",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "77b2b2b508ba2119e418",
+      "text": "Invente uma máquina com Elera.",
+      "intent": "creation",
+      "template_id": "creation:1",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "cd0bb48d52617fa28e5f",
+      "text": "Invente uma máquina com Feron.",
+      "intent": "creation",
+      "template_id": "creation:1",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "bfc1cfa1db9e7d494e86",
+      "text": "Proponha uma solução para Aran.",
+      "intent": "creation",
+      "template_id": "creation:2",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "6f0be1c6ad740a1fe113",
+      "text": "Proponha uma solução para Beral.",
+      "intent": "creation",
+      "template_id": "creation:2",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "bfb873370ffac73e7d02",
+      "text": "Proponha uma solução para Cetra.",
+      "intent": "creation",
+      "template_id": "creation:2",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "2da555425ffbeb6e86e8",
+      "text": "Proponha uma solução para Dorin.",
+      "intent": "creation",
+      "template_id": "creation:2",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "d34da6b9c3d824a23861",
+      "text": "Proponha uma solução para Elera.",
+      "intent": "creation",
+      "template_id": "creation:2",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "a0292a17b78d075b8b97",
+      "text": "Proponha uma solução para Feron.",
+      "intent": "creation",
+      "template_id": "creation:2",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "23d8ddb2a58b358085d2",
+      "text": "Corrigindo: Aran não emite luz.",
+      "intent": "correction",
+      "template_id": "correction:0",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "49b250de93570390a8ee",
+      "text": "Corrigindo: Beral não emite luz.",
+      "intent": "correction",
+      "template_id": "correction:0",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "257225a1b1c86b04ca56",
+      "text": "Corrigindo: Cetra não emite luz.",
+      "intent": "correction",
+      "template_id": "correction:0",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "4eaa0d3b120303dee93b",
+      "text": "Corrigindo: Dorin não emite luz.",
+      "intent": "correction",
+      "template_id": "correction:0",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "57ffb39a4a5d2b9f8a6b",
+      "text": "Corrigindo: Elera não emite luz.",
+      "intent": "correction",
+      "template_id": "correction:0",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "f157ee7a259716ff6866",
+      "text": "Corrigindo: Feron não emite luz.",
+      "intent": "correction",
+      "template_id": "correction:0",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "721438a9e1d600466a47",
+      "text": "Na verdade, Aran absorve calor.",
+      "intent": "correction",
+      "template_id": "correction:1",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "6a5ebce48be6e0b3da0a",
+      "text": "Na verdade, Beral absorve calor.",
+      "intent": "correction",
+      "template_id": "correction:1",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "86d02b2555754ab25acf",
+      "text": "Na verdade, Cetra absorve calor.",
+      "intent": "correction",
+      "template_id": "correction:1",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "6d91791001f08820ed96",
+      "text": "Na verdade, Dorin absorve calor.",
+      "intent": "correction",
+      "template_id": "correction:1",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "a0dbb549a251c8db7b62",
+      "text": "Na verdade, Elera absorve calor.",
+      "intent": "correction",
+      "template_id": "correction:1",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "17c4824618bcc098f135",
+      "text": "Na verdade, Feron absorve calor.",
+      "intent": "correction",
+      "template_id": "correction:1",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "ed347ece000e20db2fcb",
+      "text": "Correção: Aran armazena água.",
+      "intent": "correction",
+      "template_id": "correction:2",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "eb14cc148483ab64dc34",
+      "text": "Correção: Beral armazena água.",
+      "intent": "correction",
+      "template_id": "correction:2",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "1620822357fe7f0f1b4a",
+      "text": "Correção: Cetra armazena água.",
+      "intent": "correction",
+      "template_id": "correction:2",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "d65cb96d74d42df91e04",
+      "text": "Correção: Dorin armazena água.",
+      "intent": "correction",
+      "template_id": "correction:2",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "1cf8cc66cc09aa96bdf8",
+      "text": "Correção: Elera armazena água.",
+      "intent": "correction",
+      "template_id": "correction:2",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "76f45fa457bfe1e4e9ab",
+      "text": "Correção: Feron armazena água.",
+      "intent": "correction",
+      "template_id": "correction:2",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "2d84ef16a87afe494518",
+      "text": "Talvez Aran produza luz.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:0",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "2c3e295f1fa473c6b9da",
+      "text": "Talvez Beral produza luz.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:0",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "cb82640361aefac4a651",
+      "text": "Talvez Cetra produza luz.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:0",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "b4d9e71f87c394f546c1",
+      "text": "Talvez Dorin produza luz.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:0",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "6b2b2fa889e99d9ac98d",
+      "text": "Talvez Elera produza luz.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:0",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "cc3677fc9d11494ee4d0",
+      "text": "Talvez Feron produza luz.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:0",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "90e4cd70306665ed9372",
+      "text": "Acho que Aran absorve energia.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:1",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "705d6f7aa194f02e0cce",
+      "text": "Acho que Beral absorve energia.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:1",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "c93355cfea1432618e6c",
+      "text": "Acho que Cetra absorve energia.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:1",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "911d7e399213395e996a",
+      "text": "Acho que Dorin absorve energia.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:1",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "2f707bab6d69b978c5db",
+      "text": "Acho que Elera absorve energia.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:1",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "6c1481a6efbca16da572",
+      "text": "Acho que Feron absorve energia.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:1",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "ba2e29e38161ff31d7c4",
+      "text": "Hipótese: Aran emite luz.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:2",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "aaadc65b495ab9014c19",
+      "text": "Hipótese: Beral emite luz.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:2",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "b127b39948546fcfdaaa",
+      "text": "Hipótese: Cetra emite luz.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:2",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "46baeac2db86b3cf933c",
+      "text": "Hipótese: Dorin emite luz.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:2",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "d0a4c102089a01f30aa5",
+      "text": "Hipótese: Elera emite luz.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:2",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "faf278b9aded8d054f79",
+      "text": "Hipótese: Feron emite luz.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:2",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "a15db6b8933d1ac75fb8",
+      "text": "Resuma a última resposta.",
+      "intent": "summary",
+      "template_id": "summary:0",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "be6ce664a7171bc7c93a",
+      "text": "Reescreva isso em 2 palavras.",
+      "intent": "summary",
+      "template_id": "summary:1",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "71fa1937432176d4b552",
+      "text": "Reescreva isso em 3 palavras.",
+      "intent": "summary",
+      "template_id": "summary:1",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "c1cab536e99260b165cb",
+      "text": "Reescreva isso em 4 palavras.",
+      "intent": "summary",
+      "template_id": "summary:1",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "845060c338c30fafc6c3",
+      "text": "Reescreva isso em 5 palavras.",
+      "intent": "summary",
+      "template_id": "summary:1",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "1ddb5748663af499485d",
+      "text": "Reescreva isso em 6 palavras.",
+      "intent": "summary",
+      "template_id": "summary:1",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "d33b7441ee964902e164",
+      "text": "Reescreva isso em 7 palavras.",
+      "intent": "summary",
+      "template_id": "summary:1",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "d0e48598c4d5941062b4",
+      "text": "Explique isso melhor.",
+      "intent": "summary",
+      "template_id": "summary:2",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "f11681d78697818a0a62",
+      "text": "Olá!",
+      "intent": "greeting",
+      "template_id": "greeting:0",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "11e0918a370bc4658297",
+      "text": "Oi, tudo bem?",
+      "intent": "greeting",
+      "template_id": "greeting:1",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "19a8b5e52fa3f5768daf",
+      "text": "Bom dia.",
+      "intent": "greeting",
+      "template_id": "greeting:2",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "036907c4e0f6ba33a64e",
+      "text": "Faça uma analogia para Aran.",
+      "intent": "analogy",
+      "template_id": "analogy:0",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "a6539ce23787ca73f992",
+      "text": "Faça uma analogia para Beral.",
+      "intent": "analogy",
+      "template_id": "analogy:0",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "21551ac871592a1ae228",
+      "text": "Faça uma analogia para Cetra.",
+      "intent": "analogy",
+      "template_id": "analogy:0",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "27950c0bf00c9c884ff8",
+      "text": "Faça uma analogia para Dorin.",
+      "intent": "analogy",
+      "template_id": "analogy:0",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "56124aa7c6056354a27d",
+      "text": "Faça uma analogia para Elera.",
+      "intent": "analogy",
+      "template_id": "analogy:0",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "131c6f42d66acd062ff3",
+      "text": "Faça uma analogia para Feron.",
+      "intent": "analogy",
+      "template_id": "analogy:0",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "ddcb204247301577d6e9",
+      "text": "Compare Aran com o outro objeto.",
+      "intent": "analogy",
+      "template_id": "analogy:1",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "442d8f9497592f3d0456",
+      "text": "Compare Beral com o outro objeto.",
+      "intent": "analogy",
+      "template_id": "analogy:1",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "c1280d6be2d25e82f87b",
+      "text": "Compare Cetra com o outro objeto.",
+      "intent": "analogy",
+      "template_id": "analogy:1",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "12826158b03b63f415ac",
+      "text": "Compare Dorin com o outro objeto.",
+      "intent": "analogy",
+      "template_id": "analogy:1",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "a3fdca7ac5cd270298c5",
+      "text": "Compare Elera com o outro objeto.",
+      "intent": "analogy",
+      "template_id": "analogy:1",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "4953cfcd3e209e76190b",
+      "text": "Compare Feron com o outro objeto.",
+      "intent": "analogy",
+      "template_id": "analogy:1",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "d4a7aa8e29115793bda5",
+      "text": "Transfira as relações por analogia para Aran.",
+      "intent": "analogy",
+      "template_id": "analogy:2",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "2f3e1e4e3a8e6b49815b",
+      "text": "Transfira as relações por analogia para Beral.",
+      "intent": "analogy",
+      "template_id": "analogy:2",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "666fe638ea2236065615",
+      "text": "Transfira as relações por analogia para Cetra.",
+      "intent": "analogy",
+      "template_id": "analogy:2",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "9327fe525619a6c73981",
+      "text": "Transfira as relações por analogia para Dorin.",
+      "intent": "analogy",
+      "template_id": "analogy:2",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "b876c8729a669a41cc13",
+      "text": "Transfira as relações por analogia para Elera.",
+      "intent": "analogy",
+      "template_id": "analogy:2",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "a795f9f7d3ccd056dcc3",
+      "text": "Transfira as relações por analogia para Feron.",
+      "intent": "analogy",
+      "template_id": "analogy:2",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "f0e105f0bbbb9de4d0b7",
+      "text": "Prefiro respostas curtas.",
+      "intent": "preference",
+      "template_id": "preference:0",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "6fd7730389d500b08d87",
+      "text": "Meu nome é Aran.",
+      "intent": "preference",
+      "template_id": "preference:1",
+      "entities_used": [
+        "Aran"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "7f4724b836a73525047f",
+      "text": "Meu nome é Beral.",
+      "intent": "preference",
+      "template_id": "preference:1",
+      "entities_used": [
+        "Beral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "b73754107ad15b0a8467",
+      "text": "Meu nome é Cetra.",
+      "intent": "preference",
+      "template_id": "preference:1",
+      "entities_used": [
+        "Cetra"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "0beb2691f5f56dbf28e0",
+      "text": "Meu nome é Dorin.",
+      "intent": "preference",
+      "template_id": "preference:1",
+      "entities_used": [
+        "Dorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "58bac9e2ed69ed910f60",
+      "text": "Meu nome é Elera.",
+      "intent": "preference",
+      "template_id": "preference:1",
+      "entities_used": [
+        "Elera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "d810a5fdbdc6400301b3",
+      "text": "Meu nome é Feron.",
+      "intent": "preference",
+      "template_id": "preference:1",
+      "entities_used": [
+        "Feron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "4cbe1b9616efe7292c5a",
+      "text": "Eu prefiro explicações com 2 exemplos.",
+      "intent": "preference",
+      "template_id": "preference:2",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "82f86b3a297349a280c8",
+      "text": "Eu prefiro explicações com 3 exemplos.",
+      "intent": "preference",
+      "template_id": "preference:2",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "9b7d04c2345534cd5b59",
+      "text": "Eu prefiro explicações com 4 exemplos.",
+      "intent": "preference",
+      "template_id": "preference:2",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "f75698f9cb6566e79976",
+      "text": "Eu prefiro explicações com 5 exemplos.",
+      "intent": "preference",
+      "template_id": "preference:2",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "205e6384a07be9015767",
+      "text": "Eu prefiro explicações com 6 exemplos.",
+      "intent": "preference",
+      "template_id": "preference:2",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "1f7df2228e115eaecc7b",
+      "text": "Eu prefiro explicações com 7 exemplos.",
+      "intent": "preference",
+      "template_id": "preference:2",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    }
+  ],
+  "validation": [
+    {
+      "id": "1ee7842e36c5e2e6653e",
+      "text": "Aprenda: Ganor armazena água.",
+      "intent": "statement",
+      "template_id": "statement:3",
+      "entities_used": [
+        "Ganor"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "46e3e035119ac6003723",
+      "text": "Aprenda: Heral armazena água.",
+      "intent": "statement",
+      "template_id": "statement:3",
+      "entities_used": [
+        "Heral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "2539685630c0ffb75c9f",
+      "text": "Aprenda: Ivera armazena água.",
+      "intent": "statement",
+      "template_id": "statement:3",
+      "entities_used": [
+        "Ivera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "effb40a519902edcf952",
+      "text": "Aprenda: Jorin armazena água.",
+      "intent": "statement",
+      "template_id": "statement:3",
+      "entities_used": [
+        "Jorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "5d12730717c4ebe65815",
+      "text": "Aprenda: Kelar armazena água.",
+      "intent": "statement",
+      "template_id": "statement:3",
+      "entities_used": [
+        "Kelar"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "3feca9b781388eeeda73",
+      "text": "Aprenda: Luron armazena água.",
+      "intent": "statement",
+      "template_id": "statement:3",
+      "entities_used": [
+        "Luron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "e57a9fba85730fa0bd7d",
+      "text": "Você sabe o que é Ganor?",
+      "intent": "question",
+      "template_id": "question:3",
+      "entities_used": [
+        "Ganor"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "cb7bd98a36a3a13afb3b",
+      "text": "Você sabe o que é Heral?",
+      "intent": "question",
+      "template_id": "question:3",
+      "entities_used": [
+        "Heral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "7f8dabf42c68432645e7",
+      "text": "Você sabe o que é Ivera?",
+      "intent": "question",
+      "template_id": "question:3",
+      "entities_used": [
+        "Ivera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "efad1fbdd52c0e6ca6fc",
+      "text": "Você sabe o que é Jorin?",
+      "intent": "question",
+      "template_id": "question:3",
+      "entities_used": [
+        "Jorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "d1c6e3bdc744452eb052",
+      "text": "Você sabe o que é Kelar?",
+      "intent": "question",
+      "template_id": "question:3",
+      "entities_used": [
+        "Kelar"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "3c7c8d1eaa4134331f34",
+      "text": "Você sabe o que é Luron?",
+      "intent": "question",
+      "template_id": "question:3",
+      "entities_used": [
+        "Luron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "c9e5a55764940abecdfc",
+      "text": "Qual o resultado de 2 / 2?",
+      "intent": "calculation",
+      "template_id": "calculation:3",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "52b7426474aa0c2c1152",
+      "text": "Qual o resultado de 3 / 2?",
+      "intent": "calculation",
+      "template_id": "calculation:3",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "47fea81e0ff857eb75a2",
+      "text": "Qual o resultado de 4 / 2?",
+      "intent": "calculation",
+      "template_id": "calculation:3",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "a82907b2662e9f1b162e",
+      "text": "Qual o resultado de 5 / 2?",
+      "intent": "calculation",
+      "template_id": "calculation:3",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "706d03f43f1eabd36681",
+      "text": "Qual o resultado de 6 / 2?",
+      "intent": "calculation",
+      "template_id": "calculation:3",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "76e7fc7c843070895de8",
+      "text": "Qual o resultado de 7 / 2?",
+      "intent": "calculation",
+      "template_id": "calculation:3",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "b06a9a645289ce025eb5",
+      "text": "Combine as funções de Ganor em um projeto.",
+      "intent": "creation",
+      "template_id": "creation:3",
+      "entities_used": [
+        "Ganor"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "327089a778c28a1d340b",
+      "text": "Combine as funções de Heral em um projeto.",
+      "intent": "creation",
+      "template_id": "creation:3",
+      "entities_used": [
+        "Heral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "7ce17c1e1118663b7ac7",
+      "text": "Combine as funções de Ivera em um projeto.",
+      "intent": "creation",
+      "template_id": "creation:3",
+      "entities_used": [
+        "Ivera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "c2843849e49f1d19a57d",
+      "text": "Combine as funções de Jorin em um projeto.",
+      "intent": "creation",
+      "template_id": "creation:3",
+      "entities_used": [
+        "Jorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "7ae8fa44ec1a6179dbd6",
+      "text": "Combine as funções de Kelar em um projeto.",
+      "intent": "creation",
+      "template_id": "creation:3",
+      "entities_used": [
+        "Kelar"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "181b4a631691ad5d30b9",
+      "text": "Combine as funções de Luron em um projeto.",
+      "intent": "creation",
+      "template_id": "creation:3",
+      "entities_used": [
+        "Luron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "34875e75d1ea2ca5ce17",
+      "text": "Retificando: Ganor não produz energia.",
+      "intent": "correction",
+      "template_id": "correction:3",
+      "entities_used": [
+        "Ganor"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "5b561753d7c020d11486",
+      "text": "Retificando: Heral não produz energia.",
+      "intent": "correction",
+      "template_id": "correction:3",
+      "entities_used": [
+        "Heral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "919ab87f237b31ba29bb",
+      "text": "Retificando: Ivera não produz energia.",
+      "intent": "correction",
+      "template_id": "correction:3",
+      "entities_used": [
+        "Ivera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "de77db52a84e81a9dd44",
+      "text": "Retificando: Jorin não produz energia.",
+      "intent": "correction",
+      "template_id": "correction:3",
+      "entities_used": [
+        "Jorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "7f765a517ce52b6f043c",
+      "text": "Retificando: Kelar não produz energia.",
+      "intent": "correction",
+      "template_id": "correction:3",
+      "entities_used": [
+        "Kelar"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "9116de764b3a56ff68f6",
+      "text": "Retificando: Luron não produz energia.",
+      "intent": "correction",
+      "template_id": "correction:3",
+      "entities_used": [
+        "Luron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "be0b5099372f58c96136",
+      "text": "Suponho que Ganor conduza calor.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:3",
+      "entities_used": [
+        "Ganor"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "331d9077adabd28a298e",
+      "text": "Suponho que Heral conduza calor.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:3",
+      "entities_used": [
+        "Heral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "110f98a56c01b0d9058c",
+      "text": "Suponho que Ivera conduza calor.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:3",
+      "entities_used": [
+        "Ivera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "c5e46ec6d75bb726ef18",
+      "text": "Suponho que Jorin conduza calor.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:3",
+      "entities_used": [
+        "Jorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "d55600be9ca95c89fde6",
+      "text": "Suponho que Kelar conduza calor.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:3",
+      "entities_used": [
+        "Kelar"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "4666ee263c8cb99ec0dc",
+      "text": "Suponho que Luron conduza calor.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:3",
+      "entities_used": [
+        "Luron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "e8679a40f3ecc63f5a3a",
+      "text": "Repita a resposta anterior.",
+      "intent": "summary",
+      "template_id": "summary:3",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "2bd021936df5f25773b8",
+      "text": "Boa tarde, vamos conversar.",
+      "intent": "greeting",
+      "template_id": "greeting:3",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "1f49820101f179a885ab",
+      "text": "Que analogias podemos criar para Ganor?",
+      "intent": "analogy",
+      "template_id": "analogy:3",
+      "entities_used": [
+        "Ganor"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "f724e74018e132443f51",
+      "text": "Que analogias podemos criar para Heral?",
+      "intent": "analogy",
+      "template_id": "analogy:3",
+      "entities_used": [
+        "Heral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "ca40196ba2cbb9f4517e",
+      "text": "Que analogias podemos criar para Ivera?",
+      "intent": "analogy",
+      "template_id": "analogy:3",
+      "entities_used": [
+        "Ivera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "12a31a05ef461373f852",
+      "text": "Que analogias podemos criar para Jorin?",
+      "intent": "analogy",
+      "template_id": "analogy:3",
+      "entities_used": [
+        "Jorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "d8ccf2844f1adf002297",
+      "text": "Que analogias podemos criar para Kelar?",
+      "intent": "analogy",
+      "template_id": "analogy:3",
+      "entities_used": [
+        "Kelar"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "4916846c8b2be5365985",
+      "text": "Que analogias podemos criar para Luron?",
+      "intent": "analogy",
+      "template_id": "analogy:3",
+      "entities_used": [
+        "Luron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "a79f61bf61029fa1ef82",
+      "text": "Prefiro aprender com exemplos de Ganor.",
+      "intent": "preference",
+      "template_id": "preference:3",
+      "entities_used": [
+        "Ganor"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "c2fa01cba909aca7f5a3",
+      "text": "Prefiro aprender com exemplos de Heral.",
+      "intent": "preference",
+      "template_id": "preference:3",
+      "entities_used": [
+        "Heral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "50fea1a98c543dcb6139",
+      "text": "Prefiro aprender com exemplos de Ivera.",
+      "intent": "preference",
+      "template_id": "preference:3",
+      "entities_used": [
+        "Ivera"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "b8224ca4d453e29ed0b4",
+      "text": "Prefiro aprender com exemplos de Jorin.",
+      "intent": "preference",
+      "template_id": "preference:3",
+      "entities_used": [
+        "Jorin"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "2c23d02f728251def88c",
+      "text": "Prefiro aprender com exemplos de Kelar.",
+      "intent": "preference",
+      "template_id": "preference:3",
+      "entities_used": [
+        "Kelar"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "bd6bf114c9b12153e3d9",
+      "text": "Prefiro aprender com exemplos de Luron.",
+      "intent": "preference",
+      "template_id": "preference:3",
+      "entities_used": [
+        "Luron"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    }
+  ],
+  "held_out": [
+    {
+      "id": "3405f2a908ef843fa446",
+      "text": "Lembre: Miren produz energia.",
+      "intent": "statement",
+      "template_id": "statement:4",
+      "entities_used": [
+        "Miren"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "b8c9be578ae344ab5e08",
+      "text": "Lembre: Naral produz energia.",
+      "intent": "statement",
+      "template_id": "statement:4",
+      "entities_used": [
+        "Naral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "6871b8f7f6601c37ef1a",
+      "text": "Lembre: Ovel produz energia.",
+      "intent": "statement",
+      "template_id": "statement:4",
+      "entities_used": [
+        "Ovel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "be2a201310d61b4d6b1d",
+      "text": "Lembre: Pirel produz energia.",
+      "intent": "statement",
+      "template_id": "statement:4",
+      "entities_used": [
+        "Pirel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "d259242e9c92541ddcd2",
+      "text": "Lembre: Queral produz energia.",
+      "intent": "statement",
+      "template_id": "statement:4",
+      "entities_used": [
+        "Queral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "d45a5f52f811dc8fe870",
+      "text": "Lembre: Ravel produz energia.",
+      "intent": "statement",
+      "template_id": "statement:4",
+      "entities_used": [
+        "Ravel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "fe61723e8807bd0b4872",
+      "text": "Pode me dizer o que Miren faz?",
+      "intent": "question",
+      "template_id": "question:4",
+      "entities_used": [
+        "Miren"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "c0622ce0a4a71f0f372f",
+      "text": "Pode me dizer o que Naral faz?",
+      "intent": "question",
+      "template_id": "question:4",
+      "entities_used": [
+        "Naral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "4602a583cfcd210b6755",
+      "text": "Pode me dizer o que Ovel faz?",
+      "intent": "question",
+      "template_id": "question:4",
+      "entities_used": [
+        "Ovel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "342b53913d343c1b048c",
+      "text": "Pode me dizer o que Pirel faz?",
+      "intent": "question",
+      "template_id": "question:4",
+      "entities_used": [
+        "Pirel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "194cc136a88997ecbba5",
+      "text": "Pode me dizer o que Queral faz?",
+      "intent": "question",
+      "template_id": "question:4",
+      "entities_used": [
+        "Queral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "3d8cfff2bfe84e3a0810",
+      "text": "Pode me dizer o que Ravel faz?",
+      "intent": "question",
+      "template_id": "question:4",
+      "entities_used": [
+        "Ravel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "fe3b65026b88f4e7956f",
+      "text": "Faça a conta 2 + 4.",
+      "intent": "calculation",
+      "template_id": "calculation:4",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "8d22a79f35b77d0b3d7d",
+      "text": "Faça a conta 3 + 4.",
+      "intent": "calculation",
+      "template_id": "calculation:4",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "a69cc1a76937b332f0e5",
+      "text": "Faça a conta 4 + 4.",
+      "intent": "calculation",
+      "template_id": "calculation:4",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "2b033af7ef21d19bbd9c",
+      "text": "Faça a conta 5 + 4.",
+      "intent": "calculation",
+      "template_id": "calculation:4",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "b34d57b8c1b4aef651dc",
+      "text": "Faça a conta 6 + 4.",
+      "intent": "calculation",
+      "template_id": "calculation:4",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "47031aa3aaa823149e20",
+      "text": "Faça a conta 7 + 4.",
+      "intent": "calculation",
+      "template_id": "calculation:4",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "e88984b31bf8699aef8f",
+      "text": "Desenvolva uma ideia de sistema para Miren.",
+      "intent": "creation",
+      "template_id": "creation:4",
+      "entities_used": [
+        "Miren"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "b1ae7ab684948bbbc946",
+      "text": "Desenvolva uma ideia de sistema para Naral.",
+      "intent": "creation",
+      "template_id": "creation:4",
+      "entities_used": [
+        "Naral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "ba731fcaf7f2ea831d3c",
+      "text": "Desenvolva uma ideia de sistema para Ovel.",
+      "intent": "creation",
+      "template_id": "creation:4",
+      "entities_used": [
+        "Ovel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "af0c76258ab01f1e023c",
+      "text": "Desenvolva uma ideia de sistema para Pirel.",
+      "intent": "creation",
+      "template_id": "creation:4",
+      "entities_used": [
+        "Pirel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "2130e6568bc99fd3279d",
+      "text": "Desenvolva uma ideia de sistema para Queral.",
+      "intent": "creation",
+      "template_id": "creation:4",
+      "entities_used": [
+        "Queral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "9a41b6c29fae3f4aefae",
+      "text": "Desenvolva uma ideia de sistema para Ravel.",
+      "intent": "creation",
+      "template_id": "creation:4",
+      "entities_used": [
+        "Ravel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "8577d130c8850c2dd242",
+      "text": "Corrija: Miren emite calor.",
+      "intent": "correction",
+      "template_id": "correction:4",
+      "entities_used": [
+        "Miren"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "5ae1f262edc57074a80f",
+      "text": "Corrija: Naral emite calor.",
+      "intent": "correction",
+      "template_id": "correction:4",
+      "entities_used": [
+        "Naral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "a531ce9bcf6fe3c1af10",
+      "text": "Corrija: Ovel emite calor.",
+      "intent": "correction",
+      "template_id": "correction:4",
+      "entities_used": [
+        "Ovel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "324525aa2863f8a99d67",
+      "text": "Corrija: Pirel emite calor.",
+      "intent": "correction",
+      "template_id": "correction:4",
+      "entities_used": [
+        "Pirel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "6923c2e66690cee523c9",
+      "text": "Corrija: Queral emite calor.",
+      "intent": "correction",
+      "template_id": "correction:4",
+      "entities_used": [
+        "Queral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "bea60a5bdd4c594bec4a",
+      "text": "Corrija: Ravel emite calor.",
+      "intent": "correction",
+      "template_id": "correction:4",
+      "entities_used": [
+        "Ravel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "7e752c77de9b59857d83",
+      "text": "Penso que Miren pode produzir energia.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:4",
+      "entities_used": [
+        "Miren"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "148ff6eee5fed7f8663d",
+      "text": "Penso que Naral pode produzir energia.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:4",
+      "entities_used": [
+        "Naral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "3a17f585b5378b6c97d1",
+      "text": "Penso que Ovel pode produzir energia.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:4",
+      "entities_used": [
+        "Ovel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "ffeb413ac460930ed448",
+      "text": "Penso que Pirel pode produzir energia.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:4",
+      "entities_used": [
+        "Pirel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "a513391cb835982efe21",
+      "text": "Penso que Queral pode produzir energia.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:4",
+      "entities_used": [
+        "Queral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "bbb9a337217e325a41ec",
+      "text": "Penso que Ravel pode produzir energia.",
+      "intent": "hypothesis",
+      "template_id": "hypothesis:4",
+      "entities_used": [
+        "Ravel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "2536f4a9f3f47585b281",
+      "text": "Faça um resumo do que você acabou de responder.",
+      "intent": "summary",
+      "template_id": "summary:4",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "0637a3b77e41dae9ca61",
+      "text": "Boa noite!",
+      "intent": "greeting",
+      "template_id": "greeting:4",
+      "entities_used": [],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "670eb05238cba5193f74",
+      "text": "Encontre uma relação semelhante à de Miren.",
+      "intent": "analogy",
+      "template_id": "analogy:4",
+      "entities_used": [
+        "Miren"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "1df9f27fe6d5e88083b1",
+      "text": "Encontre uma relação semelhante à de Naral.",
+      "intent": "analogy",
+      "template_id": "analogy:4",
+      "entities_used": [
+        "Naral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "d88495cf05e10a45d54e",
+      "text": "Encontre uma relação semelhante à de Ovel.",
+      "intent": "analogy",
+      "template_id": "analogy:4",
+      "entities_used": [
+        "Ovel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "e3c4b05374943bfdfed6",
+      "text": "Encontre uma relação semelhante à de Pirel.",
+      "intent": "analogy",
+      "template_id": "analogy:4",
+      "entities_used": [
+        "Pirel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "99287c9dee8ddeb21341",
+      "text": "Encontre uma relação semelhante à de Queral.",
+      "intent": "analogy",
+      "template_id": "analogy:4",
+      "entities_used": [
+        "Queral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "c17bbbe930bb0ba08344",
+      "text": "Encontre uma relação semelhante à de Ravel.",
+      "intent": "analogy",
+      "template_id": "analogy:4",
+      "entities_used": [
+        "Ravel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "5fb028b371d8de3c795b",
+      "text": "Meu nome é Miren e prefiro linguagem simples.",
+      "intent": "preference",
+      "template_id": "preference:4",
+      "entities_used": [
+        "Miren"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "d511fb853b0388b75e97",
+      "text": "Meu nome é Naral e prefiro linguagem simples.",
+      "intent": "preference",
+      "template_id": "preference:4",
+      "entities_used": [
+        "Naral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "09d7cce8d720690052b5",
+      "text": "Meu nome é Ovel e prefiro linguagem simples.",
+      "intent": "preference",
+      "template_id": "preference:4",
+      "entities_used": [
+        "Ovel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "ec6a308559cb338b96fb",
+      "text": "Meu nome é Pirel e prefiro linguagem simples.",
+      "intent": "preference",
+      "template_id": "preference:4",
+      "entities_used": [
+        "Pirel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "7f612c03afdb36de41c7",
+      "text": "Meu nome é Queral e prefiro linguagem simples.",
+      "intent": "preference",
+      "template_id": "preference:4",
+      "entities_used": [
+        "Queral"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    },
+    {
+      "id": "eeeba8d81e3c0c722b32",
+      "text": "Meu nome é Ravel e prefiro linguagem simples.",
+      "intent": "preference",
+      "template_id": "preference:4",
+      "entities_used": [
+        "Ravel"
+      ],
+      "provenance": "project-authored controlled templates; no Qwen generation or user conversations"
+    }
+  ]
+}

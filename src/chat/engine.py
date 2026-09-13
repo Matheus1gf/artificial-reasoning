@@ -1,159 +1,213 @@
-"""One auditable learning transaction per conversational turn."""
-import re
+"""Own reasoning before language arrangement; durable, resumable chat turns."""
+import json
+import threading
+import time
 import uuid
+from dataclasses import asdict
+from pathlib import Path
 
-from .domain import claim_text, normalize
-from .extraction import EXTRACTION_PROMPT, EXTRACTION_SCHEMA, QUESTION, extract_local, is_correction, validate_neural
-from .provider import LanguageModel, ProviderError, Settings
-from .reasoner import Reasoner, refers_to_previous, requested_subject, retrieve
+from .domain import Assertion
+from .extraction import is_correction
+from .provider import LanguageModel, Settings
+from .reasoner import Reasoner, refers_to_previous, retrieve, verify_hypothesis
+from src.cognition.contracts import AnswerPackage, ProblemSpec, render_with_arranger
+from src.cognition.engine import CognitiveCore
+from src.cognition.processor import process_message
+from src.cognition.store import ExperienceStore
+from src.cognition.telemetry import start_measurement, finish_measurement
 
 
 class ChatEngine:
-    def __init__(self, memory, settings=None, language_model=None):
-        self.memory = memory
-        self.settings = settings or Settings()
+    def __init__(self, memory, settings=None, language_model=None, experience_store=None, core=None):
+        self.memory, self.settings = memory, settings or Settings()
         self.language_model = language_model or LanguageModel(self.settings)
-        self.reasoner = Reasoner()
+        self.reasoner, self.core = Reasoner(), core or CognitiveCore()
+        self._turn_lock = threading.RLock()
+        self._owns_store = experience_store is None
+        if experience_store is None:
+            path = memory.db.execute("PRAGMA database_list").fetchone()[2]
+            experience_store = ExperienceStore(Path(path).with_name(Path(path).stem + ".cognition.sqlite3") if path else ":memory:")
+        self.experience_store = experience_store
 
-    def reply(self, conversation_id, text, request_id=None, on_token=None):
-        if not isinstance(text, str) or not text.strip():
-            raise ValueError("Escreva uma mensagem.")
-        if len(text) > 8000:
-            raise ValueError("Use até 8.000 caracteres por mensagem.")
-        text = text.strip()
-        request_id = request_id or uuid.uuid4().hex
+    def close(self):
+        if self._owns_store:
+            self.experience_store.close()
+
+    def _prepare(self, conversation_id, text, request_id, problem, pending):
+        """Called within a short memory transaction; no model/simulator calls."""
+        user_id = pending["id"] if pending else self.memory.add_message(conversation_id, "user", text,
+                    {"request_id": request_id, "processing": True, "problem_id": problem.digest, "problem": problem.to_dict()})
+        learned, invalidated, conflicts, seen = [], [], [], set()
+        if pending:
+            learned = [row[0] for row in self.memory.db.execute("SELECT claim_id FROM sources WHERE message_id=?", (user_id,))
+                       if self.memory.claim(row[0])["status"] in {"asserted", "deduced", "hypothesis"}]
+        for raw in ([] if pending else problem.facts):
+            assertion = Assertion(**raw).clean()
+            key = (assertion.subject, assertion.predicate, assertion.object, assertion.polarity, assertion.scope)
+            if key in seen:
+                continue
+            seen.add(key)
+            claim_id, removed, disputed = self.memory.learn(assertion, user_id, is_correction(text))
+            learned.append(claim_id); invalidated.extend(removed); conflicts.extend(disputed)
+        new_deductions = []
+        for _ in range(4):
+            progress = False
+            for proposal in self.reasoner.deduce(self.memory.claims()):
+                claim, created = self.memory.propose(proposal)
+                if claim["status"] == "disputed":
+                    conflicts.extend(c["id"] for c in self.memory.claims() if c["status"] == "disputed" and
+                                     (c["subject"], c["predicate"], c["object"]) == (claim["subject"], claim["predicate"], claim["object"]))
+                if created:
+                    new_deductions.append(claim["id"]); progress = True
+            if not progress:
+                break
+        previous_subject = problem.context.get("subject", "")
+        all_claims = self.memory.claims()
+        by_id = {c["id"]: c for c in all_claims}
+        for claim in all_claims:
+            if claim["origin"] == "reasoner" and claim["status"] == "hypothesis" and not verify_hypothesis(claim, by_id):
+                invalidated.extend(self.memory.invalidate_generated(claim["id"], "A transformação perdeu apoio após reavaliar as relações atuais."))
+        all_claims = self.memory.claims()
+        frame = problem.payload.get("discourse", {})
+        relevant = retrieve(text, all_claims, previous_subject, conversation_id=conversation_id, frame=frame)
+        inferred = []
+        temporary = []
+        candidates = self.reasoner.explore(text, all_claims, relevant, previous_subject, frame=frame)
+        for proposal in candidates:
+            candidate = asdict(proposal)
+            wrong_target = (frame.get("mode") == "assume_relation" and frame.get("target")
+                            and proposal.subject != frame["target"])
+            if wrong_target or not verify_hypothesis(candidate, {c["id"]: c for c in all_claims}, frame.get("temporary_assumptions", [])):
+                self.reasoner.trace.append({"operation": "reject_proposal", "method": proposal.method,
+                                            "reason": "transformation_replay_failed", "accepted": False})
+                continue
+            if frame.get("mode") == "assume_relation":
+                temporary.append(candidate)
+                continue
+            claim, _ = self.memory.propose(proposal)
+            if claim["origin"] == "reasoner" and claim["status"] in {"hypothesis", "deduced"}:
+                inferred.append(claim)
+        for claim in relevant:
+            if claim["status"] == "deduced" and claim["id"] not in {c["id"] for c in inferred}:
+                inferred.append(claim)
+        for cid in new_deductions:
+            claim = self.memory.claim(cid)
+            if claim["status"] == "deduced" and cid not in {c["id"] for c in inferred} and any(p in learned for p in claim["premises"]):
+                inferred.append(claim)
+        conflict_claims = [c for c in self.memory.claims() if c["status"] == "disputed" and
+                           (c["id"] in conflicts or c["id"] in {r["id"] for r in relevant})]
+        return user_id, {"learned": [self.memory.claim(cid) for cid in dict.fromkeys(learned)],
+                         "relevant": relevant, "inferences": inferred, "conflicts": conflict_claims,
+                         "invalidated": invalidated, "claims": self.memory.claims(),
+                         "temporary_inferences": temporary, "reasoning_trace": list(self.reasoner.trace),
+                         "memory_operations": self.reasoner.operations + len(new_deductions)}
+
+    def _record_experience(self, conversation_id, text, request_id, user_id, problem, context):
+        withdrawn = set(context["invalidated"]) | {c["id"] for c in context["conflicts"]}
+        if withdrawn:
+            self.experience_store.invalidate_sources(["M" + str(cid) for cid in withdrawn], reason="Premissa do chat revisada ou em conflito.")
+        kind = problem.intent if problem.intent in {"question", "correction", "hypothesis", "preference"} else "episode"
+        episode = self.experience_store.record(conversation_id, kind,
+            {"message": text, "intent": problem.intent, "problem_id": problem.digest, "entities": problem.entities,
+             "quantities": problem.payload.get("quantities", [])}, ["message:" + str(user_id)], evidence="user",
+            status="hypothesis" if kind == "hypothesis" else "asserted", dedupe_key="turn:" + request_id)
+        ids = [episode]
+        for claim in context["learned"]:
+            rid = self.experience_store.record(conversation_id, "relation",
+                {"predicate": claim["predicate"], "arguments": [claim["subject"], claim["object"]],
+                 "polarity": claim["polarity"], "scope": claim["scope"]}, ["M" + str(claim["id"]), episode],
+                scope="user", status=claim["status"] if claim["status"] in {"hypothesis", "disputed"} else "asserted", evidence="user",
+                dedupe_key="claim:" + request_id + ":" + str(claim["id"]))
+            ids.append(rid)
+        return ids
+
+    def reply(self, conversation_id, text, request_id=None, on_token=None, on_progress=None, cancel_event=None):
+        if not isinstance(text, str) or not text.strip() or len(text) > 8000:
+            raise ValueError("Escreva uma mensagem de até 8.000 caracteres.")
+        text, request_id = text.strip(), request_id or uuid.uuid4().hex
         if not isinstance(request_id, str) or not 1 <= len(request_id) <= 100:
             raise ValueError("Identificador de envio inválido.")
-        with self.memory.transaction():
-            self.memory.conversation(conversation_id)
-            existing = self.memory.cached_turn(request_id, conversation_id, text)
-            if existing:
-                return existing
-            history = self.memory.messages(conversation_id)
-            previous_subject = ""
-            for message in reversed(history):
-                if message["role"] == "assistant" and message["metadata"].get("focus"):
-                    previous_subject = message["metadata"]["focus"]
-                    break
+        with self._turn_lock:
+            measurement = start_measurement()
+            started = time.perf_counter()
+            def cancelled():
+                if cancel_event is not None and cancel_event.is_set():
+                    raise ValueError("Processamento cancelado; reenvie a mesma mensagem para retomar.")
+            cancelled()
+            settings, language_model = self.settings, self.language_model
+            with self.memory.lock:
+                self.memory.conversation(conversation_id)
+                cached = self.memory.cached_turn(request_id, conversation_id, text)
+                if cached:
+                    return cached
+                history = self.memory.messages(conversation_id)
+                pending = next((m for m in history if m["role"] == "user" and m["metadata"].get("request_id") == request_id), None)
+                if pending and pending["content"] != text:
+                    raise ValueError("Identificador de envio já utilizado para outra mensagem.")
+            problem = (ProblemSpec.from_dict(pending["metadata"]["problem"]) if pending and pending["metadata"].get("problem") else
+                       process_message(text, [m for m in history if pending is None or m["id"] != pending["id"]], conversation_id=conversation_id))
+            processed_at = time.perf_counter()
+            if on_progress:
+                on_progress("processing")
+            with self.memory.transaction():
+                user_id, context = self._prepare(conversation_id, text, request_id, problem, pending)
             warnings = []
-            extracted = extract_local(text, previous_subject)
-            neural_available = self.language_model.enabled
-            sentences = [s.strip() for s in re.findall(r"[^.!?;\n]+[.!?;]?", text) if s.strip()]
-            needs_extraction = any("?" not in s and not QUESTION.match(normalize(s)) for s in sentences)
-            if neural_available and needs_extraction:
-                try:
-                    data = self.language_model.complete(EXTRACTION_PROMPT, {"message": text, "referent": previous_subject}, EXTRACTION_SCHEMA)
-                    extracted += validate_neural(data, text, previous_subject)
-                except (ProviderError, ValueError) as exc:
-                    warnings.append("Extração adicional indisponível; a conversa continua com o modelo. " + str(exc))
-            user_id = self.memory.add_message(conversation_id, "user", text)
-            learned, invalidated, conflicts = [], [], []
-            seen = set()
-            for a in extracted:
-                key = (a.subject, a.predicate, a.object, a.polarity, a.scope)
-                if key in seen:
-                    continue
-                seen.add(key)
-                cid, removed, disputed = self.memory.learn(a, user_id, is_correction(text))
-                learned.append(cid)
-                invalidated.extend(removed)
-                conflicts.extend(disputed)
-            # Up to four passes allow multi-step deduction while bounding work and cycles.
-            new_deductions = []
-            for _ in range(4):
-                progress = False
-                for proposal in self.reasoner.deduce(self.memory.claims()):
-                    c, created = self.memory.propose(proposal)
-                    if c["status"] == "disputed":
-                        conflicts.extend(other["id"] for other in self.memory.claims()
-                                         if other["status"] == "disputed" and
-                                         (other["subject"], other["predicate"], other["object"]) ==
-                                         (c["subject"], c["predicate"], c["object"]))
-                    if created:
-                        new_deductions.append(c["id"])
-                        progress = True
-                if not progress:
-                    break
-            all_claims = self.memory.claims()
-            relevant = retrieve(text, all_claims, previous_subject, conversation_id=conversation_id)
-            inferred = []
-            for proposal in self.reasoner.explore(text, all_claims, relevant, previous_subject):
-                c, created = self.memory.propose(proposal)
-                if c["origin"] == "reasoner" and c["status"] in {"hypothesis", "deduced"}:
-                    inferred.append(c)
-            learned_claims = [self.memory.claim(cid) for cid in dict.fromkeys(learned)]
-            for c in relevant:
-                if c["status"] == "deduced" and c["id"] not in {i["id"] for i in inferred}:
-                    inferred.append(c)
-            for cid in new_deductions:
-                c = self.memory.claim(cid)
-                if c["status"] == "deduced" and c["id"] not in {i["id"] for i in inferred} and any(pid in learned for pid in c["premises"]):
-                    inferred.append(c)
-            conflict_claims = [c for c in self.memory.claims() if c["status"] == "disputed" and (c["id"] in conflicts or c["id"] in {r["id"] for r in relevant})]
-            provider_used = "symbolic"
-            if neural_available:
-                context = {
-                    "memories": [self._context_claim(c) for c in relevant[:8]],
-                    "new_learning": [self._context_claim(c) for c in learned_claims[:8]],
-                    "inferences": [self._context_claim(c) for c in inferred[:3]],
-                    "conflicts": [self._context_claim(c) for c in conflict_claims[:4]],
-                    "withdrawn": [{"id": c["id"], "text": claim_text(c), "status": c["status"]}
-                                  for c in self.memory.claims(include_inactive=True)
-                                  if c["status"] == "retracted"][:10],
-                }
-                # Failure to extract knowledge does not disable conversation.
-                # Failure to generate a reply is surfaced as an error, not replaced
-                # by a memory template masquerading as an answer.
-                response = self.language_model.chat(text, history, context, on_token=on_token)
-                provider_used = self.settings.provider
-            else:
-                response = self._symbolic_response(text, learned_claims, relevant, inferred, conflict_claims, invalidated, history)
-            focus = (learned_claims[0]["subject"] if learned_claims else requested_subject(text) or
-                     (relevant[0]["subject"] if relevant else previous_subject if refers_to_previous(text) else ""))
-            result = {"conversation_id": conversation_id, "content": response,
-                      "learned": learned_claims, "retrieved": relevant, "inferences": inferred,
-                      "conflicts": conflict_claims, "invalidated": sorted(set(invalidated)),
-                      "focus": focus, "provider": provider_used, "model": self.settings.model if provider_used != "symbolic" else "",
-                      "warnings": list(dict.fromkeys(warnings)), "request_id": request_id}
-            result["message_id"] = self.memory.add_message(conversation_id, "assistant", response, result)
-            result["stats"] = self.memory.stats()
-            self.memory.save_turn(request_id, conversation_id, text, result)
+            experience_ids = self._record_experience(conversation_id, text, request_id, user_id, problem, context)
+            context["experience_store"] = self.experience_store
+            context["current_experience_id"] = experience_ids[0]
+            context["experiences"] = self.experience_store.retrieve(conversation_id, {}, limit=20)
+            context["cancel_event"] = cancel_event
+            remembered_at = time.perf_counter()
+            cancelled()
+            # Neither solving nor rendering holds the chat DB transaction/lock.
+            saved_package = pending["metadata"].get("approved_package") if pending else None
+            package = AnswerPackage.from_dict(saved_package) if saved_package else self.core.solve(problem, context)
+            if not isinstance(package, AnswerPackage):
+                raise RuntimeError("O núcleo não devolveu um pacote validado.")
+            if package.problem_id != problem.digest:
+                raise RuntimeError("O pacote persistido não corresponde ao problema desta mensagem.")
+            if saved_package:
+                from src.cognition.operator_runtime import package_is_current, obsolete_package
+                if not package_is_current(package, self.experience_store, conversation_id, self.memory):
+                    package = obsolete_package(problem)
+            # Persist the completed semantic step before checking cancellation or
+            # invoking an arranger. Retrying the same turn must not learn a new
+            # operator version or duplicate an invention already completed.
+            with self.memory.transaction():
+                self.memory.db.execute("UPDATE messages SET metadata=? WHERE id=?", (
+                    json.dumps({"request_id": request_id, "processing": True, "problem_id": problem.digest,
+                                "problem": problem.to_dict(), "approved_package": package.to_dict()}), user_id))
+            package_ready = time.perf_counter()
+            cancelled()
+            if on_progress:
+                on_progress("verified")
+            response, rendering = render_with_arranger(package, language_model, settings.research_mode)
+            rendered_at = time.perf_counter()
+            cancelled()
+            if rendering["mode"] == "deterministic_fallback":
+                warnings.append("O organizador não preservou o contrato ou ficou indisponível; usei o pacote aprovado.")
+            learned, relevant = context["learned"], context["relevant"]
+            focus = (problem.question.get("subject") or (learned[0]["subject"] if learned else "") or
+                     (relevant[0]["subject"] if relevant else problem.context.get("subject", "") if refers_to_previous(text) else ""))
+            provider = settings.provider if rendering["mode"] == "approved_sentence_order" else "symbolic"
+            result = {"conversation_id": conversation_id, "content": response, "learned": learned, "retrieved": relevant,
+                      "inferences": context["inferences"], "conflicts": context["conflicts"], "invalidated": sorted(set(context["invalidated"])),
+                      "focus": focus, "provider": provider, "model": settings.model if provider != "symbolic" else "",
+                      "warnings": warnings, "request_id": request_id, "problem": problem.to_dict(), "answer_package": package.to_dict(),
+                      "rendering": rendering, "experience_ids": experience_ids,
+                      "reasoning": {"status": package.status, "domain": package.domain, "operations": package.operations,
+                                    "package_sha256": package.digest, "package_ready_before_model": True,
+                                    "core_seconds": package_ready - started, "total_seconds": time.perf_counter() - started,
+                                    "timings": {"comprehension": processed_at - started, "memory": remembered_at - processed_at,
+                                                "reasoning_verification": package_ready - remembered_at, "rendering": rendered_at - package_ready},
+                                    "research_mode": settings.research_mode, "model_calls": rendering["model_calls"]}}
+            result["reasoning"]["resources"] = finish_measurement(measurement, package)
+            with self.memory.transaction():
+                result["message_id"] = self.memory.add_message(conversation_id, "assistant", response, result)
+                self.memory.db.execute("UPDATE messages SET metadata=? WHERE id=?", (
+                    json.dumps({"request_id": request_id, "processing": False, "problem_id": problem.digest}), user_id))
+                result["stats"] = self.memory.stats()
+                self.memory.save_turn(request_id, conversation_id, text, result)
+            if on_token:
+                on_token(response)  # Only approved, persisted text reaches the stream.
             return result
-
-    @staticmethod
-    def _context_claim(c):
-        return {"id": c["id"], "text": claim_text(c), "status": c["status"],
-                "polarity": c["polarity"], "premises": c["premises"],
-                "explanation": c["explanation"][:400],
-                "source_messages": [s["message_id"] for s in c["sources"][:3]]}
-
-    def _symbolic_response(self, text, learned, relevant, inferred, conflicts, invalidated, history):
-        paragraphs = []
-        if learned:
-            paragraphs.append("Registrei " + ("esta informação" if len(learned) == 1 else "estas informações") + " na memória compartilhada entre suas conversas:\n\n" +
-                              "\n".join(f"• {claim_text(c)}. [M{c['id']}]" for c in learned))
-            paragraphs.append("Vou tratá-las como " + ("hipóteses informadas" if all(c["status"] == "hypothesis" for c in learned) else "premissas informadas por você") + ", mantendo a origem para futuras revisões.")
-        if invalidated:
-            paragraphs.append(f"A correção retirou {len(set(invalidated))} conhecimento(s) ou conclusão(ões) que dependiam da versão anterior.")
-        if conflicts:
-            paragraphs.append("Encontrei afirmações incompatíveis:\n\n" + "\n".join(f"• {claim_text(c)}. [M{c['id']}]" for c in conflicts[:4]) +
-                              "\n\nSuspendi seu uso como premissas. Para resolver, escreva ‘Corrigindo:’ seguido da afirmação correta.")
-        for c in inferred[:3]:
-            label = "Dedução condicional" if c["status"] == "deduced" else "Hipótese por " + {"opposition": "oposição", "analogy": "analogia", "composition": "composição"}.get(c["method"], "exploração")
-            sources = " ".join(f"[M{pid}]" for pid in c["premises"])
-            paragraphs.append(f"{label}: {claim_text(c)}. [M{c['id']}]\n\n{c['explanation']} {sources}\n\nComo verificar: {c['validation']}")
-            if c["method"] == "opposition":
-                paragraphs.append("Construir um oposto conceitual não demonstra que ele exista na natureza. Sua existência continua sendo uma questão em aberto nesta memória.")
-        if not learned and not inferred:
-            usable = [c for c in relevant if c["status"] in {"asserted", "deduced", "hypothesis"}]
-            if usable:
-                paragraphs.append("Encontrei na memória:\n\n" + "\n".join(
-                    f"• {'Hipótese a testar: ' if c['status'] == 'hypothesis' else 'Premissa informada: ' if c['status'] == 'asserted' else 'Dedução condicional: '}{claim_text(c)}. [M{c['id']}]" for c in usable[:5]))
-                paragraphs.append("Posso explorar uma oposição, comparar esse conhecimento por analogia ou combinar funções para propor algo novo.")
-            elif not conflicts:
-                if normalize(text) in {"oi", "ola", "bom dia", "boa noite", "boa tarde"}:
-                    paragraphs.append("Olá! Vamos construir conhecimento juntos. Você pode me ensinar uma relação, explorar uma ideia ou retomar um assunto de outra conversa.")
-                else:
-                    paragraphs.append("Guardei sua mensagem no histórico, mas ainda não encontrei premissas suficientes para responder a esse pedido com o motor local.")
-                paragraphs.append("O modo simbólico é uma ferramenta de memória, com interpretação limitada. Ative um modelo de linguagem em Configurações para responder a perguntas gerais e conversar sobre o contexto atual.")
-        return "\n\n".join(paragraphs)

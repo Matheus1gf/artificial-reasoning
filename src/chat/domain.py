@@ -35,7 +35,10 @@ VERBS = {
     "causar": "causa", "causa": "causa", "requer": "requer", "precisa": "requer",
     "permite": "permite", "impede": "impede", "transformar": "transforma", "transforma": "transforma", "filtrar": "filtra", "filtra": "filtra",
     "usa": "usa", "utiliza": "usa", "protege": "protege", "remove": "remove",
-    "converte": "converte", "transporta": "transporta", "gosta": "gosta", "prefere": "prefere",
+    "converter": "converte", "converte": "converte", "convertem": "converte",
+    "transportar": "transporta", "transporta": "transporta", "transportam": "transporta",
+    "usar": "usa", "utilizar": "usa", "proteger": "protege", "remover": "remove",
+    "gosta": "gosta", "prefere": "prefere",
     "e": "é", "sao": "é", "ser": "é",
 }
 
@@ -77,6 +80,8 @@ class Proposal:
 
 def claim_text(claim: dict) -> str:
     subject = ("Todo " if claim.get("scope") == "universal" else "") + claim["subject"]
+    if claim["predicate"] == "oposto_de":
+        return f"{subject} {'' if claim.get('polarity', True) else 'não '}é o oposto de {claim['object']}"
     return f"{subject} {'' if claim.get('polarity', True) else 'não '}{claim['predicate']} {claim['object']}"
 
 

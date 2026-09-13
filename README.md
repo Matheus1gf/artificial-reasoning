@@ -1,151 +1,159 @@
 # Raciocínio Artificial
 
-Um chatbot de uso geral com memória e raciocínio experimental. Responde à mensagem atual usando o contexto da conversa e o conhecimento de um modelo de linguagem. Os aprendizados persistentes ajudam quando são relevantes; deduções, oposições, analogias e composições são recursos adicionais, não um formato obrigatório de resposta.
+Laboratório conversacional de **compreensão, memória, raciocínio e aprendizado próprios**. A questão é processada pelo núcleo antes de qualquer modelo de linguagem. O núcleo produz um pacote verificável com conclusões, premissas, cálculos, hipóteses e limites. Um Qwen opcional pode organizar os trechos aprovados; não fornece fatos nem decide a conclusão do chat.
 
-O primeiro domínio experimental foi a identificação de pássaros. Agora o ponto de entrada é uma aplicação conversacional independente dos modelos de visão. O protótipo anterior foi preservado para consulta e comparação.
+A implementação trabalha com português controlado e tarefas estruturadas de lógica, planejamento, cálculo, física e sistemas quânticos pequenos. Há aprendizes numéricos próprios e experimentos de generalização delimitados. **Não é ainda um chatbot de conhecimento geral equivalente ao ChatGPT, nem uma IA com descoberta científica autônoma comprovada.** Fora de sua cobertura, identifica a informação que falta em vez de completar a resposta com conhecimento do redator.
 
-O [TODO principal de pesquisa e desenvolvimento](TODO.md) define a próxima arquitetura: compreensão e raciocínio próprios antes da resposta, com o Qwen restrito à redação de conteúdo aprovado. O plano inclui redes próprias, aprendizado contínuo, física, experimentos quânticos e validação de invenções. **Essa arquitetura ainda está planejada**; as instruções e capacidades descritas abaixo correspondem à implementação atual.
+O projeto começou com identificação de pássaros; os módulos antigos permanecem preservados e não participam do novo chat. O [TODO principal](TODO.md) registra o estado real de cada requisito, com aceite independente em [F01_F11_QA.md](docs/research/F01_F11_QA.md).
 
-## Executar
+O [plano para o objetivo completo](docs/OBJECTIVE_PLAN.md) separa entregas de engenharia, capacidades demonstradas e contribuições científicas. O TODO detalha F13–F21 para dados, compreensão aprendida, descoberta de regras, investigação, invenção e aprendizagem contínua. Essas fases permanecem abertas; o número de itens concluídos não mede proximidade a inteligência geral.
 
-Requer **Python 3.9 ou superior**. O núcleo, a interface web e os testes usam apenas a biblioteca padrão. Não é preciso instalar TensorFlow, YOLO, Streamlit ou Node para usar o chat.
+## Executar sem Qwen
 
-Para preparar o modelo local uma vez, em macOS Apple Silicon:
+Requer Python 3.9 ou superior. O chat, os novos módulos de pesquisa e suas suítes usam a biblioteca padrão. Não é necessário instalar TensorFlow, YOLO, Node ou um modelo de linguagem.
 
-```bash
-python3 scripts/setup_local_model.py
-```
-
-O instalador verifica uma distribuição oficial do Ollama por SHA-256, baixa o modelo `qwen3.5:9b` (cerca de 6,6 GB) e salva sua configuração. O executável fica em `.runtime/ollama` e os pesos em `data/chat-runtime/models`, ambos fora do Git. Nesta máquina essa preparação já foi feita. Referências: [modelo no catálogo oficial](https://ollama.com/library/qwen3.5:9b) e [distribuição Ollama utilizada](https://github.com/ollama/ollama/releases/tag/v0.33.3).
-
-Depois, basta iniciar a aplicação; ela inicia seu Ollama local quando necessário:
-
-```bash
+```sh
 python3 main.py
 ```
 
-Abra **http://127.0.0.1:8765**. No Windows, use `python` se esse for o nome do seu interpretador. `python3 app.py`, `python3 launcher.py` e `python3 run_frontend.py` também abrem o novo servidor.
+Abra [o chat local](http://127.0.0.1:8765). O **modo de pesquisa está ligado por padrão**, inclusive ao carregar configurações antigas que não continham essa opção: nenhuma chamada a modelos gerais é permitida e o Ollama não é iniciado por esse modo. `app.py`, `launcher.py` e `run_frontend.py` também iniciam o novo servidor. No Windows, use `python` se esse for o nome do interpretador.
 
-Em outros sistemas, instale Ollama pela distribuição oficial e baixe um modelo, ou configure a API da OpenAI na interface. O instalador incluído é específico para macOS Apple Silicon; o chatbot funciona com qualquer um desses provedores HTTP.
-
-Para conversar pelo terminal, mantendo o mesmo banco de memória:
-
-```bash
+```sh
+# Terminal; digite /sair para encerrar
 python3 main.py --cli
-```
 
-Use `/sair` para encerrar. Para um laboratório separado:
-
-```bash
+# Experimento separado das conversas pessoais
 python3 main.py --port 8766 --data-dir ./data/chat-experimento
 ```
 
-## Conversar
+## Conversar e testar
 
-Experimente uma sequência como:
-
-1. `O que é fotossíntese? Explique em duas frases.`
-2. `Resuma sua última resposta em cinco palavras.`
-3. `Agora escreva uma função Python que conte as palavras de um texto.`
-
-A última mensagem determina o que responder. Expressões como “isso”, “a última resposta” e “explique melhor” usam o histórico da conversa atual, enviado ao modelo com os papéis reais de usuário e assistente. Uma nova conversa começa com outro histórico. Conhecimentos salvos podem ser recuperados entre conversas, mas não substituem a pergunta atual. As respostas aparecem progressivamente na tela.
-
-O modelo responde a perguntas gerais mesmo sem conhecimentos ensinados anteriormente. O conhecimento prévio do modelo vem de seu treinamento; ele não foi aprendido do zero pelo projeto.
-
-## Experimentar o aprendizado e as inferências
-
-Para testar especificamente o recurso de oposição, use estas mensagens:
-
-1. `Um buraco negro absorve matéria.`
-2. `Qual seria o oposto de um buraco negro?`
-
-O motor usa a premissa ensinada e as relações linguísticas `absorve ↔ expulsa` e `negro ↔ branco` para propor **“buraco branco expulsa matéria”**. A proposta fica marcada como **hipótese por oposição**, com referência à mensagem de origem e indicação de que o nome e a inversão não demonstram a existência do objeto. Não há uma resposta astronômica pronta nem fatos sobre buracos negros pré-carregados no banco.
-
-Experimente também um domínio fictício, para observar o que foi aprendido no próprio laboratório:
-
-| Mensagem | Comportamento esperado |
+| Mensagem | O que o núcleo pode verificar |
 | --- | --- |
-| `Todo cristal emite luz.` | Guarda uma regra universal explícita. |
-| Em uma nova conversa: `Neral é um cristal.` | Deduz condicionalmente que Neral emite luz, citando as duas premissas. |
-| `Corrigindo: todo cristal não emite luz.` | Retira a versão anterior e as deduções dependentes; aplica a nova premissa. |
-| `Neral armazena energia. Vetra armazena energia.` | Registra relações compartilhadas que podem sustentar analogias. |
-| `Compare Neral e Vetra por analogia.` | Explora uma propriedade transferível, quando houver, como hipótese. |
-| `Um filtro filtra água. Uma turbina produz energia.` | Registra funções de componentes. |
-| `Crie algo combinando filtro e turbina.` | Propõe uma composição funcional e um plano de verificação. |
-| `O oposto de filtrar é misturar.` | Acrescenta uma relação de oposição ensinada pelo usuário. |
+| `Todo cristal emite luz. Neral é um cristal.` | Registra premissas e aplica uma regra universal ao indivíduo, com fontes |
+| `O que você sabe sobre Neral?` | Recupera conhecimento pertinente à entidade perguntada |
+| `Corrigindo: todo cristal não emite luz.` | Revisa a premissa e retira consequências que perderam apoio |
+| `Calcule 2 m + 30 cm` | Converte unidades e retorna 2,3 m |
+| `Calcule 2 m + 3 s` | Reconhece incompatibilidade dimensional |
+| `O que é um buraco de minhoca?`, sem premissas pertinentes | Explicita desconhecimento sobre esse conceito; não responde com o exemplo de buraco negro |
 
-A aba **Memória** permite buscar conhecimentos, consultar mensagens de origem e retirar uma premissa. Conclusões dependentes são revistas automaticamente. O histórico preserva as respostas originais; os cartões de evidência mostram o estado atual.
+Referências como “isso” dependem do contexto desta conversa; múltiplos referentes geram esclarecimento. A gramática e os dados de avaliação delimitam a cobertura de linguagem. Aprender um fato não instala conhecimento geral sobre todos os assuntos relacionados.
 
-## O que significa aprender nesta versão
+Para testar geração de hipóteses em linguagem natural, envie na mesma conversa:
 
-- **Toda mensagem enviada com sucesso vira experiência registrada**, inclusive perguntas e mensagens que o extrator não entende.
-- **Afirmações extraídas viram memória estruturada**, compartilhada entre conversas do mesmo laboratório e preservada após reiniciar o servidor.
-- **Relações alimentam novas inferências**. Deduções precisam de premissas explícitas; analogias, oposições e composições continuam sendo hipóteses.
-- **Correções revisam as consequências do aprendizado anterior**. Afirmações contraditórias são sinalizadas e deixam de fundamentar novas conclusões enquanto o conflito não for resolvido.
+1. `Neral é um dispositivo que armazena energia.`
+2. `Considerando que Vetra é o inverso de Neral, o que Vetra faria?`
 
-Isso é aprendizado por memória e revisão de conhecimento. **Os pesos de uma rede neural não são atualizados a cada mensagem.** Uma afirmação do usuário tampouco equivale a uma verdade verificada. O sistema não promove automaticamente suas próprias respostas ou hipóteses a fatos, nem usa repetição como prova.
+O núcleo propõe **Vetra libera energia**, explicita a transformação e indica como investigá-la. Essa relação foi assumida somente nesta pergunta: não vira uma afirmação permanente. Para ensinar uma relação permanente, use `Vetra é o oposto de Neral.`; depois pergunte `O que é Vetra?`. `Vetra não é o oposto de Neral.` introduz uma contradição; `Corrigindo: Vetra não é o oposto de Neral.` revisa a relação e retira as hipóteses dependentes.
 
-## Configurar o modelo
+Para testar composição com uma meta, envie `Plorin converte luz em calor. Xaret converte calor em movimento.` e depois `Crie uma solução para transformar luz em movimento.`. O núcleo busca a cadeia **luz → calor → movimento**, identifica os componentes e confere as conexões. Essa proposta é nova em relação às duas premissas isoladas; o teste simbólico não demonstra eficiência, compatibilidade material ou viabilidade física.
 
-O padrão da aplicação web é **Ollama com `qwen3.5:9b`**, para conversar usando um modelo neural local. Configurações salvas anteriormente continuam sendo respeitadas. Abra **Configurações** para mudar de modelo ou provedor. O modo simbólico fica disponível como ferramenta técnica de memória e regras, sem conversa geral:
+Oposição e analogia produzem **hipóteses**, distintas de deduções lógicas. Os operadores e parte do vocabulário são programados; relações ensinadas, como `O oposto de filtrar é transportar.`, podem fornecer uma transformação que não estava no vocabulário inicial. Isso não significa aprendizado irrestrito de conceitos ou invenção científica autônoma. O [parecer sobre o raciocínio conversacional](docs/research/CONVERSATIONAL_REASONING_REVIEW.md) explicita esse alcance.
 
-| Modo | Necessário | Uso dos dados |
-| --- | --- | --- |
-| Simbólico | Apenas Python | Nenhuma chamada de rede para modelos. |
-| Ollama | Servidor Ollama em execução e um modelo instalado com suporte adequado a JSON estruturado | Mensagem, referente e contexto relevante enviados ao endereço configurado; um servidor local mantém esse processamento no computador. |
-| OpenAI | Modelo compatível com Responses e Structured Outputs; chave em `OPENAI_API_KEY` no ambiente do servidor | Mensagem, histórico recente e memórias relevantes enviados à API configurada. Pode haver cobrança pelo provedor. |
+O laboratório também aceita pedidos JSON no campo de mensagem, por exemplo:
 
-Informe o **nome exato de um modelo disponível**, salve e use **Testar conexão salva**. Os padrões de endereço são `http://127.0.0.1:11434` para Ollama e `https://api.openai.com/v1` para OpenAI. A chave não é solicitada na interface, salva no banco ou incluída nas respostas da aplicação.
-
-Também é possível configurar antes de iniciar:
-
-```bash
-AR_PROVIDER=ollama AR_MODEL=NOME_DO_MODELO_INSTALADO python3 main.py
+```json
+{"domain":"physics","operation":"simulate","parameters":{"x":0,"v":2,"a":1,"dt":1.5}}
 ```
 
-`AR_PROVIDER`, `AR_MODEL` e `AR_BASE_URL` prevalecem sobre a configuração salva na inicialização. Alterações feitas na interface valem imediatamente; se essas variáveis continuarem definidas, voltarão a prevalecer no próximo início.
+Esse caso usa movimento unidimensional com aceleração constante, nas unidades SI declaradas, e compara a integração com uma referência analítica. Consulte os [contratos científicos e exemplos](docs/research/SCIENCE_PROTOCOL.md) para ajustes de parâmetros, regressão simbólica, medições quânticas e busca de referências. Os operadores cognitivos recebem tarefas estruturadas como `deduce`, `plan`, `induce`, `abduce`, `analogy`, `causal`, `counterfactual` e `invent`; seus formatos e limites constam do [guia de operadores e invenção](docs/research/COGNITION_OPERATORS.md).
 
-O modelo recebe a pergunta atual por último, o histórico desta conversa em ordem e memórias auxiliares selecionadas por relevância. Perguntas não exigem uma chamada adicional de extração. Se a extração de afirmações falhar, a conversa neural continua com aviso; se a geração da resposta falhar, a interface mostra um erro e permite tentar novamente, sem inventar uma resposta padronizada. Os modelos são baixados apenas quando o instalador é executado. Com Ollama local, as conversas são processadas neste computador.
+Para experimentar aprendizado de um mecanismo e composição, envie estas mensagens **na mesma conversa**, uma por vez:
 
-## Estrutura e dados
+```json
+{"task":"learn_operator","name":"mecanismo_a","examples":[{"x":0,"y":1},{"x":1,"y":3}]}
+```
+
+```json
+{"task":"apply_operator","name":"mecanismo_a","x":3}
+```
+
+```json
+{"task":"invent","initial":0,"target":7,"operators":["mecanismo_a"],"max_steps":3}
+```
+
+O mecanismo é aprendido dentro de uma família afim explicitamente fornecida ao algoritmo. A sequência `0 → 1 → 3 → 7` pode ser composta e conferida em um programa numérico isolado. Os exemplos são premissas informadas pelo usuário; verificar a composição não confirma que o mecanismo exista no mundo físico. Para enviar uma observação que desafia a previsão e revisar suas consequências:
+
+```json
+{"task":"test_operator","name":"mecanismo_a","examples":[{"x":2,"y":8}]}
+```
+
+Esses valores conflitam com o modelo anterior. O resultado deve registrar a contraprova e retirar o apoio aos procedimentos dependentes. O [aceite independente de QA](docs/research/F01_F11_QA.md) indica o estado testado dessa integração.
+
+**Ver evidências, verificações e limites** expande o pacote da resposta. A memória lateral mostra fontes, revisões e experiências. “Respondido” significa que o núcleo concluiu a operação dentro das premissas declaradas; não transforma uma afirmação do usuário em verdade científica.
+
+## Papel do Qwen
+
+O modo de pesquisa bloqueia o provedor em todas as etapas. Para experimentar um organizador, configure um modelo já disponível e desligue explicitamente essa opção em **Configurações**. A interpretação da mensagem e a inferência continuam no núcleo próprio.
+
+O modelo recebe somente uma cópia dos trechos aprovados, com identificadores. Sua saída permitida é uma permutação desses identificadores: não pode acrescentar texto, excluir trechos, trocar números ou remover negações. Saída inválida, falha de conexão ou indisponibilidade levam à renderização determinística. Não há revisão pelo próprio Qwen usada como prova de fidelidade.
+
+Essa restrição preserva o conteúdo e reduz a liberdade de estilo. Redação livre permanece fora do contrato enquanto não houver verificação semântica adequada. O streaming mostra progresso separado e só publica conteúdo depois da verificação e persistência.
+
+| Organizador | Requisito | Dados recebidos |
+| --- | --- | --- |
+| Determinístico | Apenas Python | Nenhuma chamada a modelo |
+| Ollama | Servidor e modelo instalado, com saída JSON | Trechos aprovados; mantém processamento local se o endereço for local |
+| API compatível configurada | Credencial no ambiente, quando necessária | Trechos aprovados podem conter dados da conversa; o serviço pode cobrar |
+
+`AR_PROVIDER`, `AR_MODEL` e `AR_BASE_URL` continuam disponíveis para configuração na inicialização. Essas variáveis não desligam o modo de pesquisa. O instalador anterior `scripts/setup_local_model.py` permanece opcional, específico para macOS Apple Silicon, e não é executado pelo núcleo de pesquisa. Nenhum novo download de modelo é necessário para testar esta implementação.
+
+## O que significa aprender
+
+Cada envio válido vira uma experiência classificada. O contexto e o conhecimento extraído podem ser atualizados imediatamente. A origem, o escopo e a incerteza permanecem explícitos; hipóteses geradas e repetições de uma alegação não viram confirmação independente.
+
+Treinar pesos é outra etapa: um controlador seleciona observações verificadas, exige uma política explícita, separa treino/validação/retenção, mede ganho e esquecimento e só então promove a versão candidata. Há reversão de versão e invalidação dos pesos quando suas fontes são retiradas. A conversa não pode conceder a si mesma autorização de treinamento ou alterar critérios de avaliação.
+
+O [piloto de aprendizado contínuo](docs/research/MEMORY_LEARNING_OPERATIONS.md) compara repetição de experiências, preservação de módulos e aprendizado apenas da tarefa nova. A regressão modular desse piloto é distinta das redes treinadas na frente cognitiva e física. Registrar uma mensagem não significa atualizar uma rede neural a cada turno. Os [resultados de aprendizagem e invenção](docs/research/COGNITION_RESULTS.md) mostram as comparações, as falhas de generalização e por que as propostas neurais continuam opcionais.
+
+## Organização e dados
 
 ```text
-main.py / app.py          Entradas da aplicação conversacional
-src/chat/domain.py       Representação de afirmações e hipóteses
-src/chat/extraction.py   Extração local e validação da extração neural
-src/chat/memory.py       SQLite, origem, dependências e revisões
-src/chat/reasoner.py     Recuperação, dedução, oposição, analogia, composição
-src/chat/engine.py       Ciclo de aprendizado e resposta
-src/chat/provider.py     Adaptadores HTTP Ollama e OpenAI
-src/chat/runtime.py      Inicialização do modelo local instalado no projeto
-src/chat/server.py       Servidor local e terminal
-src/chat/web/            Interface de conversas, memória e configurações
-scripts/setup_local_model.py      Preparação do modelo local
-scripts/evaluate_conversation.py  Avaliação qualitativa com um modelo real
-tests/chat/              Testes do chatbot sem serviços externos
-data/chat/               Banco e configurações locais, ignorados pelo Git
+src/chat/                 Histórico, interface, HTTP e adaptadores opcionais
+src/cognition/contracts.py   ProblemSpec e AnswerPackage imutáveis
+src/cognition/processor.py   Compreensão própria antes da redação
+src/cognition/engine.py      Núcleo que resolve e verifica o problema
+src/cognition/reasoning.py   Operadores lógicos e busca limitada
+src/cognition/store.py       Memória tipada, fontes, revisões e versões
+src/cognition/learning.py    Avaliação e promoção controlada de aprendizes
+src/cognition/neural.py      Rede própria de intenção, com proposta auditável
+src/cognition/operators.py   Aprendizado de transições e composição de programas
+src/cognition/operator_runtime.py  Integração dos operadores à conversa e às fontes
+src/cognition/sandbox.py     Execução isolada de uma DSL numérica limitada
+src/science/                Física, quântica e descoberta numérica
+src/research/               Referências e protocolo inicial F00 congelados
+experiments/                Configurações, corpus, registros e resultados
 ```
 
-O laboratório é **pessoal e local**: todas as conversas no mesmo banco compartilham conhecimento. O servidor escuta apenas em `127.0.0.1`. Ainda não há contas, isolamento entre usuários, criptografia do banco, embeddings ou verificação externa de fatos. Retirar um conhecimento preserva o registro para auditoria; não é uma operação de apagar dados pessoais. Para fazer backup consistente, pare o servidor e copie a pasta de dados inteira.
+O histórico antigo fica em `memory.sqlite3`; o sidecar `memory.cognition.sqlite3` armazena as novas experiências e modelos. O servidor escuta somente em `127.0.0.1`. É um laboratório pessoal, sem contas ou autenticação multiusuário. Backups, exportação, restauração, escopos e os limites da exclusão estão documentados em [Memória, aprendizado e operação](docs/research/MEMORY_LEARNING_OPERATIONS.md). Para copiar a pasta inteira de dados, pare o servidor primeiro; o backup oferecido na interface cobre experiências e modelos, com escopo explícito.
 
-## Verificar
+## Testes e experimentos
 
-```bash
+Testes de software, avaliação de modelos e pesquisa científica têm resultados separados:
+
+```sh
 python3 -m unittest discover -s tests/chat -v
+python3 -m unittest discover -s tests/cognition -v
+python3 -m unittest discover -s tests/science -v
+python3 -m unittest discover -s tests/research -v
 ```
 
-A suíte testa aprendizado com um exemplo, persistência, inferências, correções, separação de conceitos com palavras semelhantes, histórico por conversa, contexto enviado ao modelo, streaming e falhas. Os testes unitários dos provedores usam respostas simuladas e não medem a qualidade de um modelo real. A CI executa a suíte do chat em Python 3.9 e 3.12.
+A CI configura Python 3.9 e 3.12. Testes dos provedores usam respostas controladas para verificar contratos; não medem a capacidade geral do Qwen. Consulte [validação atual](docs/CHATBOT_VALIDATION.md) e a [matriz de QA](docs/research/F01_F11_QA.md) para resultados reproduzidos e requisitos ainda parciais.
 
-Para registrar respostas reais em um banco temporário, sem alterar suas conversas:
+```sh
+# F00: avaliação inicial; o conjunto científico reservado não é pontuado
+python3 scripts/evaluate_f00.py --split validation --output .runtime/f00-validation-novo.json
 
-```bash
-python3 scripts/evaluate_conversation.py
+# Registrar fontes antes de rodar o piloto científico
+python3 scripts/evaluate_science.py --register --output .runtime/science-registration-novo.json
+python3 scripts/evaluate_science.py --output .runtime/science-pilot-novo.json
+
+# Aprendizado contínuo: relatório e registro em diretório novo
+python3 scripts/evaluate_learning.py --output .runtime/learning-pilot-novo
 ```
 
-O modelo deve estar em execução. O roteiro inclui mudança de assunto, referência à resposta anterior, resumo e código. Salva prompts, respostas, latências e memórias recuperadas em `.runtime/conversation-evaluation.json`. A revisão é qualitativa, sem converter uma pequena amostra em uma alegação de exatidão geral. Consulte os [resultados e limites observados](docs/CHATBOT_VALIDATION.md).
-
-Leia a [arquitetura atual e os limites de pesquisa](docs/CHATBOT_ARCHITECTURE.md), o [roteiro de evolução](docs/CHATBOT_ROADMAP.md) e o [TODO detalhado do núcleo próprio](TODO.md). Os resultados funcionais não são uma demonstração de raciocínio humano geral, criatividade científica validada ou exatidão com qualquer conjunto pequeno de dados.
+Os comandos recusam sobrescrever resultados. Experimentos usam sementes, registram limitações e preservam resultados negativos. Os [resultados científicos](docs/research/SCIENCE_RESULTS.md) incluem comparações em que o modelo clássico é equivalente ou melhor. Não foi demonstrada vantagem geral quântica, descoberta de uma lei nova ou inovação científica superior à humana.
 
 ## Protótipo de pássaros
 
-O [README histórico](docs/README_PASSAROS.md), os módulos de visão, modelos, dados e relatórios anteriores foram preservados. As entradas antigas são `bird_main.py`, `bird_app.py`, `bird_launcher.py` e `bird_run_frontend.py`; as dependências estão em `requirements-birds.txt`. O chat não importa nem executa esses módulos. Relatórios e scripts antigos de instalação se referem à fase de visão; não são necessários para iniciar o chatbot e não foram revalidados nesta migração.
+O [README histórico](docs/README_PASSAROS.md), módulos de visão, modelos e relatórios anteriores foram preservados. Suas entradas são `bird_main.py`, `bird_app.py`, `bird_launcher.py` e `bird_run_frontend.py`, com dependências em `requirements-birds.txt`. O novo chat não importa esses módulos. Resultados antigos de visão e de conversa livre com Qwen são históricos e não constituem evidência do núcleo próprio atual.

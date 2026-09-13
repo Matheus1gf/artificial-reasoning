@@ -1,0 +1,13 @@
+{
+  "protocol_id": "intent-own-mlp-reproduction-v2",
+  "created_unix": 1789261939.980103,
+  "protocol_sha256": "4528a8a493575820f9809aff44c02a1d36ec7b2442ebbfcaa00aba4beafd4107",
+  "sources_sha256": {
+    "src/cognition/neural.py": "53874f8b0ce1c59db9038f8ed6461c65c334a99346fbc0a9d8e0d4ebc7af14dc",
+    "src/cognition/datasets.py": "fb2e5b72f653296ab7c3645e2751b98bc31970a8d0a1dd8e5922acc69716b97b",
+    "src/cognition/processor.py": "a9a316ee36d60c0dea53648c902a480877a7051509878954aa2e1fe7001c45b6",
+    "scripts/train_cognition.py": "8e2b32bf6fc2bb0a2027b291f7df9a9c1fd404d0909b77dc195d36977b66390d"
+  },
+  "held_out_previously_observed": true,
+  "meaning": "Reproduction of a known pilot, not a new untouched scientific evaluation."
+}

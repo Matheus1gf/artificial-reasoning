@@ -25,11 +25,11 @@
       <div id="welcome" class="welcome">
         <div class="eyebrow"><span></span> UMA CONVERSA, MUITAS POSSIBILIDADES</div>
         <h1>O que vamos<br><em>descobrir hoje?</em></h1>
-        <p>Pergunte, escreva e desenvolva suas ideias.<br>A conversa acompanha seu contexto e os aprendizados ficam conectados.</p>
+        <p>Ensine relações, investigue hipóteses e teste soluções.<br>O núcleo usa o contexto desta conversa e mostra a origem de suas conclusões.</p>
         <div class="suggestions">
-          <button data-example="Explique como a fotossíntese funciona, de forma simples."><span class="example-icon">↗</span><strong>Entender um assunto</strong><small>Explore um conceito com uma explicação clara.</small><span class="arrow">↗</span></button>
-          <button data-example="Ajude-me a desenvolver uma ideia de aplicativo para organizar meus estudos."><span class="example-icon">⇄</span><strong>Desenvolver uma ideia</strong><small>Construa possibilidades a partir de um objetivo.</small><span class="arrow">↗</span></button>
-          <button data-example="Escreva uma função em Python para contar as palavras de um texto e explique como funciona."><span class="example-icon">∴</span><strong>Resolver um problema</strong><small>Peça ajuda com escrita, código ou uma tarefa.</small><span class="arrow">↗</span></button>
+          <button data-example="Todo metal conduz eletricidade. Cobre é metal."><span class="example-icon">↗</span><strong>Ensinar uma relação</strong><small>Forneça premissas e explore o que decorre delas.</small><span class="arrow">↗</span></button>
+          <button data-example="Calcule 2 m + 30 cm"><span class="example-icon">⇄</span><strong>Conferir um cálculo</strong><small>Trabalhe com valores, unidades e verificação.</small><span class="arrow">↗</span></button>
+          <button data-example='{"domain":"physics","operation":"simulate","parameters":{"x":0,"v":2,"a":1,"dt":1.5}}'><span class="example-icon">∴</span><strong>Testar um movimento</strong><small>Execute um experimento no laboratório físico.</small><span class="arrow">↗</span></button>
         </div>
         <div class="welcome-note"><span>◎</span> As ideias ficam conectadas. As hipóteses continuam abertas a revisão.</div>
       </div>
@@ -40,7 +40,7 @@
       <div id="learning-status" class="learning-status"><span></span> Pronto para aprender com você</div>
       <form id="chat-form" class="composer">
         <textarea id="message-input" rows="2" maxlength="8000" placeholder="Pergunte algo ou continue nossa conversa…" aria-label="Sua mensagem"></textarea>
-        <div class="composer-bottom"><span>↳ <span id="composer-mode">Memória e raciocínio ativos</span></span><button type="submit" id="send" aria-label="Enviar mensagem">↑</button></div>
+        <div class="composer-bottom"><span>↳ <span id="composer-mode">Núcleo próprio e memória ativos</span></span><div><button type="button" id="cancel-send" hidden>Cancelar</button><button type="submit" id="send" aria-label="Enviar mensagem">↑</button></div></div>
       </form>
       <div class="composer-foot"><span>Conhecimento tem origem. Hipóteses precisam de evidência.</span><span>Enter para enviar · Shift + Enter para nova linha</span></div>
     </div>
@@ -52,17 +52,21 @@
     <div class="memory-tabs" role="tablist" aria-label="Tipos de memória"><button id="tab-all" class="active" role="tab" aria-selected="true">Aprendizados</button><button id="tab-hypotheses" role="tab" aria-selected="false">Hipóteses</button></div>
     <input id="knowledge-search" class="knowledge-search" type="search" placeholder="Buscar na memória…" aria-label="Buscar na memória">
     <div id="knowledge-list" class="knowledge-list"></div>
+    <details class="typed-memory"><summary>Experiências e experimentos</summary><div id="experience-list"></div></details>
     <div class="knowledge-footer"><span>◇</span><div>Uma memória que pode mudar<small>Revise uma premissa para revisar<br>as conclusões que dependem dela.</small></div></div>
   </aside>
   <dialog id="settings-dialog">
     <form id="settings-form">
       <div class="dialog-heading"><h2>Como vamos conversar?</h2><button id="settings-close" type="button" aria-label="Fechar configurações">×</button></div>
-      <p>O modelo interpreta a linguagem. A memória e as relações permanecem neste laboratório.</p>
-      <label>Modo de linguagem<select id="setting-provider"><option value="ollama">Ollama · conversa com modelo local</option><option value="openai">OpenAI · conversa com API externa</option><option value="symbolic">Simbólico · ferramentas de memória</option></select></label>
+      <p>O núcleo próprio interpreta a mensagem e verifica o conteúdo. O organizador opcional só pode ordenar trechos já aprovados.</p>
+      <label class="checkbox-label"><input id="setting-research" type="checkbox" checked> Modo de pesquisa · bloquear modelos de linguagem</label>
+      <label>Organização da resposta<select id="setting-provider"><option value="symbolic">Determinística · sem modelo externo</option><option value="ollama">Ollama · organizador local</option><option value="openai">OpenAI · organizador por API externa</option></select></label>
       <div id="neural-settings" hidden><label>Nome do modelo<input id="setting-model" placeholder="Nome exato do modelo instalado ou disponível"></label><label>Endereço do provedor<input id="setting-url" type="url"></label></div>
       <p id="provider-explanation" class="provider-explanation"></p>
       <div id="settings-status" role="status"></div>
       <div class="dialog-actions"><button id="test-connection" type="button" class="secondary">Testar conexão salva</button><button class="primary" type="submit">Salvar configuração</button></div>
+      <div class="data-actions"><button id="export-memory" type="button" class="secondary">Exportar meus dados</button><button id="backup-memory" type="button" class="secondary">Backup de experiências e modelos</button></div>
+      <p>Este espaço é pessoal. Conversar atualiza a memória; o treinamento de pesos exige experiências selecionadas e uma avaliação separada.</p>
     </form>
   </dialog>
 </body>

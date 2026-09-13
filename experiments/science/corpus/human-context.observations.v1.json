@@ -1,0 +1,77 @@
+{
+  "source_doi": "10.1111/tops.12040",
+  "source_url": "https://jbusemey.pages.iu.edu/quantum/QuestOrdEff.pdf",
+  "table": "Table1, printed page700, final two columns",
+  "data_kind": "observed_human_aggregate",
+  "precision_decimals": 4,
+  "units": {
+    "probabilities": "dimensionless",
+    "sample_sizes": "respondents with binary answers"
+  },
+  "rights": {
+    "article": "Copyright2013 Cognitive Science Society; all rights reserved",
+    "reuse": "Only factual aggregate numerical statistics transcribed for research; no license to redistribute the article or raw participant data is assumed."
+  },
+  "transcription": "Checked against extracted text and rendered page12 of author-hosted PDF. No paper text, participant IDs or individual records included.",
+  "experiments": [
+    {
+      "id": "lab_racial_hostility",
+      "label": "Authors' racial-hostility laboratory experiment",
+      "orders": [
+        {
+          "order": "AB",
+          "sample_size": 116,
+          "probabilities": [
+            0.25,
+            0.0603,
+            0.2931,
+            0.3966
+          ]
+        },
+        {
+          "order": "BA",
+          "sample_size": 108,
+          "probabilities": [
+            0.3241,
+            0.0648,
+            0.213,
+            0.3981
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lab_affirmative_action",
+      "label": "Authors' affirmative-action laboratory experiment",
+      "orders": [
+        {
+          "order": "AB",
+          "sample_size": 118,
+          "probabilities": [
+            0.4831,
+            0.0424,
+            0.161,
+            0.3136
+          ]
+        },
+        {
+          "order": "BA",
+          "sample_size": 106,
+          "probabilities": [
+            0.566,
+            0.1321,
+            0.0283,
+            0.2736
+          ]
+        }
+      ]
+    }
+  ],
+  "ordering": "AB=[AyBy,AyBn,AnBy,AnBn]; BA=[ByAy,ByAn,BnAy,BnAn]. Reversal preserves first/second positions, not fixed A/B coordinates.",
+  "unknowns": [
+    "Raw participant identifiers/covariates unavailable",
+    "No new human experiment conducted by this project"
+  ],
+  "source_pdf_sha256": "7e920fad84ba6ef899fa3977b4399c7c224471b3b23cd6fd5a82287aff13744c",
+  "retrieved_at": "2026-09-09T02:40:53.792164+00:00"
+}

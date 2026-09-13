@@ -1,0 +1,93 @@
+{
+  "id": "intent-own-mlp-reproduction-v2",
+  "architecture": {
+    "features": 128,
+    "hidden_tanh": 16,
+    "output": "10-class softmax"
+  },
+  "seeds": [
+    17,
+    29,
+    47
+  ],
+  "epochs": 45,
+  "learning_rate": 0.12,
+  "splits": {
+    "training": {
+      "size": 150,
+      "template_ids": [
+        "analogy:0",
+        "analogy:1",
+        "analogy:2",
+        "calculation:0",
+        "calculation:1",
+        "calculation:2",
+        "correction:0",
+        "correction:1",
+        "correction:2",
+        "creation:0",
+        "creation:1",
+        "creation:2",
+        "greeting:0",
+        "greeting:1",
+        "greeting:2",
+        "hypothesis:0",
+        "hypothesis:1",
+        "hypothesis:2",
+        "preference:0",
+        "preference:1",
+        "preference:2",
+        "question:0",
+        "question:1",
+        "question:2",
+        "statement:0",
+        "statement:1",
+        "statement:2",
+        "summary:0",
+        "summary:1",
+        "summary:2"
+      ]
+    },
+    "validation": {
+      "size": 50,
+      "template_ids": [
+        "analogy:3",
+        "calculation:3",
+        "correction:3",
+        "creation:3",
+        "greeting:3",
+        "hypothesis:3",
+        "preference:3",
+        "question:3",
+        "statement:3",
+        "summary:3"
+      ]
+    },
+    "held_out": {
+      "size": 50,
+      "template_ids": [
+        "analogy:4",
+        "calculation:4",
+        "correction:4",
+        "creation:4",
+        "greeting:4",
+        "hypothesis:4",
+        "preference:4",
+        "question:4",
+        "statement:4",
+        "summary:4"
+      ]
+    }
+  },
+  "selected_checkpoint_seed": 17,
+  "checkpoint_selection": "fixed before fitting, not best held-out result",
+  "corpus_sha256": "05af15ab434db99c14064e0b24aef08b847883ab833e3ad7ce201dbf1b931fe1",
+  "priors": [
+    "signed character n-gram hashing",
+    "fixed intent vocabulary",
+    "project-authored annotated templates"
+  ],
+  "decision": "Measure held-out intent accuracy and report every seed; no general-language or human-reasoning claim.",
+  "runtime_use": "Diagnostic proposals only: adopted=False for every confidence. Prior v1 held-out scores 58-68% motivated withholding semantic authority.",
+  "historical_protocol": "experiments/cognition/intent-protocol.v1.json is preserved; its threshold proposal was not adopted after evaluation."
+}

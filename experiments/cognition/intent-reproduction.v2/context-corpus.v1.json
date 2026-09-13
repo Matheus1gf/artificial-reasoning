@@ -1,0 +1,154 @@
+[
+  {
+    "id": "context-single",
+    "text": "Ele emite luz.",
+    "history": [
+      {
+        "role": "assistant",
+        "metadata": {
+          "focus": "neral",
+          "problem": {
+            "entities": [
+              "neral"
+            ],
+            "goals": []
+          }
+        }
+      }
+    ],
+    "expected": {
+      "intent": "statement",
+      "entities": [
+        "neral"
+      ],
+      "ambiguous": false
+    }
+  },
+  {
+    "id": "context-multiple",
+    "text": "Ele emite luz.",
+    "history": [
+      {
+        "role": "assistant",
+        "metadata": {
+          "focus": "neral",
+          "problem": {
+            "entities": [
+              "neral",
+              "vetra"
+            ],
+            "goals": []
+          }
+        }
+      }
+    ],
+    "expected": {
+      "entities": [],
+      "ambiguous": true,
+      "facts": []
+    }
+  },
+  {
+    "id": "context-empty",
+    "text": "Ele emite luz.",
+    "history": [],
+    "expected": {
+      "ambiguous": true,
+      "facts": []
+    }
+  },
+  {
+    "id": "context-switch",
+    "text": "O que é um buraco de minhoca?",
+    "history": [
+      {
+        "role": "assistant",
+        "metadata": {
+          "focus": "buraco negro",
+          "problem": {
+            "entities": [
+              "buraco negro"
+            ],
+            "goals": []
+          }
+        }
+      }
+    ],
+    "expected": {
+      "intent": "question",
+      "entities": [
+        "buraco de minhoca"
+      ],
+      "ambiguous": false
+    }
+  },
+  {
+    "id": "negation",
+    "text": "Neral não emite luz.",
+    "history": [],
+    "expected": {
+      "intent": "statement",
+      "polarity": false
+    }
+  },
+  {
+    "id": "universal",
+    "text": "Todo cristal emite luz.",
+    "history": [],
+    "expected": {
+      "scope": "universal"
+    }
+  },
+  {
+    "id": "correction",
+    "text": "Corrigindo: Neral não emite luz.",
+    "history": [],
+    "expected": {
+      "intent": "correction",
+      "polarity": false
+    }
+  },
+  {
+    "id": "typo-object",
+    "text": "Neral emite luzz.",
+    "history": [],
+    "expected": {
+      "intent": "statement",
+      "object": "luzz"
+    }
+  },
+  {
+    "id": "typo-question",
+    "text": "Explike o que é Neral?",
+    "history": [],
+    "expected": {
+      "intent": "question"
+    }
+  },
+  {
+    "id": "unit-conversion",
+    "text": "Calcule 2 m + 30 cm.",
+    "history": [],
+    "expected": {
+      "intent": "calculation",
+      "quantities": 2
+    }
+  },
+  {
+    "id": "unit-negative",
+    "text": "Calcule -2 m / 4 s.",
+    "history": [],
+    "expected": {
+      "intent": "calculation",
+      "quantities": 2
+    }
+  },
+  {
+    "id": "temporal-spacing",
+    "text": "Neral  emite luz antes de Vetra.",
+    "history": [],
+    "expected": {
+      "temporal": "antes"
+    }
+  }
+]

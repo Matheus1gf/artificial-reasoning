@@ -1,0 +1,19 @@
+{
+  "catalog_id": "science-primary-prior-art-v1",
+  "searched_at": "2026-09-09",
+  "search_method": "web search and primary-page reading by scientific developer; scoped catalog is searchable offline",
+  "queries": [
+    "site.nist.gov StRD Norris data linear regression calibration",
+    "site.arxiv.org AI Feynman 1905.11481",
+    "site.ocw.mit.edu classical mechanics one dimensional kinematics constant acceleration",
+    "site.nature.com s42254-021-00314-5 physics informed machine learning"
+  ],
+  "records": [
+    {"id": "nist-norris", "title": "Norris — Calibration of Ozone Monitors", "url": "https://www.itl.nist.gov/div898/strd/lls/data/Norris.shtml", "description": "Observed NIST and customer ozone measurement pairs; published calibration relation and certified regression coefficients.", "keywords": ["calibration", "ozone", "linear", "regression", "calibracao", "ozonio", "regressao"], "known_relation": "affine response y = B0 + B1*x + e; coefficients published before this project"},
+    {"id": "mit-kinematics", "title": "MIT 8.01SC — One Dimensional Kinematics", "url": "https://ocw.mit.edu/courses/8-01sc-classical-mechanics-fall-2016/mit8_01scs22_chapter4.pdf", "description": "Instructional reference for constant-acceleration one-dimensional motion.", "keywords": ["kinematics", "motion", "acceleration", "movimento", "aceleracao", "fisica"], "known_relation": "constant-acceleration position and velocity equations"},
+    {"id": "ai-feynman", "title": "AI Feynman: a Physics-Inspired Method for Symbolic Regression", "url": "https://arxiv.org/abs/1905.11481", "description": "Prior method for recovering analytic expressions from data using physical structure and symbolic search.", "keywords": ["symbolic", "regression", "equation", "discovery", "equacoes", "regressao", "simetria"]},
+    {"id": "physics-informed", "title": "Physics-informed machine learning", "url": "https://www.nature.com/articles/s42254-021-00314-5", "description": "Review of incorporating known physical structure into learning models; reference for declared priors.", "keywords": ["physics", "neural", "learning", "constraints", "fisica", "redes", "aprendizado"]},
+    {"id": "quantum-cognition", "title": "Quantum cognition and decision theories: A tutorial", "url": "https://jbusemey.pages.iu.edu/quantum/YearselyBusemeyerJMP.pdf", "description": "Mathematical decision models; not an assumption that a human brain is a quantum computer.", "keywords": ["quantum", "cognition", "context", "decision", "quantica", "cognicao", "contexto"]}
+  ],
+  "limits": "Not a systematic review, patent clearance, or proof of scientific novelty. No contact with external experts occurred. Catalog metadata and published equations are excluded from learner fitting inputs."
+}

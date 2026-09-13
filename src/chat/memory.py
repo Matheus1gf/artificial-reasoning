@@ -157,6 +157,10 @@ class Memory:
             for row in list(self.db.execute("SELECT id FROM claims WHERE subject=? AND predicate=? AND scope=? AND status!='retracted'", (a.subject, a.predicate, a.scope))):
                 if old is None or row["id"] != old["id"]:
                     corrected.extend([row["id"]] + self.retract(row["id"], "Correção explícita em uma mensagem."))
+            if a.predicate == "oposto_de":
+                for row in list(self.db.execute("SELECT id FROM claims WHERE subject=? AND predicate='oposto_de' AND object=? AND scope=? AND polarity=? AND status!='retracted'",
+                                               (a.object, a.subject, a.scope, int(not a.polarity)))):
+                    corrected.extend([row["id"]] + self.retract(row["id"], "Correção da relação simétrica de oposição."))
         status = "hypothesis" if a.tentative else "asserted"
         if old:
             cid = old["id"]
@@ -177,6 +181,9 @@ class Memory:
             for row in list(self.db.execute("SELECT id FROM claims WHERE subject=? AND predicate=? AND object=? AND polarity=? AND scope=? AND status='hypothesis'", (a.subject, a.predicate, a.object, int(not a.polarity), a.scope))):
                 corrected.extend([row["id"]] + self.retract(row["id"], "Hipótese contrariada por nova afirmação do usuário."))
             opposite = list(self.db.execute("SELECT id FROM claims WHERE subject=? AND predicate=? AND object=? AND polarity=? AND scope=? AND status IN ('asserted','deduced','disputed')", (a.subject, a.predicate, a.object, int(not a.polarity), a.scope)))
+            if a.predicate == "oposto_de":
+                opposite.extend(self.db.execute("SELECT id FROM claims WHERE subject=? AND predicate='oposto_de' AND object=? AND polarity=? AND scope=? AND status IN ('asserted','deduced','disputed')",
+                                                (a.object, a.subject, int(not a.polarity), a.scope)))
             if opposite:
                 conflicts = [cid] + [r["id"] for r in opposite]
                 for conflict_id in conflicts:
@@ -184,6 +191,15 @@ class Memory:
                     corrected.extend(self.invalidate_dependents(conflict_id))
                     self.event("conflict", conflict_id, "Há afirmações incompatíveis; preciso de uma correção.")
         return cid, corrected, conflicts
+
+    def invalidate_generated(self, claim_id, reason):
+        """Withdraw a failed proposal while preserving a later revised derivation."""
+        claim = self.claim(claim_id)
+        if claim["origin"] != "reasoner" or claim["status"] != "hypothesis":
+            return []
+        self.db.execute("UPDATE claims SET status='retracted',updated_at=? WHERE id=?", (now(), claim_id))
+        self.event("invalidated", claim_id, reason)
+        return [claim_id] + self.invalidate_dependents(claim_id)
 
     def propose(self, proposal):
         key = (proposal.subject, proposal.predicate, proposal.object, int(proposal.polarity), proposal.scope)

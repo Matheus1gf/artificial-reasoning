@@ -25,3 +25,12 @@ jobs:
 
       - name: Test learning, reasoning, persistence and HTTP contracts
         run: python -m unittest discover -s tests/chat -v
+
+      - name: Test F00 research protocol, generated worlds and evaluation isolation
+        run: python -m unittest discover -s tests/research -v
+
+      - name: Test own cognition, memory, learning gates and isolated programs
+        run: python -m unittest discover -s tests/cognition -v
+
+      - name: Test physical, quantum and discovery services
+        run: python -m unittest discover -s tests/science -v

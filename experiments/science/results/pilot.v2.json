@@ -1,0 +1,4251 @@
+{
+  "protocol_id": "science-bounded-v1",
+  "executed_at": "2026-09-09T02:30:48.615144+00:00",
+  "python": "3.9.6",
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "code_hashes": {
+    "src/science/__init__.py": "e73ebddfc6f6cf35f79422f6b8006bf132d69505f9e327af971f6cbee0e0db78",
+    "src/science/discovery.py": "751f28827f3ab40cca13c71bb99d3d9e0db3c61ed29c77ff3950fbb9453ec756",
+    "src/science/evaluation.py": "6827df4969632f533c3fd8c8afc61af03c199e1d1adf945cab4f58cf6f9e684d",
+    "src/science/learning.py": "232211cfcbe562c5d915076eacedbcf1bd1aa79971b3486f5cb3602ce78cadbc",
+    "src/science/numerics.py": "343aaf1df30a99a7715861047be0fedaffd82de4248fcf01a0556d85103989b8",
+    "src/science/physics.py": "281af70112b48e4c0467bd31fc6fb42a211f5bd1bdbc2f647fa2d35d53ff2f6b",
+    "src/science/quantum.py": "e1a963f78332b80a8739b1a79d462121a126eff64cb755a6d7a51a44917211e9",
+    "src/science/symbolic.py": "a809afdd002d9a6858c2f9f9d12f87fe4fd5d4c5f265be102aee2e771ee2abf3",
+    "scripts/evaluate_science.py": "3e868081597775dde403a2c4683d1e74a442b6c85a47b49dc5508eb5b924a602",
+    "experiments/science/protocol.v1.json": "0599a05d7932c54952c9c605e2a3ae0ecc53e712a3293c8f3c8aeb1e3573fb98"
+  },
+  "physics": {
+    "seeds": [
+      {
+        "seed": 3101,
+        "max_integrator_error": 5.46229728115577e-14,
+        "max_energy_balance_error": 1.3944401189291966e-13,
+        "step_sensitivity": 3.4638958368304884e-14,
+        "prediction_rmse_by_noise": {
+          "0": 1.879806845194428e-15,
+          "0.01": 0.015457127826400454,
+          "0.05": 0.12436670006537554
+        },
+        "symbolic_model": {
+          "powers": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              2
+            ]
+          ],
+          "coefficients": [
+            1.0000000000000002,
+            0.9999999999999999,
+            0.4999999999999999
+          ],
+          "rmse": 1.3047211882281484e-15,
+          "complexity": 9,
+          "score": 9.000000130472119e-08,
+          "status": "identified",
+          "expression": "1*q + 1*r*u + 0.5*s*u^2",
+          "variables": [
+            "q",
+            "r",
+            "s",
+            "u"
+          ],
+          "candidates_evaluated": 7,
+          "compatible_candidates": 1,
+          "budget_exhausted": false,
+          "typed": true,
+          "target_dimension": [
+            1,
+            0,
+            0
+          ],
+          "limits": "Polynomial sums degree<=3, <=3 terms, dimensionless coefficients when typed; selection is relative to this grammar."
+        },
+        "symbolic_prediction_rmse": 1.5182071523486655e-15,
+        "neural_comparison": {
+          "raw_features": {
+            "architecture": "single linear neural layer, scalar output, MSE, full-batch gradient descent",
+            "constrained": false,
+            "weights": [
+              0.12276076718505483,
+              3.0058909357320505,
+              1.4609325212423252,
+              -0.03919752220721327
+            ],
+            "scales": [
+              1.0,
+              2.972466039712544,
+              1.9987188303878014,
+              1.9674963641387584
+            ],
+            "seed": 3101,
+            "epochs": 800,
+            "learning_rate": 0.15,
+            "learning_curve": [
+              {
+                "epoch": 0,
+                "mse": 5.180408682782221
+              },
+              {
+                "epoch": 100,
+                "mse": 1.5053694127120927
+              },
+              {
+                "epoch": 200,
+                "mse": 1.5053230148207777
+              },
+              {
+                "epoch": 300,
+                "mse": 1.5053209136702705
+              },
+              {
+                "epoch": 400,
+                "mse": 1.505320818509771
+              },
+              {
+                "epoch": 500,
+                "mse": 1.5053208141999785
+              },
+              {
+                "epoch": 600,
+                "mse": 1.5053208140047898
+              },
+              {
+                "epoch": 700,
+                "mse": 1.50532081399595
+              },
+              {
+                "epoch": 799,
+                "mse": 1.5053208139955503
+              }
+            ],
+            "training_examples": 64,
+            "initialized_by_project": true,
+            "prior": "raw v,a,t and intercept",
+            "elapsed_seconds": 0.049862166,
+            "prediction_rmse": 1.386236462908303
+          },
+          "physical_features": {
+            "architecture": "single linear neural layer, scalar output, MSE, full-batch gradient descent",
+            "constrained": true,
+            "weights": [
+              4.736166205084358,
+              3.781336221836606
+            ],
+            "scales": [
+              4.736166087801568,
+              3.7813365781017834
+            ],
+            "seed": 3101,
+            "epochs": 800,
+            "learning_rate": 0.15,
+            "learning_curve": [
+              {
+                "epoch": 0,
+                "mse": 5.153382179140297
+              },
+              {
+                "epoch": 100,
+                "mse": 0.006431298431005944
+              },
+              {
+                "epoch": 200,
+                "mse": 0.00012341524338715392
+              },
+              {
+                "epoch": 300,
+                "mse": 2.523524207183818e-06
+              },
+              {
+                "epoch": 400,
+                "mse": 5.161315513919181e-08
+              },
+              {
+                "epoch": 500,
+                "mse": 1.0556350475135186e-09
+              },
+              {
+                "epoch": 600,
+                "mse": 2.159072343732839e-11
+              },
+              {
+                "epoch": 700,
+                "mse": 4.415913811496167e-13
+              },
+              {
+                "epoch": 799,
+                "mse": 9.390018481455896e-15
+              }
+            ],
+            "training_examples": 64,
+            "initialized_by_project": true,
+            "prior": "v*t and a*t^2/2 features and zero-displacement boundary supplied",
+            "elapsed_seconds": 0.034838708999999995,
+            "prediction_rmse": 1.1324654932580606e-07
+          }
+        },
+        "traditional_fit_rmse": 3.265429758503688e-16,
+        "model_revision": {
+          "selection": {
+            "t": 2.0,
+            "predictions": [
+              1.16,
+              4.000000000000001
+            ],
+            "disagreement": 2.8400000000000007
+          },
+          "alternatives": [
+            {
+              "t": 1.6,
+              "predictions": [
+                0.9199999999999999,
+                2.560000000000001
+              ],
+              "disagreement": 1.640000000000001
+            },
+            {
+              "t": 1.8,
+              "predictions": [
+                1.04,
+                3.2400000000000007
+              ],
+              "disagreement": 2.2000000000000006
+            },
+            {
+              "t": 2.0,
+              "predictions": [
+                1.16,
+                4.000000000000001
+              ],
+              "disagreement": 2.8400000000000007
+            }
+          ],
+          "observation": {
+            "t": 2.0,
+            "x": 4.0
+          },
+          "executor_reference_error": 0.0,
+          "revision": {
+            "prior": {
+              "coefficients": [
+                -0.03999999999999998,
+                0.6
+              ],
+              "residuals": [
+                0.03999999999999998,
+                -0.04000000000000001,
+                -0.03999999999999998,
+                0.03999999999999998
+              ],
+              "rmse": 0.03999999999999999,
+              "rank": 2,
+              "observations": 4,
+              "degrees_of_freedom": 2,
+              "parameters": {
+                "x0": -0.03999999999999998,
+                "v0": 0.6,
+                "a": 0.0
+              },
+              "degree": 1,
+              "noise_sigma": 0.01,
+              "compatible": false,
+              "units": {
+                "x0": "m",
+                "v0": "m/s",
+                "a": "m/s^2",
+                "rmse": "m"
+              },
+              "identifiability": "full column rank under selected polynomial model",
+              "uncertainty": "residual scale is not a posterior probability; alternatives outside grammar remain possible",
+              "observation_domain": [
+                0.0,
+                0.6
+              ]
+            },
+            "prediction": 1.16,
+            "observed": 4.0,
+            "absolute_error": 2.84,
+            "refuted": true,
+            "revised": {
+              "coefficients": [
+                3.9720546451956377e-16,
+                -2.801950144821035e-16,
+                1.0000000000000002
+              ],
+              "residuals": [
+                -3.9720546451956377e-16,
+                -3.469446951953614e-16,
+                -3.0531133177191805e-16,
+                -2.7755575615628914e-16,
+                -8.881784197001252e-16
+              ],
+              "rmse": 4.974446531772652e-16,
+              "rank": 3,
+              "observations": 5,
+              "degrees_of_freedom": 2,
+              "parameters": {
+                "x0": 3.9720546451956377e-16,
+                "v0": -2.801950144821035e-16,
+                "a": 2.0000000000000004
+              },
+              "degree": 2,
+              "noise_sigma": 0.01,
+              "compatible": true,
+              "units": {
+                "x0": "m",
+                "v0": "m/s",
+                "a": "m/s^2",
+                "rmse": "m"
+              },
+              "identifiability": "full column rank under selected polynomial model",
+              "uncertainty": "residual scale is not a posterior probability; alternatives outside grammar remain possible",
+              "observation_domain": [
+                0.0,
+                2.0
+              ]
+            },
+            "negative_result": {
+              "model_degree": 1,
+              "prediction": 1.16,
+              "actual": 4.0,
+              "cause": "residual exceeds declared observation tolerance"
+            }
+          },
+          "data_kind": "simulated",
+          "selection_policy": "maximal disagreement between supplied linear/quadratic model classes"
+        },
+        "artifact_verification": {
+          "passed": true,
+          "checks": [
+            {
+              "passed": true,
+              "execution_status": "completed",
+              "expected": -6.746789679209405,
+              "actual": -6.746789679209405
+            },
+            {
+              "passed": true,
+              "execution_status": "completed",
+              "expected": 2.916712329921365,
+              "actual": 2.916712329921365
+            }
+          ],
+          "program": [
+            {
+              "op": "const",
+              "value": 0
+            },
+            {
+              "op": "const",
+              "value": 1.0000000000000002
+            },
+            {
+              "op": "load",
+              "name": "q"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "add"
+            },
+            {
+              "op": "const",
+              "value": 0.9999999999999999
+            },
+            {
+              "op": "load",
+              "name": "r"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "load",
+              "name": "u"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "add"
+            },
+            {
+              "op": "const",
+              "value": 0.4999999999999999
+            },
+            {
+              "op": "load",
+              "name": "s"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "load",
+              "name": "u"
+            },
+            {
+              "op": "const",
+              "value": 2
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "add"
+            }
+          ],
+          "scope": "independent restricted execution agrees with expression; not new physical evidence"
+        }
+      },
+      {
+        "seed": 3109,
+        "max_integrator_error": 4.04121180963557e-14,
+        "max_energy_balance_error": 8.892886427247504e-14,
+        "step_sensitivity": 3.197442310920451e-14,
+        "prediction_rmse_by_noise": {
+          "0": 2.577960576291626e-15,
+          "0.01": 0.01912025535554171,
+          "0.05": 0.06619822977449602
+        },
+        "symbolic_model": {
+          "powers": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              2
+            ]
+          ],
+          "coefficients": [
+            1.0000000000000002,
+            1.0000000000000002,
+            0.5000000000000002
+          ],
+          "rmse": 1.3781349043752838e-15,
+          "complexity": 9,
+          "score": 9.00000013781349e-08,
+          "status": "identified",
+          "expression": "1*q + 1*r*u + 0.5*s*u^2",
+          "variables": [
+            "q",
+            "r",
+            "s",
+            "u"
+          ],
+          "candidates_evaluated": 7,
+          "compatible_candidates": 1,
+          "budget_exhausted": false,
+          "typed": true,
+          "target_dimension": [
+            1,
+            0,
+            0
+          ],
+          "limits": "Polynomial sums degree<=3, <=3 terms, dimensionless coefficients when typed; selection is relative to this grammar."
+        },
+        "symbolic_prediction_rmse": 1.343400444104611e-15,
+        "neural_comparison": {
+          "raw_features": {
+            "architecture": "single linear neural layer, scalar output, MSE, full-batch gradient descent",
+            "constrained": false,
+            "weights": [
+              -0.44375758720022523,
+              3.466835018318415,
+              1.6276587409485979,
+              0.5296429877295901
+            ],
+            "scales": [
+              1.0,
+              2.961854950822783,
+              1.8943765608428627,
+              1.983630943067184
+            ],
+            "seed": 3109,
+            "epochs": 800,
+            "learning_rate": 0.15,
+            "learning_curve": [
+              {
+                "epoch": 0,
+                "mse": 6.388468577328149
+              },
+              {
+                "epoch": 100,
+                "mse": 1.2971284462304957
+              },
+              {
+                "epoch": 200,
+                "mse": 1.2951741754219743
+              },
+              {
+                "epoch": 300,
+                "mse": 1.2950772568805102
+              },
+              {
+                "epoch": 400,
+                "mse": 1.2950724503775572
+              },
+              {
+                "epoch": 500,
+                "mse": 1.2950722120075786
+              },
+              {
+                "epoch": 600,
+                "mse": 1.2950722001860433
+              },
+              {
+                "epoch": 700,
+                "mse": 1.2950721995997756
+              },
+              {
+                "epoch": 799,
+                "mse": 1.2950721995707466
+              }
+            ],
+            "training_examples": 64,
+            "initialized_by_project": true,
+            "prior": "raw v,a,t and intercept",
+            "elapsed_seconds": 0.048749292,
+            "prediction_rmse": 1.163164356243257
+          },
+          "physical_features": {
+            "architecture": "single linear neural layer, scalar output, MSE, full-batch gradient descent",
+            "constrained": true,
+            "weights": [
+              5.061139094650874,
+              3.495782961604956
+            ],
+            "scales": [
+              5.0611390946420896,
+              3.4957829616812046
+            ],
+            "seed": 3109,
+            "epochs": 800,
+            "learning_rate": 0.15,
+            "learning_curve": [
+              {
+                "epoch": 0,
+                "mse": 6.333615127838282
+              },
+              {
+                "epoch": 100,
+                "mse": 0.0018780859321066525
+              },
+              {
+                "epoch": 200,
+                "mse": 4.1948911814856865e-06
+              },
+              {
+                "epoch": 300,
+                "mse": 9.561320602018703e-09
+              },
+              {
+                "epoch": 400,
+                "mse": 2.1794241671789027e-11
+              },
+              {
+                "epoch": 500,
+                "mse": 4.967818544047799e-14
+              },
+              {
+                "epoch": 600,
+                "mse": 1.1323734285969563e-16
+              },
+              {
+                "epoch": 700,
+                "mse": 2.5811518384547797e-19
+              },
+              {
+                "epoch": 799,
+                "mse": 6.252475537548284e-22
+              }
+            ],
+            "training_examples": 64,
+            "initialized_by_project": true,
+            "prior": "v*t and a*t^2/2 features and zero-displacement boundary supplied",
+            "elapsed_seconds": 0.03371612500000004,
+            "prediction_rmse": 3.0129005325704406e-11
+          }
+        },
+        "traditional_fit_rmse": 0.0,
+        "model_revision": {
+          "selection": {
+            "t": 2.0,
+            "predictions": [
+              1.16,
+              4.000000000000001
+            ],
+            "disagreement": 2.8400000000000007
+          },
+          "alternatives": [
+            {
+              "t": 1.6,
+              "predictions": [
+                0.9199999999999999,
+                2.560000000000001
+              ],
+              "disagreement": 1.640000000000001
+            },
+            {
+              "t": 1.8,
+              "predictions": [
+                1.04,
+                3.2400000000000007
+              ],
+              "disagreement": 2.2000000000000006
+            },
+            {
+              "t": 2.0,
+              "predictions": [
+                1.16,
+                4.000000000000001
+              ],
+              "disagreement": 2.8400000000000007
+            }
+          ],
+          "observation": {
+            "t": 2.0,
+            "x": 4.0
+          },
+          "executor_reference_error": 0.0,
+          "revision": {
+            "prior": {
+              "coefficients": [
+                -0.03999999999999998,
+                0.6
+              ],
+              "residuals": [
+                0.03999999999999998,
+                -0.04000000000000001,
+                -0.03999999999999998,
+                0.03999999999999998
+              ],
+              "rmse": 0.03999999999999999,
+              "rank": 2,
+              "observations": 4,
+              "degrees_of_freedom": 2,
+              "parameters": {
+                "x0": -0.03999999999999998,
+                "v0": 0.6,
+                "a": 0.0
+              },
+              "degree": 1,
+              "noise_sigma": 0.01,
+              "compatible": false,
+              "units": {
+                "x0": "m",
+                "v0": "m/s",
+                "a": "m/s^2",
+                "rmse": "m"
+              },
+              "identifiability": "full column rank under selected polynomial model",
+              "uncertainty": "residual scale is not a posterior probability; alternatives outside grammar remain possible",
+              "observation_domain": [
+                0.0,
+                0.6
+              ]
+            },
+            "prediction": 1.16,
+            "observed": 4.0,
+            "absolute_error": 2.84,
+            "refuted": true,
+            "revised": {
+              "coefficients": [
+                3.9720546451956377e-16,
+                -2.801950144821035e-16,
+                1.0000000000000002
+              ],
+              "residuals": [
+                -3.9720546451956377e-16,
+                -3.469446951953614e-16,
+                -3.0531133177191805e-16,
+                -2.7755575615628914e-16,
+                -8.881784197001252e-16
+              ],
+              "rmse": 4.974446531772652e-16,
+              "rank": 3,
+              "observations": 5,
+              "degrees_of_freedom": 2,
+              "parameters": {
+                "x0": 3.9720546451956377e-16,
+                "v0": -2.801950144821035e-16,
+                "a": 2.0000000000000004
+              },
+              "degree": 2,
+              "noise_sigma": 0.01,
+              "compatible": true,
+              "units": {
+                "x0": "m",
+                "v0": "m/s",
+                "a": "m/s^2",
+                "rmse": "m"
+              },
+              "identifiability": "full column rank under selected polynomial model",
+              "uncertainty": "residual scale is not a posterior probability; alternatives outside grammar remain possible",
+              "observation_domain": [
+                0.0,
+                2.0
+              ]
+            },
+            "negative_result": {
+              "model_degree": 1,
+              "prediction": 1.16,
+              "actual": 4.0,
+              "cause": "residual exceeds declared observation tolerance"
+            }
+          },
+          "data_kind": "simulated",
+          "selection_policy": "maximal disagreement between supplied linear/quadratic model classes"
+        },
+        "artifact_verification": {
+          "passed": true,
+          "checks": [
+            {
+              "passed": true,
+              "execution_status": "completed",
+              "expected": -8.605027145816468,
+              "actual": -8.605027145816468
+            },
+            {
+              "passed": true,
+              "execution_status": "completed",
+              "expected": -9.536338526310384,
+              "actual": -9.536338526310384
+            }
+          ],
+          "program": [
+            {
+              "op": "const",
+              "value": 0
+            },
+            {
+              "op": "const",
+              "value": 1.0000000000000002
+            },
+            {
+              "op": "load",
+              "name": "q"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "add"
+            },
+            {
+              "op": "const",
+              "value": 1.0000000000000002
+            },
+            {
+              "op": "load",
+              "name": "r"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "load",
+              "name": "u"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "add"
+            },
+            {
+              "op": "const",
+              "value": 0.5000000000000002
+            },
+            {
+              "op": "load",
+              "name": "s"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "load",
+              "name": "u"
+            },
+            {
+              "op": "const",
+              "value": 2
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "add"
+            }
+          ],
+          "scope": "independent restricted execution agrees with expression; not new physical evidence"
+        }
+      },
+      {
+        "seed": 3121,
+        "max_integrator_error": 5.551115123125783e-14,
+        "max_energy_balance_error": 1.6564527527407336e-13,
+        "step_sensitivity": 1.687538997430238e-14,
+        "prediction_rmse_by_noise": {
+          "0": 1.8483305478410132e-15,
+          "0.01": 0.01640988094141139,
+          "0.05": 0.09583298306420678
+        },
+        "symbolic_model": {
+          "powers": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              2
+            ]
+          ],
+          "coefficients": [
+            1.0000000000000002,
+            1.0000000000000002,
+            0.49999999999999994
+          ],
+          "rmse": 1.3330865528355297e-15,
+          "complexity": 9,
+          "score": 9.000000133308655e-08,
+          "status": "identified",
+          "expression": "1*q + 1*r*u + 0.5*s*u^2",
+          "variables": [
+            "q",
+            "r",
+            "s",
+            "u"
+          ],
+          "candidates_evaluated": 7,
+          "compatible_candidates": 1,
+          "budget_exhausted": false,
+          "typed": true,
+          "target_dimension": [
+            1,
+            0,
+            0
+          ],
+          "limits": "Polynomial sums degree<=3, <=3 terms, dimensionless coefficients when typed; selection is relative to this grammar."
+        },
+        "symbolic_prediction_rmse": 1.224605017966825e-15,
+        "neural_comparison": {
+          "raw_features": {
+            "architecture": "single linear neural layer, scalar output, MSE, full-batch gradient descent",
+            "constrained": false,
+            "weights": [
+              -0.6067196607281792,
+              3.097702617730021,
+              1.4069819650846676,
+              1.0336315805953797
+            ],
+            "scales": [
+              1.0,
+              2.7928968587217584,
+              1.9946447146729929,
+              1.9636790216864428
+            ],
+            "seed": 3121,
+            "epochs": 800,
+            "learning_rate": 0.15,
+            "learning_curve": [
+              {
+                "epoch": 0,
+                "mse": 4.719702890019138
+              },
+              {
+                "epoch": 100,
+                "mse": 0.9869042452241511
+              },
+              {
+                "epoch": 200,
+                "mse": 0.9809337842907373
+              },
+              {
+                "epoch": 300,
+                "mse": 0.9804918404231308
+              },
+              {
+                "epoch": 400,
+                "mse": 0.980459126938382
+              },
+              {
+                "epoch": 500,
+                "mse": 0.9804567054270477
+              },
+              {
+                "epoch": 600,
+                "mse": 0.9804565261823973
+              },
+              {
+                "epoch": 700,
+                "mse": 0.9804565129143838
+              },
+              {
+                "epoch": 799,
+                "mse": 0.9804565119343324
+              }
+            ],
+            "training_examples": 64,
+            "initialized_by_project": true,
+            "prior": "raw v,a,t and intercept",
+            "elapsed_seconds": 0.047730750000000044,
+            "prediction_rmse": 1.2809976789775153
+          },
+          "physical_features": {
+            "architecture": "single linear neural layer, scalar output, MSE, full-batch gradient descent",
+            "constrained": true,
+            "weights": [
+              4.589557113667578,
+              3.462799997242032
+            ],
+            "scales": [
+              4.589557113663103,
+              3.4627999973375623
+            ],
+            "seed": 3121,
+            "epochs": 800,
+            "learning_rate": 0.15,
+            "learning_curve": [
+              {
+                "epoch": 0,
+                "mse": 4.800588655923524
+              },
+              {
+                "epoch": 100,
+                "mse": 0.0024104124618301507
+              },
+              {
+                "epoch": 200,
+                "mse": 5.430924212737578e-06
+              },
+              {
+                "epoch": 300,
+                "mse": 1.2744606692436258e-08
+              },
+              {
+                "epoch": 400,
+                "mse": 2.992106581504083e-11
+              },
+              {
+                "epoch": 500,
+                "mse": 7.024733476786748e-14
+              },
+              {
+                "epoch": 600,
+                "mse": 1.649235410820972e-16
+              },
+              {
+                "epoch": 700,
+                "mse": 3.872002134871886e-19
+              },
+              {
+                "epoch": 799,
+                "mse": 9.65781526456351e-22
+              }
+            ],
+            "training_examples": 64,
+            "initialized_by_project": true,
+            "prior": "v*t and a*t^2/2 features and zero-displacement boundary supplied",
+            "elapsed_seconds": 0.03442445800000005,
+            "prediction_rmse": 3.026865089652708e-11
+          }
+        },
+        "traditional_fit_rmse": 3.9448132486174923e-16,
+        "model_revision": {
+          "selection": {
+            "t": 2.0,
+            "predictions": [
+              1.16,
+              4.000000000000001
+            ],
+            "disagreement": 2.8400000000000007
+          },
+          "alternatives": [
+            {
+              "t": 1.6,
+              "predictions": [
+                0.9199999999999999,
+                2.560000000000001
+              ],
+              "disagreement": 1.640000000000001
+            },
+            {
+              "t": 1.8,
+              "predictions": [
+                1.04,
+                3.2400000000000007
+              ],
+              "disagreement": 2.2000000000000006
+            },
+            {
+              "t": 2.0,
+              "predictions": [
+                1.16,
+                4.000000000000001
+              ],
+              "disagreement": 2.8400000000000007
+            }
+          ],
+          "observation": {
+            "t": 2.0,
+            "x": 4.0
+          },
+          "executor_reference_error": 0.0,
+          "revision": {
+            "prior": {
+              "coefficients": [
+                -0.03999999999999998,
+                0.6
+              ],
+              "residuals": [
+                0.03999999999999998,
+                -0.04000000000000001,
+                -0.03999999999999998,
+                0.03999999999999998
+              ],
+              "rmse": 0.03999999999999999,
+              "rank": 2,
+              "observations": 4,
+              "degrees_of_freedom": 2,
+              "parameters": {
+                "x0": -0.03999999999999998,
+                "v0": 0.6,
+                "a": 0.0
+              },
+              "degree": 1,
+              "noise_sigma": 0.01,
+              "compatible": false,
+              "units": {
+                "x0": "m",
+                "v0": "m/s",
+                "a": "m/s^2",
+                "rmse": "m"
+              },
+              "identifiability": "full column rank under selected polynomial model",
+              "uncertainty": "residual scale is not a posterior probability; alternatives outside grammar remain possible",
+              "observation_domain": [
+                0.0,
+                0.6
+              ]
+            },
+            "prediction": 1.16,
+            "observed": 4.0,
+            "absolute_error": 2.84,
+            "refuted": true,
+            "revised": {
+              "coefficients": [
+                3.9720546451956377e-16,
+                -2.801950144821035e-16,
+                1.0000000000000002
+              ],
+              "residuals": [
+                -3.9720546451956377e-16,
+                -3.469446951953614e-16,
+                -3.0531133177191805e-16,
+                -2.7755575615628914e-16,
+                -8.881784197001252e-16
+              ],
+              "rmse": 4.974446531772652e-16,
+              "rank": 3,
+              "observations": 5,
+              "degrees_of_freedom": 2,
+              "parameters": {
+                "x0": 3.9720546451956377e-16,
+                "v0": -2.801950144821035e-16,
+                "a": 2.0000000000000004
+              },
+              "degree": 2,
+              "noise_sigma": 0.01,
+              "compatible": true,
+              "units": {
+                "x0": "m",
+                "v0": "m/s",
+                "a": "m/s^2",
+                "rmse": "m"
+              },
+              "identifiability": "full column rank under selected polynomial model",
+              "uncertainty": "residual scale is not a posterior probability; alternatives outside grammar remain possible",
+              "observation_domain": [
+                0.0,
+                2.0
+              ]
+            },
+            "negative_result": {
+              "model_degree": 1,
+              "prediction": 1.16,
+              "actual": 4.0,
+              "cause": "residual exceeds declared observation tolerance"
+            }
+          },
+          "data_kind": "simulated",
+          "selection_policy": "maximal disagreement between supplied linear/quadratic model classes"
+        },
+        "artifact_verification": {
+          "passed": true,
+          "checks": [
+            {
+              "passed": true,
+              "execution_status": "completed",
+              "expected": -3.7786267155260074,
+              "actual": -3.7786267155260074
+            },
+            {
+              "passed": true,
+              "execution_status": "completed",
+              "expected": 10.79542011432901,
+              "actual": 10.795420114329012
+            }
+          ],
+          "program": [
+            {
+              "op": "const",
+              "value": 0
+            },
+            {
+              "op": "const",
+              "value": 1.0000000000000002
+            },
+            {
+              "op": "load",
+              "name": "q"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "add"
+            },
+            {
+              "op": "const",
+              "value": 1.0000000000000002
+            },
+            {
+              "op": "load",
+              "name": "r"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "load",
+              "name": "u"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "add"
+            },
+            {
+              "op": "const",
+              "value": 0.49999999999999994
+            },
+            {
+              "op": "load",
+              "name": "s"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "load",
+              "name": "u"
+            },
+            {
+              "op": "const",
+              "value": 2
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "add"
+            }
+          ],
+          "scope": "independent restricted execution agrees with expression; not new physical evidence"
+        }
+      },
+      {
+        "seed": 3137,
+        "max_integrator_error": 7.194245199571014e-14,
+        "max_energy_balance_error": 3.765876499528531e-13,
+        "step_sensitivity": 4.263256414560601e-14,
+        "prediction_rmse_by_noise": {
+          "0": 2.4208134580858236e-15,
+          "0.01": 0.01567343322111064,
+          "0.05": 0.07609634873103928
+        },
+        "symbolic_model": {
+          "powers": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              2
+            ]
+          ],
+          "coefficients": [
+            1.0,
+            1.0,
+            0.49999999999999994
+          ],
+          "rmse": 7.141332153553285e-16,
+          "complexity": 9,
+          "score": 9.000000071413321e-08,
+          "status": "identified",
+          "expression": "1*q + 1*r*u + 0.5*s*u^2",
+          "variables": [
+            "q",
+            "r",
+            "s",
+            "u"
+          ],
+          "candidates_evaluated": 7,
+          "compatible_candidates": 1,
+          "budget_exhausted": false,
+          "typed": true,
+          "target_dimension": [
+            1,
+            0,
+            0
+          ],
+          "limits": "Polynomial sums degree<=3, <=3 terms, dimensionless coefficients when typed; selection is relative to this grammar."
+        },
+        "symbolic_prediction_rmse": 2.5639502485114184e-16,
+        "neural_comparison": {
+          "raw_features": {
+            "architecture": "single linear neural layer, scalar output, MSE, full-batch gradient descent",
+            "constrained": false,
+            "weights": [
+              0.257060813229062,
+              3.2197790541367293,
+              1.7285972789495558,
+              -0.4884588409468289
+            ],
+            "scales": [
+              1.0,
+              2.918280699009533,
+              1.9612916489180217,
+              1.9858638465383907
+            ],
+            "seed": 3137,
+            "epochs": 800,
+            "learning_rate": 0.15,
+            "learning_curve": [
+              {
+                "epoch": 0,
+                "mse": 7.001195782903635
+              },
+              {
+                "epoch": 100,
+                "mse": 1.9512055334917735
+              },
+              {
+                "epoch": 200,
+                "mse": 1.9509277230659163
+              },
+              {
+                "epoch": 300,
+                "mse": 1.9509223049414763
+              },
+              {
+                "epoch": 400,
+                "mse": 1.950922199272017
+              },
+              {
+                "epoch": 500,
+                "mse": 1.9509221972111495
+              },
+              {
+                "epoch": 600,
+                "mse": 1.9509221971709565
+              },
+              {
+                "epoch": 700,
+                "mse": 1.9509221971701727
+              },
+              {
+                "epoch": 799,
+                "mse": 1.9509221971701574
+              }
+            ],
+            "training_examples": 64,
+            "initialized_by_project": true,
+            "prior": "raw v,a,t and intercept",
+            "elapsed_seconds": 0.04803666700000009,
+            "prediction_rmse": 1.1220259064311882
+          },
+          "physical_features": {
+            "architecture": "single linear neural layer, scalar output, MSE, full-batch gradient descent",
+            "constrained": true,
+            "weights": [
+              4.616491920501524,
+              3.756892329363995
+            ],
+            "scales": [
+              4.616491920480317,
+              3.756892329444952
+            ],
+            "seed": 3137,
+            "epochs": 800,
+            "learning_rate": 0.15,
+            "learning_curve": [
+              {
+                "epoch": 0,
+                "mse": 7.072133001339093
+              },
+              {
+                "epoch": 100,
+                "mse": 0.0013691032326774856
+              },
+              {
+                "epoch": 200,
+                "mse": 3.3221802160476705e-06
+              },
+              {
+                "epoch": 300,
+                "mse": 8.08853565954344e-09
+              },
+              {
+                "epoch": 400,
+                "mse": 1.9693234177657717e-11
+              },
+              {
+                "epoch": 500,
+                "mse": 4.7947303349286814e-14
+              },
+              {
+                "epoch": 600,
+                "mse": 1.1673774655730026e-16
+              },
+              {
+                "epoch": 700,
+                "mse": 2.842223661866561e-19
+              },
+              {
+                "epoch": 799,
+                "mse": 7.349314818284463e-22
+              }
+            ],
+            "training_examples": 64,
+            "initialized_by_project": true,
+            "prior": "v*t and a*t^2/2 features and zero-displacement boundary supplied",
+            "elapsed_seconds": 0.03496749999999982,
+            "prediction_rmse": 2.520094748617954e-11
+          }
+        },
+        "traditional_fit_rmse": 0.0,
+        "model_revision": {
+          "selection": {
+            "t": 2.0,
+            "predictions": [
+              1.16,
+              4.000000000000001
+            ],
+            "disagreement": 2.8400000000000007
+          },
+          "alternatives": [
+            {
+              "t": 1.6,
+              "predictions": [
+                0.9199999999999999,
+                2.560000000000001
+              ],
+              "disagreement": 1.640000000000001
+            },
+            {
+              "t": 1.8,
+              "predictions": [
+                1.04,
+                3.2400000000000007
+              ],
+              "disagreement": 2.2000000000000006
+            },
+            {
+              "t": 2.0,
+              "predictions": [
+                1.16,
+                4.000000000000001
+              ],
+              "disagreement": 2.8400000000000007
+            }
+          ],
+          "observation": {
+            "t": 2.0,
+            "x": 4.0
+          },
+          "executor_reference_error": 0.0,
+          "revision": {
+            "prior": {
+              "coefficients": [
+                -0.03999999999999998,
+                0.6
+              ],
+              "residuals": [
+                0.03999999999999998,
+                -0.04000000000000001,
+                -0.03999999999999998,
+                0.03999999999999998
+              ],
+              "rmse": 0.03999999999999999,
+              "rank": 2,
+              "observations": 4,
+              "degrees_of_freedom": 2,
+              "parameters": {
+                "x0": -0.03999999999999998,
+                "v0": 0.6,
+                "a": 0.0
+              },
+              "degree": 1,
+              "noise_sigma": 0.01,
+              "compatible": false,
+              "units": {
+                "x0": "m",
+                "v0": "m/s",
+                "a": "m/s^2",
+                "rmse": "m"
+              },
+              "identifiability": "full column rank under selected polynomial model",
+              "uncertainty": "residual scale is not a posterior probability; alternatives outside grammar remain possible",
+              "observation_domain": [
+                0.0,
+                0.6
+              ]
+            },
+            "prediction": 1.16,
+            "observed": 4.0,
+            "absolute_error": 2.84,
+            "refuted": true,
+            "revised": {
+              "coefficients": [
+                3.9720546451956377e-16,
+                -2.801950144821035e-16,
+                1.0000000000000002
+              ],
+              "residuals": [
+                -3.9720546451956377e-16,
+                -3.469446951953614e-16,
+                -3.0531133177191805e-16,
+                -2.7755575615628914e-16,
+                -8.881784197001252e-16
+              ],
+              "rmse": 4.974446531772652e-16,
+              "rank": 3,
+              "observations": 5,
+              "degrees_of_freedom": 2,
+              "parameters": {
+                "x0": 3.9720546451956377e-16,
+                "v0": -2.801950144821035e-16,
+                "a": 2.0000000000000004
+              },
+              "degree": 2,
+              "noise_sigma": 0.01,
+              "compatible": true,
+              "units": {
+                "x0": "m",
+                "v0": "m/s",
+                "a": "m/s^2",
+                "rmse": "m"
+              },
+              "identifiability": "full column rank under selected polynomial model",
+              "uncertainty": "residual scale is not a posterior probability; alternatives outside grammar remain possible",
+              "observation_domain": [
+                0.0,
+                2.0
+              ]
+            },
+            "negative_result": {
+              "model_degree": 1,
+              "prediction": 1.16,
+              "actual": 4.0,
+              "cause": "residual exceeds declared observation tolerance"
+            }
+          },
+          "data_kind": "simulated",
+          "selection_policy": "maximal disagreement between supplied linear/quadratic model classes"
+        },
+        "artifact_verification": {
+          "passed": true,
+          "checks": [
+            {
+              "passed": true,
+              "execution_status": "completed",
+              "expected": 5.752795459592728,
+              "actual": 5.752795459592728
+            },
+            {
+              "passed": true,
+              "execution_status": "completed",
+              "expected": 4.768425958818836,
+              "actual": 4.768425958818836
+            }
+          ],
+          "program": [
+            {
+              "op": "const",
+              "value": 0
+            },
+            {
+              "op": "const",
+              "value": 1.0
+            },
+            {
+              "op": "load",
+              "name": "q"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "add"
+            },
+            {
+              "op": "const",
+              "value": 1.0
+            },
+            {
+              "op": "load",
+              "name": "r"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "load",
+              "name": "u"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "add"
+            },
+            {
+              "op": "const",
+              "value": 0.49999999999999994
+            },
+            {
+              "op": "load",
+              "name": "s"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "load",
+              "name": "u"
+            },
+            {
+              "op": "const",
+              "value": 2
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "add"
+            }
+          ],
+          "scope": "independent restricted execution agrees with expression; not new physical evidence"
+        }
+      },
+      {
+        "seed": 3163,
+        "max_integrator_error": 5.240252676230739e-14,
+        "max_energy_balance_error": 1.2947629079995693e-13,
+        "step_sensitivity": 5.240252676230739e-14,
+        "prediction_rmse_by_noise": {
+          "0": 1.7578203042785315e-15,
+          "0.01": 0.017127467972759446,
+          "0.05": 0.09039663200013086
+        },
+        "symbolic_model": {
+          "powers": [
+            [
+              1,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              1,
+              0,
+              1
+            ],
+            [
+              0,
+              0,
+              1,
+              2
+            ]
+          ],
+          "coefficients": [
+            1.0000000000000002,
+            0.9999999999999999,
+            0.5000000000000001
+          ],
+          "rmse": 1.1856104203082185e-15,
+          "complexity": 9,
+          "score": 9.000000118561042e-08,
+          "status": "identified",
+          "expression": "1*q + 1*r*u + 0.5*s*u^2",
+          "variables": [
+            "q",
+            "r",
+            "s",
+            "u"
+          ],
+          "candidates_evaluated": 7,
+          "compatible_candidates": 1,
+          "budget_exhausted": false,
+          "typed": true,
+          "target_dimension": [
+            1,
+            0,
+            0
+          ],
+          "limits": "Polynomial sums degree<=3, <=3 terms, dimensionless coefficients when typed; selection is relative to this grammar."
+        },
+        "symbolic_prediction_rmse": 1.2674708534235438e-15,
+        "neural_comparison": {
+          "raw_features": {
+            "architecture": "single linear neural layer, scalar output, MSE, full-batch gradient descent",
+            "constrained": false,
+            "weights": [
+              0.786798299558881,
+              2.941543236701687,
+              1.0955455717993048,
+              -1.3594195005322385
+            ],
+            "scales": [
+              1.0,
+              2.968779766352994,
+              1.9540322499398517,
+              1.9870710736080568
+            ],
+            "seed": 3163,
+            "epochs": 800,
+            "learning_rate": 0.15,
+            "learning_curve": [
+              {
+                "epoch": 0,
+                "mse": 4.559215097870603
+              },
+              {
+                "epoch": 100,
+                "mse": 1.0006067179011777
+              },
+              {
+                "epoch": 200,
+                "mse": 0.9932064272925617
+              },
+              {
+                "epoch": 300,
+                "mse": 0.9928627500358236
+              },
+              {
+                "epoch": 400,
+                "mse": 0.992846789293786
+              },
+              {
+                "epoch": 500,
+                "mse": 0.9928460480597314
+              },
+              {
+                "epoch": 600,
+                "mse": 0.9928460136360236
+              },
+              {
+                "epoch": 700,
+                "mse": 0.9928460120373496
+              },
+              {
+                "epoch": 799,
+                "mse": 0.9928460119632182
+              }
+            ],
+            "training_examples": 64,
+            "initialized_by_project": true,
+            "prior": "raw v,a,t and intercept",
+            "elapsed_seconds": 0.047434792,
+            "prediction_rmse": 1.7460205685869687
+          },
+          "physical_features": {
+            "architecture": "single linear neural layer, scalar output, MSE, full-batch gradient descent",
+            "constrained": true,
+            "weights": [
+              5.144807819821646,
+              3.194691830728959
+            ],
+            "scales": [
+              5.144807845776362,
+              3.19469280608074
+            ],
+            "seed": 3163,
+            "epochs": 800,
+            "learning_rate": 0.15,
+            "learning_curve": [
+              {
+                "epoch": 0,
+                "mse": 4.651309908183848
+              },
+              {
+                "epoch": 100,
+                "mse": 0.0161742552289426
+              },
+              {
+                "epoch": 200,
+                "mse": 0.0003691553397584098
+              },
+              {
+                "epoch": 300,
+                "mse": 8.601299960489188e-06
+              },
+              {
+                "epoch": 400,
+                "mse": 2.004248893276354e-07
+              },
+              {
+                "epoch": 500,
+                "mse": 4.6702413943414185e-09
+              },
+              {
+                "epoch": 600,
+                "mse": 1.088245814959329e-10
+              },
+              {
+                "epoch": 700,
+                "mse": 2.5357981615126916e-12
+              },
+              {
+                "epoch": 799,
+                "mse": 6.135196579001814e-14
+              }
+            ],
+            "training_examples": 64,
+            "initialized_by_project": true,
+            "prior": "v*t and a*t^2/2 features and zero-displacement boundary supplied",
+            "elapsed_seconds": 0.03311520800000012,
+            "prediction_rmse": 4.0282831154550613e-07
+          }
+        },
+        "traditional_fit_rmse": 3.0735462217476725e-16,
+        "model_revision": {
+          "selection": {
+            "t": 2.0,
+            "predictions": [
+              1.16,
+              4.000000000000001
+            ],
+            "disagreement": 2.8400000000000007
+          },
+          "alternatives": [
+            {
+              "t": 1.6,
+              "predictions": [
+                0.9199999999999999,
+                2.560000000000001
+              ],
+              "disagreement": 1.640000000000001
+            },
+            {
+              "t": 1.8,
+              "predictions": [
+                1.04,
+                3.2400000000000007
+              ],
+              "disagreement": 2.2000000000000006
+            },
+            {
+              "t": 2.0,
+              "predictions": [
+                1.16,
+                4.000000000000001
+              ],
+              "disagreement": 2.8400000000000007
+            }
+          ],
+          "observation": {
+            "t": 2.0,
+            "x": 4.0
+          },
+          "executor_reference_error": 0.0,
+          "revision": {
+            "prior": {
+              "coefficients": [
+                -0.03999999999999998,
+                0.6
+              ],
+              "residuals": [
+                0.03999999999999998,
+                -0.04000000000000001,
+                -0.03999999999999998,
+                0.03999999999999998
+              ],
+              "rmse": 0.03999999999999999,
+              "rank": 2,
+              "observations": 4,
+              "degrees_of_freedom": 2,
+              "parameters": {
+                "x0": -0.03999999999999998,
+                "v0": 0.6,
+                "a": 0.0
+              },
+              "degree": 1,
+              "noise_sigma": 0.01,
+              "compatible": false,
+              "units": {
+                "x0": "m",
+                "v0": "m/s",
+                "a": "m/s^2",
+                "rmse": "m"
+              },
+              "identifiability": "full column rank under selected polynomial model",
+              "uncertainty": "residual scale is not a posterior probability; alternatives outside grammar remain possible",
+              "observation_domain": [
+                0.0,
+                0.6
+              ]
+            },
+            "prediction": 1.16,
+            "observed": 4.0,
+            "absolute_error": 2.84,
+            "refuted": true,
+            "revised": {
+              "coefficients": [
+                3.9720546451956377e-16,
+                -2.801950144821035e-16,
+                1.0000000000000002
+              ],
+              "residuals": [
+                -3.9720546451956377e-16,
+                -3.469446951953614e-16,
+                -3.0531133177191805e-16,
+                -2.7755575615628914e-16,
+                -8.881784197001252e-16
+              ],
+              "rmse": 4.974446531772652e-16,
+              "rank": 3,
+              "observations": 5,
+              "degrees_of_freedom": 2,
+              "parameters": {
+                "x0": 3.9720546451956377e-16,
+                "v0": -2.801950144821035e-16,
+                "a": 2.0000000000000004
+              },
+              "degree": 2,
+              "noise_sigma": 0.01,
+              "compatible": true,
+              "units": {
+                "x0": "m",
+                "v0": "m/s",
+                "a": "m/s^2",
+                "rmse": "m"
+              },
+              "identifiability": "full column rank under selected polynomial model",
+              "uncertainty": "residual scale is not a posterior probability; alternatives outside grammar remain possible",
+              "observation_domain": [
+                0.0,
+                2.0
+              ]
+            },
+            "negative_result": {
+              "model_degree": 1,
+              "prediction": 1.16,
+              "actual": 4.0,
+              "cause": "residual exceeds declared observation tolerance"
+            }
+          },
+          "data_kind": "simulated",
+          "selection_policy": "maximal disagreement between supplied linear/quadratic model classes"
+        },
+        "artifact_verification": {
+          "passed": true,
+          "checks": [
+            {
+              "passed": true,
+              "execution_status": "completed",
+              "expected": -4.519151390454512,
+              "actual": -4.519151390454512
+            },
+            {
+              "passed": true,
+              "execution_status": "completed",
+              "expected": 2.58575443447708,
+              "actual": 2.58575443447708
+            }
+          ],
+          "program": [
+            {
+              "op": "const",
+              "value": 0
+            },
+            {
+              "op": "const",
+              "value": 1.0000000000000002
+            },
+            {
+              "op": "load",
+              "name": "q"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "add"
+            },
+            {
+              "op": "const",
+              "value": 0.9999999999999999
+            },
+            {
+              "op": "load",
+              "name": "r"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "load",
+              "name": "u"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "add"
+            },
+            {
+              "op": "const",
+              "value": 0.5000000000000001
+            },
+            {
+              "op": "load",
+              "name": "s"
+            },
+            {
+              "op": "const",
+              "value": 1
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "load",
+              "name": "u"
+            },
+            {
+              "op": "const",
+              "value": 2
+            },
+            {
+              "op": "pow"
+            },
+            {
+              "op": "mul"
+            },
+            {
+              "op": "add"
+            }
+          ],
+          "scope": "independent restricted execution agrees with expression; not new physical evidence"
+        }
+      }
+    ],
+    "failures": [],
+    "prediction_rmse": {
+      "0": {
+        "mean": 2.0969463463382845e-15,
+        "bootstrap_95_interval": [
+          1.8121264504160208e-15,
+          2.400605146960343e-15
+        ],
+        "independent_seeds": 5
+      },
+      "0.01": {
+        "mean": 0.01675763306344473,
+        "bootstrap_95_interval": [
+          0.015734200607286718,
+          0.017888816045829432
+        ],
+        "independent_seeds": 5
+      },
+      "0.05": {
+        "mean": 0.0905781787270497,
+        "bootstrap_95_interval": [
+          0.07411672493973062,
+          0.10791861618545935
+        ],
+        "independent_seeds": 5
+      }
+    },
+    "conclusions": [
+      "Dimensional polynomial search rediscovers a relation within its supplied grammar.",
+      "Physical-feature neural layer uses supplied physics products; this is not learning physics from no priors.",
+      "Numerical least squares is the stronger comparator on the linear feature problem.",
+      "Simulated motion is not yet transferred to independently measured trajectories."
+    ]
+  },
+  "quantum": {
+    "seeds": [
+      {
+        "seed": 4103,
+        "frequency_results": [
+          {
+            "true_omega": 0.4,
+            "learned_omega": 0.38,
+            "held_condition_probability_rmse": 0.009693718917217525,
+            "plausible_candidates": [
+              0.38,
+              0.4,
+              0.36,
+              0.42,
+              0.34
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 2.0,
+                "prediction_variance": 0.00037923735813490594,
+                "probabilities": [
+                  0.8624180053704525,
+                  0.8483533546735827,
+                  0.8759028645704474,
+                  0.833731412920654,
+                  0.8887863593754639
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 2.889393041498396e-09,
+                  "probabilities": [
+                    0.9996390434382425,
+                    0.999600053330489,
+                    0.9996760349904884,
+                    0.9995590648231883,
+                    0.9997110278392607
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 1.7848694610256496e-06,
+                  "probabilities": [
+                    0.9910021175586352,
+                    0.9900332889206209,
+                    0.9919218463940608,
+                    0.9890154573620741,
+                    0.9927923834547803
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 2.7528067944273893e-05,
+                  "probabilities": [
+                    0.9643323177882551,
+                    0.9605304970014426,
+                    0.9679484118389675,
+                    0.9565444701561542,
+                    0.9713773327641733
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.00013100804114770387,
+                  "probabilities": [
+                    0.9209504875811344,
+                    0.9126678074548391,
+                    0.9288543406819121,
+                    0.9040137541560759,
+                    0.9363722538228756
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 0.00037923735813490594,
+                  "probabilities": [
+                    0.8624180053704525,
+                    0.8483533546735827,
+                    0.8759028645704474,
+                    0.833731412920654,
+                    0.8887863593754639
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          },
+          {
+            "true_omega": 0.8,
+            "learned_omega": 0.8,
+            "held_condition_probability_rmse": 0.0,
+            "plausible_candidates": [
+              0.8,
+              0.82,
+              0.78,
+              0.84
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 2.0,
+                "prediction_variance": 0.0004982457772283459,
+                "probabilities": [
+                  0.48540023884935557,
+                  0.46542577567296906,
+                  0.5053980585291337,
+                  0.4455066238800644
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 8.184300633372449e-09,
+                  "probabilities": [
+                    0.9984008531513097,
+                    0.998319941709243,
+                    0.9984797709906285,
+                    0.9982370369880738
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 4.851783416117934e-06,
+                  "probabilities": [
+                    0.9605304970014426,
+                    0.9585604114083025,
+                    0.9624545299286564,
+                    0.9565444701561542
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 6.556082072865435e-05,
+                  "probabilities": [
+                    0.8483533546735827,
+                    0.8411106036438069,
+                    0.8554567690061388,
+                    0.833731412920654
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.0002469777145092444,
+                  "probabilities": [
+                    0.6811788772383367,
+                    0.6671188635622514,
+                    0.6950758421541151,
+                    0.6529084541891447
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 0.0004982457772283459,
+                  "probabilities": [
+                    0.48540023884935557,
+                    0.46542577567296906,
+                    0.5053980585291337,
+                    0.4455066238800644
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          },
+          {
+            "true_omega": 1.2,
+            "learned_omega": 1.2,
+            "held_condition_probability_rmse": 0.0,
+            "plausible_candidates": [
+              1.2,
+              1.22,
+              1.18,
+              1.24,
+              1.16
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 1.5,
+                "prediction_variance": 0.0004263428496844686,
+                "probabilities": [
+                  0.38639895265345653,
+                  0.3718445458862386,
+                  0.4010555926954455,
+                  0.3574054703774896,
+                  0.4158012760254617
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 2.866465507871714e-08,
+                  "probabilities": [
+                    0.9964043179269332,
+                    0.9962836129911474,
+                    0.996523037246109,
+                    0.9961609229215715,
+                    0.9966397704737978
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 1.594044155220793e-05,
+                  "probabilities": [
+                    0.9126678074548391,
+                    0.9098240089227398,
+                    0.9154703395500817,
+                    0.906939228331267,
+                    0.9182313249575935
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 0.00017366430116779724,
+                  "probabilities": [
+                    0.6811788772383368,
+                    0.6718228731580236,
+                    0.690462412183441,
+                    0.6623981422193881,
+                    0.6996697647031366
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.0004263428496844686,
+                  "probabilities": [
+                    0.38639895265345653,
+                    0.3718445458862386,
+                    0.4010555926954455,
+                    0.3574054703774896,
+                    0.4158012760254617
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 0.0003645823910953332,
+                  "probabilities": [
+                    0.13130314222937728,
+                    0.11809239896111297,
+                    0.1451037218189398,
+                    0.10549262638523443,
+                    0.15947205974642376
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          },
+          {
+            "true_omega": 1.6,
+            "learned_omega": 1.62,
+            "held_condition_probability_rmse": 0.008268290683162708,
+            "plausible_candidates": [
+              1.62,
+              1.64,
+              1.6,
+              1.66,
+              1.58
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 1.0,
+                "prediction_variance": 0.0001994258291482027,
+                "probabilities": [
+                  0.4754080890429147,
+                  0.46542577567296906,
+                  0.48540023884935557,
+                  0.45545729153177056,
+                  0.4953982283655958
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 5.203292995636223e-08,
+                  "probabilities": [
+                    0.993453336360457,
+                    0.9932910572204131,
+                    0.9936136416878134,
+                    0.9931268049167981,
+                    0.9937719725612614
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 2.622745491465428e-05,
+                  "probabilities": [
+                    0.8447492164758734,
+                    0.8411106036438069,
+                    0.8483533546735827,
+                    0.8374378800356336,
+                    0.8519226578261181
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 0.0001994258291482027,
+                  "probabilities": [
+                    0.4754080890429147,
+                    0.46542577567296906,
+                    0.48540023884935557,
+                    0.45545729153177056,
+                    0.4953982283655958
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.0001917935890659746,
+                  "probabilities": [
+                    0.12133861538772814,
+                    0.11171485823335348,
+                    0.1313031422293771,
+                    0.10244053149810799,
+                    0.14159947135672854
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 8.151389245869674e-06,
+                  "probabilities": [
+                    0.0024190483380848436,
+                    0.004781507951263441,
+                    0.0008526121026234629,
+                    0.00793621151074273,
+                    8.470520870082725e-05
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          }
+        ],
+        "contextual_comparison": {
+          "quantum": {
+            "model": "quantum",
+            "nll": 2157.7774996627245,
+            "theta": 0.39269908169872414,
+            "phi": 0.7853981633974483,
+            "free_parameters": 2,
+            "grid_evaluations": 441,
+            "data_kind": "caller supplied; simulator experiment is synthetic, not human evidence",
+            "test_nll": 2161.3029940108026,
+            "elapsed_seconds": 0.010954917000000064
+          },
+          "classical_context": {
+            "model": "classical_context",
+            "nll": 2157.7774996627245,
+            "theta": 0.39269908169872414,
+            "phi": 0.7853981633974483,
+            "free_parameters": 2,
+            "grid_evaluations": 441,
+            "data_kind": "caller supplied; simulator experiment is synthetic, not human evidence",
+            "test_nll": 2161.3029940108026,
+            "elapsed_seconds": 0.005103459000000088
+          }
+        },
+        "synthetic_only": true,
+        "order_invariant_logic_probe": {
+          "cases": 25,
+          "quantum_order_sensitive_decisions": 4,
+          "classical_equivalent_order_sensitive_decisions": 4,
+          "symbolic_conjunction_order_sensitive_decisions": 0,
+          "decision": "do not use contextual probability threshold as logical entailment"
+        }
+      },
+      {
+        "seed": 4127,
+        "frequency_results": [
+          {
+            "true_omega": 0.4,
+            "learned_omega": 0.34,
+            "held_condition_probability_rmse": 0.027787348252367696,
+            "plausible_candidates": [
+              0.34,
+              0.36,
+              0.32,
+              0.38,
+              0.3
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 2.0,
+                "prediction_variance": 0.0003160019854716349,
+                "probabilities": [
+                  0.8887863593754639,
+                  0.8759028645704474,
+                  0.9010478789421462,
+                  0.8624180053704525,
+                  0.9126678074548391
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 2.3138955258191283e-09,
+                  "probabilities": [
+                    0.9997110278392607,
+                    0.9996760349904884,
+                    0.9997440218445877,
+                    0.9996390434382425,
+                    0.9997750168744938
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 1.4326709598124972e-06,
+                  "probabilities": [
+                    0.9927923834547803,
+                    0.9919218463940608,
+                    0.9936136416878136,
+                    0.9910021175586352,
+                    0.9943855389680213
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 2.2257525482529517e-05,
+                  "probabilities": [
+                    0.9713773327641733,
+                    0.9679484118389675,
+                    0.9746177090412204,
+                    0.9643323177882551,
+                    0.9776682445628029
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.00010724122049190204,
+                  "probabilities": [
+                    0.9363722538228756,
+                    0.9288543406819121,
+                    0.943497461389642,
+                    0.9209504875811344,
+                    0.9502235511763385
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 0.0003160019854716349,
+                  "probabilities": [
+                    0.8887863593754639,
+                    0.8759028645704474,
+                    0.9010478789421462,
+                    0.8624180053704525,
+                    0.9126678074548391
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          },
+          {
+            "true_omega": 0.8,
+            "learned_omega": 0.8,
+            "held_condition_probability_rmse": 0.0,
+            "plausible_candidates": [
+              0.8,
+              0.82,
+              0.78,
+              0.84,
+              0.76
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 2.0,
+                "prediction_variance": 0.0007978700437724802,
+                "probabilities": [
+                  0.48540023884935557,
+                  0.46542577567296906,
+                  0.5053980585291337,
+                  0.4455066238800644,
+                  0.5253872424667897
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 1.2775440831488359e-08,
+                  "probabilities": [
+                    0.9984008531513097,
+                    0.998319941709243,
+                    0.9984797709906285,
+                    0.9982370369880738,
+                    0.9985566949115277
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 7.582957487933653e-06,
+                  "probabilities": [
+                    0.9605304970014426,
+                    0.9585604114083025,
+                    0.9624545299286564,
+                    0.9565444701561542,
+                    0.9643323177882551
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 0.00010288689189299105,
+                  "probabilities": [
+                    0.8483533546735827,
+                    0.8411106036438069,
+                    0.8554567690061388,
+                    0.833731412920654,
+                    0.8624180053704525
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.0003905336369003398,
+                  "probabilities": [
+                    0.6811788772383367,
+                    0.6671188635622514,
+                    0.6950758421541151,
+                    0.6529084541891447,
+                    0.708797251979179
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 0.0007978700437724802,
+                  "probabilities": [
+                    0.48540023884935557,
+                    0.46542577567296906,
+                    0.5053980585291337,
+                    0.4455066238800644,
+                    0.5253872424667897
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          },
+          {
+            "true_omega": 1.2,
+            "learned_omega": 1.18,
+            "held_condition_probability_rmse": 0.014551411813494931,
+            "plausible_candidates": [
+              1.18,
+              1.16,
+              1.2,
+              1.14,
+              1.22
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 1.5,
+                "prediction_variance": 0.0004319427316485934,
+                "probabilities": [
+                  0.4010555926954455,
+                  0.4158012760254617,
+                  0.38639895265345653,
+                  0.4306227325238113,
+                  0.3718445458862386
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 2.7721623397284532e-08,
+                  "probabilities": [
+                    0.996523037246109,
+                    0.9966397704737978,
+                    0.9964043179269332,
+                    0.9967545171430671,
+                    0.9962836129911474
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 1.5476333653955924e-05,
+                  "probabilities": [
+                    0.9154703395500817,
+                    0.9182313249575935,
+                    0.9126678074548391,
+                    0.9209504875811344,
+                    0.9098240089227398
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 0.0001709058225494629,
+                  "probabilities": [
+                    0.690462412183441,
+                    0.6996697647031366,
+                    0.6811788772383368,
+                    0.708797251979179,
+                    0.6718228731580236
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.0004319427316485934,
+                  "probabilities": [
+                    0.4010555926954455,
+                    0.4158012760254617,
+                    0.38639895265345653,
+                    0.4306227325238113,
+                    0.3718445458862386
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 0.0003964618340066741,
+                  "probabilities": [
+                    0.1451037218189398,
+                    0.15947205974642376,
+                    0.13130314222937728,
+                    0.17438516973622722,
+                    0.11809239896111297
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          },
+          {
+            "true_omega": 1.6,
+            "learned_omega": 1.58,
+            "held_condition_probability_rmse": 0.008599262379001067,
+            "plausible_candidates": [
+              1.58,
+              1.56,
+              1.6,
+              1.54,
+              1.62
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 1.5,
+                "prediction_variance": 0.00021863803152913694,
+                "probabilities": [
+                  0.14159947135672854,
+                  0.15221833676854898,
+                  0.1313031422293771,
+                  0.16315018220271954,
+                  0.12133861538772814
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 4.951641911354469e-08,
+                  "probabilities": [
+                    0.9937719725612614,
+                    0.9939283283474774,
+                    0.9936136416878134,
+                    0.9940827084210383,
+                    0.993453336360457
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 2.5228096200363844e-05,
+                  "probabilities": [
+                    0.8519226578261181,
+                    0.8554567690061388,
+                    0.8483533546735827,
+                    0.8589553348054717,
+                    0.8447492164758734
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 0.00019989242082781334,
+                  "probabilities": [
+                    0.4953982283655958,
+                    0.5053980585291337,
+                    0.48540023884935557,
+                    0.5153957295412331,
+                    0.4754080890429147
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.00021863803152913694,
+                  "probabilities": [
+                    0.14159947135672854,
+                    0.15221833676854898,
+                    0.1313031422293771,
+                    0.16315018220271954,
+                    0.12133861538772814
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 7.178622441847027e-07,
+                  "probabilities": [
+                    8.470520870082725e-05,
+                    0.00011655614353581216,
+                    0.0008526121026234629,
+                    0.0009481139524271854,
+                    0.0024190483380848436
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          }
+        ],
+        "contextual_comparison": {
+          "quantum": {
+            "model": "quantum",
+            "nll": 2185.4412376716487,
+            "theta": 0.3141592653589793,
+            "phi": 0.7068583470577035,
+            "free_parameters": 2,
+            "grid_evaluations": 441,
+            "data_kind": "caller supplied; simulator experiment is synthetic, not human evidence",
+            "test_nll": 2152.109655583467,
+            "elapsed_seconds": 0.010952958999999929
+          },
+          "classical_context": {
+            "model": "classical_context",
+            "nll": 2185.441237671648,
+            "theta": 0.3141592653589793,
+            "phi": 0.7068583470577035,
+            "free_parameters": 2,
+            "grid_evaluations": 441,
+            "data_kind": "caller supplied; simulator experiment is synthetic, not human evidence",
+            "test_nll": 2152.109655583467,
+            "elapsed_seconds": 0.004831791000000196
+          }
+        },
+        "synthetic_only": true,
+        "order_invariant_logic_probe": {
+          "cases": 25,
+          "quantum_order_sensitive_decisions": 4,
+          "classical_equivalent_order_sensitive_decisions": 4,
+          "symbolic_conjunction_order_sensitive_decisions": 0,
+          "decision": "do not use contextual probability threshold as logical entailment"
+        }
+      },
+      {
+        "seed": 4139,
+        "frequency_results": [
+          {
+            "true_omega": 0.4,
+            "learned_omega": 0.4,
+            "held_condition_probability_rmse": 0.0,
+            "plausible_candidates": [
+              0.4,
+              0.42,
+              0.38,
+              0.44,
+              0.36
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 2.0,
+                "prediction_variance": 0.00041115110747752694,
+                "probabilities": [
+                  0.8483533546735827,
+                  0.833731412920654,
+                  0.8624180053704525,
+                  0.81857557209929,
+                  0.8759028645704474
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 3.201074712614351e-09,
+                  "probabilities": [
+                    0.999600053330489,
+                    0.9995590648231883,
+                    0.9996390434382425,
+                    0.9995160780802944,
+                    0.9996760349904884
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 1.9749323051182718e-06,
+                  "probabilities": [
+                    0.9900332889206209,
+                    0.9890154573620741,
+                    0.9910021175586352,
+                    0.9879487246653027,
+                    0.9919218463940608
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 3.0339329454694498e-05,
+                  "probabilities": [
+                    0.9605304970014426,
+                    0.9565444701561542,
+                    0.9643323177882551,
+                    0.9523758316099817,
+                    0.9679484118389675
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.00014341972645725914,
+                  "probabilities": [
+                    0.9126678074548391,
+                    0.9040137541560759,
+                    0.9209504875811344,
+                    0.8949961157486827,
+                    0.9288543406819121
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 0.00041115110747752694,
+                  "probabilities": [
+                    0.8483533546735827,
+                    0.833731412920654,
+                    0.8624180053704525,
+                    0.81857557209929,
+                    0.8759028645704474
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          },
+          {
+            "true_omega": 0.8,
+            "learned_omega": 0.82,
+            "held_condition_probability_rmse": 0.015504412694968786,
+            "plausible_candidates": [
+              0.82,
+              0.84,
+              0.8,
+              0.86,
+              0.78
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 2.0,
+                "prediction_variance": 0.0007947343800326692,
+                "probabilities": [
+                  0.46542577567296906,
+                  0.4455066238800644,
+                  0.48540023884935557,
+                  0.42567464986431824,
+                  0.5053980585291337
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 1.3420605938313577e-08,
+                  "probabilities": [
+                    0.998319941709243,
+                    0.9982370369880738,
+                    0.9984008531513097,
+                    0.9981521393194208,
+                    0.9984797709906285
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 7.945041325380244e-06,
+                  "probabilities": [
+                    0.9585604114083025,
+                    0.9565444701561542,
+                    0.9605304970014426,
+                    0.9544828748374424,
+                    0.9624545299286564
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 0.00010687941475967051,
+                  "probabilities": [
+                    0.8411106036438069,
+                    0.833731412920654,
+                    0.8483533546735827,
+                    0.8262187340820258,
+                    0.8554567690061388
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.00039933660300512416,
+                  "probabilities": [
+                    0.6671188635622514,
+                    0.6529084541891447,
+                    0.6811788772383367,
+                    0.6385604375282788,
+                    0.6950758421541151
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 0.0007947343800326692,
+                  "probabilities": [
+                    0.46542577567296906,
+                    0.4455066238800644,
+                    0.48540023884935557,
+                    0.42567464986431824,
+                    0.5053980585291337
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          },
+          {
+            "true_omega": 1.2,
+            "learned_omega": 1.18,
+            "held_condition_probability_rmse": 0.014551411813494931,
+            "plausible_candidates": [
+              1.18,
+              1.16,
+              1.2,
+              1.14,
+              1.22
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 1.5,
+                "prediction_variance": 0.0004319427316485934,
+                "probabilities": [
+                  0.4010555926954455,
+                  0.4158012760254617,
+                  0.38639895265345653,
+                  0.4306227325238113,
+                  0.3718445458862386
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 2.7721623397284532e-08,
+                  "probabilities": [
+                    0.996523037246109,
+                    0.9966397704737978,
+                    0.9964043179269332,
+                    0.9967545171430671,
+                    0.9962836129911474
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 1.5476333653955924e-05,
+                  "probabilities": [
+                    0.9154703395500817,
+                    0.9182313249575935,
+                    0.9126678074548391,
+                    0.9209504875811344,
+                    0.9098240089227398
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 0.0001709058225494629,
+                  "probabilities": [
+                    0.690462412183441,
+                    0.6996697647031366,
+                    0.6811788772383368,
+                    0.708797251979179,
+                    0.6718228731580236
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.0004319427316485934,
+                  "probabilities": [
+                    0.4010555926954455,
+                    0.4158012760254617,
+                    0.38639895265345653,
+                    0.4306227325238113,
+                    0.3718445458862386
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 0.0003964618340066741,
+                  "probabilities": [
+                    0.1451037218189398,
+                    0.15947205974642376,
+                    0.13130314222937728,
+                    0.17438516973622722,
+                    0.11809239896111297
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          },
+          {
+            "true_omega": 1.6,
+            "learned_omega": 1.58,
+            "held_condition_probability_rmse": 0.008599262379001067,
+            "plausible_candidates": [
+              1.58,
+              1.6,
+              1.56,
+              1.62,
+              1.54
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 1.5,
+                "prediction_variance": 0.00021863803152913694,
+                "probabilities": [
+                  0.14159947135672854,
+                  0.1313031422293771,
+                  0.15221833676854898,
+                  0.12133861538772814,
+                  0.16315018220271954
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 4.951641911354469e-08,
+                  "probabilities": [
+                    0.9937719725612614,
+                    0.9936136416878134,
+                    0.9939283283474774,
+                    0.993453336360457,
+                    0.9940827084210383
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 2.5228096200363844e-05,
+                  "probabilities": [
+                    0.8519226578261181,
+                    0.8483533546735827,
+                    0.8554567690061388,
+                    0.8447492164758734,
+                    0.8589553348054717
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 0.00019989242082781334,
+                  "probabilities": [
+                    0.4953982283655958,
+                    0.48540023884935557,
+                    0.5053980585291337,
+                    0.4754080890429147,
+                    0.5153957295412331
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.00021863803152913694,
+                  "probabilities": [
+                    0.14159947135672854,
+                    0.1313031422293771,
+                    0.15221833676854898,
+                    0.12133861538772814,
+                    0.16315018220271954
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 7.178622441847027e-07,
+                  "probabilities": [
+                    8.470520870082725e-05,
+                    0.0008526121026234629,
+                    0.00011655614353581216,
+                    0.0024190483380848436,
+                    0.0009481139524271854
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          }
+        ],
+        "contextual_comparison": {
+          "quantum": {
+            "model": "quantum",
+            "nll": 2178.930465751194,
+            "theta": 0.39269908169872414,
+            "phi": 0.7853981633974483,
+            "free_parameters": 2,
+            "grid_evaluations": 441,
+            "data_kind": "caller supplied; simulator experiment is synthetic, not human evidence",
+            "test_nll": 2214.1854092319754,
+            "elapsed_seconds": 0.010709917000000013
+          },
+          "classical_context": {
+            "model": "classical_context",
+            "nll": 2178.930465751194,
+            "theta": 0.39269908169872414,
+            "phi": 0.7853981633974483,
+            "free_parameters": 2,
+            "grid_evaluations": 441,
+            "data_kind": "caller supplied; simulator experiment is synthetic, not human evidence",
+            "test_nll": 2214.1854092319754,
+            "elapsed_seconds": 0.004824957999999935
+          }
+        },
+        "synthetic_only": true,
+        "order_invariant_logic_probe": {
+          "cases": 25,
+          "quantum_order_sensitive_decisions": 4,
+          "classical_equivalent_order_sensitive_decisions": 4,
+          "symbolic_conjunction_order_sensitive_decisions": 0,
+          "decision": "do not use contextual probability threshold as logical entailment"
+        }
+      },
+      {
+        "seed": 4153,
+        "frequency_results": [
+          {
+            "true_omega": 0.4,
+            "learned_omega": 0.4,
+            "held_condition_probability_rmse": 0.0,
+            "plausible_candidates": [
+              0.4,
+              0.42,
+              0.38,
+              0.44
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 2.0,
+                "prediction_variance": 0.0002670694354632849,
+                "probabilities": [
+                  0.8483533546735827,
+                  0.833731412920654,
+                  0.8624180053704525,
+                  0.81857557209929
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 2.10106544153211e-09,
+                  "probabilities": [
+                    0.999600053330489,
+                    0.9995590648231883,
+                    0.9996390434382425,
+                    0.9995160780802944
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 1.2954977306234893e-06,
+                  "probabilities": [
+                    0.9900332889206209,
+                    0.9890154573620741,
+                    0.9910021175586352,
+                    0.9879487246653027
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 1.9864156172111618e-05,
+                  "probabilities": [
+                    0.9605304970014426,
+                    0.9565444701561542,
+                    0.9643323177882551,
+                    0.9523758316099817
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 9.359901719405961e-05,
+                  "probabilities": [
+                    0.9126678074548391,
+                    0.9040137541560759,
+                    0.9209504875811344,
+                    0.8949961157486827
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 0.0002670694354632849,
+                  "probabilities": [
+                    0.8483533546735827,
+                    0.833731412920654,
+                    0.8624180053704525,
+                    0.81857557209929
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          },
+          {
+            "true_omega": 0.8,
+            "learned_omega": 0.78,
+            "held_condition_probability_rmse": 0.015385944640373253,
+            "plausible_candidates": [
+              0.78,
+              0.76,
+              0.8,
+              0.74,
+              0.82
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 2.0,
+                "prediction_variance": 0.0007984574922746291,
+                "probabilities": [
+                  0.5053980585291337,
+                  0.5253872424667897,
+                  0.48540023884935557,
+                  0.5453358122321549,
+                  0.46542577567296906
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 1.2146071246423707e-08,
+                  "probabilities": [
+                    0.9984797709906285,
+                    0.9985566949115277,
+                    0.9984008531513097,
+                    0.998631624606312,
+                    0.998319941709243
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 7.227839451992911e-06,
+                  "probabilities": [
+                    0.9624545299286564,
+                    0.9643323177882551,
+                    0.9605304970014426,
+                    0.9661636728030173,
+                    0.9585604114083025
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 9.888970049664765e-05,
+                  "probabilities": [
+                    0.8554567690061388,
+                    0.8624180053704525,
+                    0.8483533546735827,
+                    0.869234279364794,
+                    0.8411106036438069
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.0003811343577883655,
+                  "probabilities": [
+                    0.6950758421541151,
+                    0.708797251979179,
+                    0.6811788772383367,
+                    0.7223307583708536,
+                    0.6671188635622514
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 0.0007984574922746291,
+                  "probabilities": [
+                    0.5053980585291337,
+                    0.5253872424667897,
+                    0.48540023884935557,
+                    0.5453358122321549,
+                    0.46542577567296906
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          },
+          {
+            "true_omega": 1.2,
+            "learned_omega": 1.24,
+            "held_condition_probability_rmse": 0.02846790307281027,
+            "plausible_candidates": [
+              1.24,
+              1.26,
+              1.22,
+              1.28,
+              1.2
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 1.5,
+                "prediction_variance": 0.00041299028666432586,
+                "probabilities": [
+                  0.3574054703774896,
+                  0.3430947203205588,
+                  0.3718445458862386,
+                  0.32892517442455094,
+                  0.38639895265345653
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 3.05973269884507e-08,
+                  "probabilities": [
+                    0.9961609229215715,
+                    0.9960362482089653,
+                    0.9962836129911474,
+                    0.9959095893520279,
+                    0.9964043179269332
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 1.687933902055538e-05,
+                  "probabilities": [
+                    0.906939228331267,
+                    0.9040137541560759,
+                    0.9098240089227398,
+                    0.9010478789421462,
+                    0.9126678074548391
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 0.00017882334217923915,
+                  "probabilities": [
+                    0.6623981422193881,
+                    0.6529084541891447,
+                    0.6718228731580236,
+                    0.6433576048159777,
+                    0.6811788772383368
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.00041299028666432586,
+                  "probabilities": [
+                    0.3574054703774896,
+                    0.3430947203205588,
+                    0.3718445458862386,
+                    0.32892517442455094,
+                    0.38639895265345653
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 0.0003016960375553686,
+                  "probabilities": [
+                    0.10549262638523443,
+                    0.09352398145005501,
+                    0.11809239896111297,
+                    0.0822056114342962,
+                    0.13130314222937728
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          },
+          {
+            "true_omega": 1.6,
+            "learned_omega": 1.54,
+            "held_condition_probability_rmse": 0.026799111677283022,
+            "plausible_candidates": [
+              1.54,
+              1.52,
+              1.56,
+              1.5,
+              1.58
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 1.5,
+                "prediction_variance": 0.0002455716958330993,
+                "probabilities": [
+                  0.16315018220271954,
+                  0.17438516973622703,
+                  0.15221833676854898,
+                  0.18591318863863046,
+                  0.14159947135672854
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 4.7060738694929874e-08,
+                  "probabilities": [
+                    0.9940827084210383,
+                    0.9942351121644247,
+                    0.9939283283474774,
+                    0.9943855389680213,
+                    0.9937719725612614
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 2.4228369448021742e-05,
+                  "probabilities": [
+                    0.8589553348054717,
+                    0.8624180053704525,
+                    0.8554567690061388,
+                    0.8658444344369104,
+                    0.8519226578261181
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 0.0001997198415138078,
+                  "probabilities": [
+                    0.5153957295412331,
+                    0.5253872424667897,
+                    0.5053980585291337,
+                    0.5353686008338515,
+                    0.4953982283655958
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.0002455716958330993,
+                  "probabilities": [
+                    0.16315018220271954,
+                    0.17438516973622703,
+                    0.15221833676854898,
+                    0.18591318863863046,
+                    0.14159947135672854
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 3.471372015653327e-06,
+                  "probabilities": [
+                    0.0009481139524271854,
+                    0.0025780483202702594,
+                    0.00011655614353581216,
+                    0.005003751699777271,
+                    8.470520870082725e-05
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          }
+        ],
+        "contextual_comparison": {
+          "quantum": {
+            "model": "quantum",
+            "nll": 2187.744201621389,
+            "theta": 0.39269908169872414,
+            "phi": 0.7853981633974483,
+            "free_parameters": 2,
+            "grid_evaluations": 441,
+            "data_kind": "caller supplied; simulator experiment is synthetic, not human evidence",
+            "test_nll": 2168.3539827069594,
+            "elapsed_seconds": 0.010475624999999988
+          },
+          "classical_context": {
+            "model": "classical_context",
+            "nll": 2187.744201621389,
+            "theta": 0.39269908169872414,
+            "phi": 0.7853981633974483,
+            "free_parameters": 2,
+            "grid_evaluations": 441,
+            "data_kind": "caller supplied; simulator experiment is synthetic, not human evidence",
+            "test_nll": 2168.3539827069594,
+            "elapsed_seconds": 0.00493187500000003
+          }
+        },
+        "synthetic_only": true,
+        "order_invariant_logic_probe": {
+          "cases": 25,
+          "quantum_order_sensitive_decisions": 4,
+          "classical_equivalent_order_sensitive_decisions": 4,
+          "symbolic_conjunction_order_sensitive_decisions": 0,
+          "decision": "do not use contextual probability threshold as logical entailment"
+        }
+      },
+      {
+        "seed": 4177,
+        "frequency_results": [
+          {
+            "true_omega": 0.4,
+            "learned_omega": 0.42,
+            "held_condition_probability_rmse": 0.010110286341303598,
+            "plausible_candidates": [
+              0.42,
+              0.4,
+              0.44,
+              0.38,
+              0.46
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 2.0,
+                "prediction_variance": 0.00044299032305570793,
+                "probabilities": [
+                  0.833731412920654,
+                  0.8483533546735827,
+                  0.81857557209929,
+                  0.8624180053704525,
+                  0.8029100783217313
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 3.5287050951374014e-09,
+                  "probabilities": [
+                    0.9995590648231883,
+                    0.999600053330489,
+                    0.9995160780802944,
+                    0.9996390434382425,
+                    0.9994710932737543
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 2.174204086016683e-06,
+                  "probabilities": [
+                    0.9890154573620741,
+                    0.9900332889206209,
+                    0.9879487246653027,
+                    0.9910021175586352,
+                    0.9868331975026873
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 3.326198305936348e-05,
+                  "probabilities": [
+                    0.9565444701561542,
+                    0.9605304970014426,
+                    0.9523758316099817,
+                    0.9643323177882551,
+                    0.9480262487627628
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.00015612444198621764,
+                  "probabilities": [
+                    0.9040137541560759,
+                    0.9126678074548391,
+                    0.8949961157486827,
+                    0.9209504875811344,
+                    0.8856230074985534
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 0.00044299032305570793,
+                  "probabilities": [
+                    0.833731412920654,
+                    0.8483533546735827,
+                    0.81857557209929,
+                    0.8624180053704525,
+                    0.8029100783217313
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          },
+          {
+            "true_omega": 0.8,
+            "learned_omega": 0.76,
+            "held_condition_probability_rmse": 0.030636282490297977,
+            "plausible_candidates": [
+              0.76,
+              0.74,
+              0.78,
+              0.72,
+              0.8
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 2.0,
+                "prediction_variance": 0.0007964929678734367,
+                "probabilities": [
+                  0.5253872424667897,
+                  0.5453358122321549,
+                  0.5053980585291337,
+                  0.5652118543690728,
+                  0.48540023884935557
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 1.1532507253037151e-08,
+                  "probabilities": [
+                    0.9985566949115277,
+                    0.998631624606312,
+                    0.9984797709906285,
+                    0.9987045597752632,
+                    0.9984008531513097
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 6.87982926003687e-06,
+                  "probabilities": [
+                    0.9643323177882551,
+                    0.9661636728030173,
+                    0.9624545299286564,
+                    0.9679484118389675,
+                    0.9605304970014426
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 9.489423522418498e-05,
+                  "probabilities": [
+                    0.8624180053704525,
+                    0.869234279364794,
+                    0.8554567690061388,
+                    0.8759028645704474,
+                    0.8483533546735827
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.0003711725929239968,
+                  "probabilities": [
+                    0.708797251979179,
+                    0.7223307583708536,
+                    0.6950758421541151,
+                    0.73566418208687,
+                    0.6811788772383367
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 0.0007964929678734367,
+                  "probabilities": [
+                    0.5253872424667897,
+                    0.5453358122321549,
+                    0.5053980585291337,
+                    0.5652118543690728,
+                    0.48540023884935557
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          },
+          {
+            "true_omega": 1.2,
+            "learned_omega": 1.26,
+            "held_condition_probability_rmse": 0.04235694676402736,
+            "plausible_candidates": [
+              1.26,
+              1.24,
+              1.28,
+              1.22
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 1.5,
+                "prediction_variance": 0.0002558632921205433,
+                "probabilities": [
+                  0.3430947203205588,
+                  0.3574054703774896,
+                  0.32892517442455094,
+                  0.3718445458862386
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 1.9430667777528858e-08,
+                  "probabilities": [
+                    0.9960362482089653,
+                    0.9961609229215715,
+                    0.9959095893520279,
+                    0.9962836129911474
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 1.0697768094359982e-05,
+                  "probabilities": [
+                    0.9040137541560759,
+                    0.906939228331267,
+                    0.9010478789421462,
+                    0.9098240089227398
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 0.0001125417042032236,
+                  "probabilities": [
+                    0.6529084541891447,
+                    0.6623981422193881,
+                    0.6433576048159777,
+                    0.6718228731580236
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.0002558632921205433,
+                  "probabilities": [
+                    0.3430947203205588,
+                    0.3574054703774896,
+                    0.32892517442455094,
+                    0.3718445458862386
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 0.0001789913721049786,
+                  "probabilities": [
+                    0.09352398145005501,
+                    0.10549262638523443,
+                    0.0822056114342962,
+                    0.11809239896111297
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          },
+          {
+            "true_omega": 1.6,
+            "learned_omega": 1.6,
+            "held_condition_probability_rmse": 0.0,
+            "plausible_candidates": [
+              1.6,
+              1.58,
+              1.62,
+              1.56,
+              1.64
+            ],
+            "measurement_choice": {
+              "selected": {
+                "t": 1.5,
+                "prediction_variance": 0.00020518043110945004,
+                "probabilities": [
+                  0.1313031422293771,
+                  0.14159947135672854,
+                  0.12133861538772814,
+                  0.15221833676854898,
+                  0.11171485823335348
+                ]
+              },
+              "alternatives": [
+                {
+                  "t": 0.1,
+                  "prediction_variance": 5.0767080706808337e-08,
+                  "probabilities": [
+                    0.9936136416878134,
+                    0.9937719725612614,
+                    0.993453336360457,
+                    0.9939283283474774,
+                    0.9932910572204131
+                  ]
+                },
+                {
+                  "t": 0.5,
+                  "prediction_variance": 2.5727921528599688e-05,
+                  "probabilities": [
+                    0.8483533546735827,
+                    0.8519226578261181,
+                    0.8447492164758734,
+                    0.8554567690061388,
+                    0.8411106036438069
+                  ]
+                },
+                {
+                  "t": 1.0,
+                  "prediction_variance": 0.00019973893055343488,
+                  "probabilities": [
+                    0.48540023884935557,
+                    0.4953982283655958,
+                    0.4754080890429147,
+                    0.5053980585291337,
+                    0.46542577567296906
+                  ]
+                },
+                {
+                  "t": 1.5,
+                  "prediction_variance": 0.00020518043110945004,
+                  "probabilities": [
+                    0.1313031422293771,
+                    0.14159947135672854,
+                    0.12133861538772814,
+                    0.15221833676854898,
+                    0.11171485823335348
+                  ]
+                },
+                {
+                  "t": 2.0,
+                  "prediction_variance": 3.167039754817824e-06,
+                  "probabilities": [
+                    0.0008526121026234629,
+                    8.470520870082725e-05,
+                    0.0024190483380848436,
+                    0.00011655614353581216,
+                    0.004781507951263441
+                  ]
+                }
+              ],
+              "method": "maximize candidate prediction variance under uniform candidate weight",
+              "informative": true
+            }
+          }
+        ],
+        "contextual_comparison": {
+          "quantum": {
+            "model": "quantum",
+            "nll": 2178.930465751194,
+            "theta": 0.39269908169872414,
+            "phi": 0.7853981633974483,
+            "free_parameters": 2,
+            "grid_evaluations": 441,
+            "data_kind": "caller supplied; simulator experiment is synthetic, not human evidence",
+            "test_nll": 2224.7618922762103,
+            "elapsed_seconds": 0.010555957999999865
+          },
+          "classical_context": {
+            "model": "classical_context",
+            "nll": 2178.930465751194,
+            "theta": 0.39269908169872414,
+            "phi": 0.7853981633974483,
+            "free_parameters": 2,
+            "grid_evaluations": 441,
+            "data_kind": "caller supplied; simulator experiment is synthetic, not human evidence",
+            "test_nll": 2224.7618922762103,
+            "elapsed_seconds": 0.004888750000000108
+          }
+        },
+        "synthetic_only": true,
+        "order_invariant_logic_probe": {
+          "cases": 25,
+          "quantum_order_sensitive_decisions": 4,
+          "classical_equivalent_order_sensitive_decisions": 4,
+          "symbolic_conjunction_order_sensitive_decisions": 0,
+          "decision": "do not use contextual probability threshold as logical entailment"
+        }
+      }
+    ],
+    "cost": [
+      {
+        "qubits": 1,
+        "amplitudes": 2,
+        "complex128_payload_bytes": 32,
+        "python_storage_note": "Python objects/list overhead exceed the ideal payload estimate",
+        "elapsed_seconds": 4.133299999997675e-05,
+        "repeats": 100,
+        "normalization_error": 0.0
+      },
+      {
+        "qubits": 2,
+        "amplitudes": 4,
+        "complex128_payload_bytes": 64,
+        "python_storage_note": "Python objects/list overhead exceed the ideal payload estimate",
+        "elapsed_seconds": 5.449999999984634e-05,
+        "repeats": 100,
+        "normalization_error": 0.0
+      },
+      {
+        "qubits": 3,
+        "amplitudes": 8,
+        "complex128_payload_bytes": 128,
+        "python_storage_note": "Python objects/list overhead exceed the ideal payload estimate",
+        "elapsed_seconds": 8.608300000001456e-05,
+        "repeats": 100,
+        "normalization_error": 0.0
+      },
+      {
+        "qubits": 4,
+        "amplitudes": 16,
+        "complex128_payload_bytes": 256,
+        "python_storage_note": "Python objects/list overhead exceed the ideal payload estimate",
+        "elapsed_seconds": 0.00014508300000004581,
+        "repeats": 100,
+        "normalization_error": 0.0
+      },
+      {
+        "qubits": 5,
+        "amplitudes": 32,
+        "complex128_payload_bytes": 512,
+        "python_storage_note": "Python objects/list overhead exceed the ideal payload estimate",
+        "elapsed_seconds": 0.00026999999999999247,
+        "repeats": 100,
+        "normalization_error": 0.0
+      },
+      {
+        "qubits": 6,
+        "amplitudes": 64,
+        "complex128_payload_bytes": 1024,
+        "python_storage_note": "Python objects/list overhead exceed the ideal payload estimate",
+        "elapsed_seconds": 0.0005091249999999992,
+        "repeats": 100,
+        "normalization_error": 0.0
+      },
+      {
+        "qubits": 7,
+        "amplitudes": 128,
+        "complex128_payload_bytes": 2048,
+        "python_storage_note": "Python objects/list overhead exceed the ideal payload estimate",
+        "elapsed_seconds": 0.001021042000000083,
+        "repeats": 100,
+        "normalization_error": 0.0
+      },
+      {
+        "qubits": 8,
+        "amplitudes": 256,
+        "complex128_payload_bytes": 4096,
+        "python_storage_note": "Python objects/list overhead exceed the ideal payload estimate",
+        "elapsed_seconds": 0.0020255000000000134,
+        "repeats": 100,
+        "normalization_error": 0.0
+      }
+    ],
+    "probability_prediction_rmse": {
+      "mean": 0.01306557969594021,
+      "bootstrap_95_interval": [
+        0.007788103684543404,
+        0.017930929653240908
+      ],
+      "independent_seeds": 5
+    },
+    "decision": "No advantage over equivalent classical context model; no human cognitive data; no invention superiority; no hardware acquisition.",
+    "failures": []
+  },
+  "discovery": {
+    "model": {
+      "powers": [
+        [
+          1
+        ]
+      ],
+      "coefficients": [
+        1.0015542494511942
+      ],
+      "rmse": 0.8206216245261945,
+      "complexity": 2,
+      "score": 0.9206216245261944,
+      "status": "approximate",
+      "expression": "1.001554249*q",
+      "variables": [
+        "q"
+      ],
+      "candidates_evaluated": 6,
+      "compatible_candidates": 0,
+      "budget_exhausted": false,
+      "typed": false,
+      "target_dimension": null,
+      "limits": "Polynomial sums degree<=3, <=3 terms, dimensionless coefficients when typed; selection is relative to this grammar."
+    },
+    "train_rows": 24,
+    "evaluation_rows": 12,
+    "rmse": 0.9925501905688027,
+    "mean_baseline_rmse": 373.7670152434906,
+    "ordinary_least_squares_rmse": 0.9794151927080178,
+    "predictions": [
+      0.20031084989023884,
+      885.9748890645265,
+      667.3355964093306,
+      778.2076518235779,
+      0.6009325496707165,
+      338.52533631450365,
+      556.8641626948639,
+      888.97955181288,
+      0.30046627483535826,
+      888.5789301130995,
+      11.117252168908255,
+      670.139948307794
+    ],
+    "expected": [
+      0.1,
+      888.0,
+      668.5,
+      778.9,
+      0.1,
+      339.3,
+      557.7,
+      888.8,
+      0.6,
+      888.0,
+      10.2,
+      668.4
+    ],
+    "novelty": "controlled rediscovery of an existing published calibration relation",
+    "physical_units": "unspecified in primary file; native values only",
+    "independent_published_reference": {
+      "coefficients": [
+        -0.2623230737740414,
+        1.0021168180204545
+      ],
+      "certified_coefficients": [
+        -0.262323073774029,
+        1.00211681802045
+      ],
+      "absolute_errors": [
+        1.2378986724570495e-14,
+        4.440892098500626e-15
+      ],
+      "scope": "numerical algorithm reproduction on same observed dataset, not new independent measurement"
+    },
+    "provenance": {
+      "corpus_id": "nist-norris-v1",
+      "source_url": "https://www.itl.nist.gov/div898/strd/lls/data/LINKS/DATA/Norris.dat",
+      "source_page": "https://www.itl.nist.gov/div898/strd/lls/data/Norris.shtml",
+      "author": "Norris, J., National Institute of Standards and Technology",
+      "title": "Calibration of Ozone Monitors",
+      "retrieved_at": "2026-09-09T02:22:23.586988+00:00",
+      "license": {
+        "policy_url": "https://www.nist.gov/open/license",
+        "designation": "NIST employee-authored observed statistical reference data; attribution and NIST public-service terms apply",
+        "notice_file": "NOTICE-NIST.md",
+        "not_claimed": "Do not treat all NIST Standard Reference Data products as public domain; some SRD are licensed separately."
+      },
+      "units": {
+        "x": "unspecified",
+        "y": "unspecified"
+      },
+      "measurement_conditions": {
+        "x": "NIST ozone concentration measurement",
+        "y": "customer ozone concentration measurement",
+        "instrument_conditions": "not specified in available source",
+        "rows": 36
+      },
+      "uncertainty": {
+        "instrument": "not specified",
+        "published_residual_standard_deviation": 0.884796396144373,
+        "note": "regression residual is not instrument measurement uncertainty"
+      },
+      "data_kind": "observed",
+      "sha256": "5ab6906c68a9c4b2eb1661c0cd7d2a09f5a469a6d4e05b6b691f190f5f7b944f",
+      "observations_sha256": "689a997f7844db7e380d28ee75f4d1a54215a0b7921aa04003331e9e6a512d11",
+      "transformations": [
+        {
+          "date": "2026-09-09",
+          "operation": "parsed data section after Data: y x; reordered columns to x,y; preserved numeric values"
+        }
+      ],
+      "scientific_status": "published calibration relationship, controlled rediscovery only"
+    },
+    "physical_interpretation_approved": false,
+    "open_problem_gate": "closed: no expert novelty review or independent new dataset",
+    "failures": [
+      {
+        "check": "preregistered match to ordinary least squares within 1e-8",
+        "passed": false,
+        "difference": 0.01313499786078487,
+        "interpretation": "complexity penalty chose one term; retain negative result, do not tune after scoring"
+      }
+    ]
+  },
+  "elapsed_seconds": 1.7190055,
+  "reserved_scored": false,
+  "language_model_calls": 0,
+  "interpretation": "software and bounded-model pilot evidence; independent human/scientific external validation remains pending"
+}

@@ -1,0 +1,26 @@
+{
+  "registered_at": "2026-09-09T02:43:21.391139+00:00",
+  "code_hashes": {
+    "src/science/__init__.py": "7d3b30f5c1a5292ba8a5cd8d0d53eef224403db9183dbf5bc9fec84f422f1d05",
+    "src/science/discovery.py": "66e3fcc34165dbdc5533fa538a886ac6faddb854e64264ca67bb078809a0ae19",
+    "src/science/evaluation.py": "878533a1c4147b80d0f12a9c17bbea444197e77d4600d1ca943aa0db75b0120d",
+    "src/science/human_context.py": "a2a01920b07007b8122b5c11bafb4856155e976736ebb8eba20071ffdc8151da",
+    "src/science/learning.py": "232211cfcbe562c5d915076eacedbcf1bd1aa79971b3486f5cb3602ce78cadbc",
+    "src/science/numerics.py": "343aaf1df30a99a7715861047be0fedaffd82de4248fcf01a0556d85103989b8",
+    "src/science/physics.py": "015a615d570a845d2856795e30119c0108c1b51aa0c650cab9be644bc1710a30",
+    "src/science/quantum.py": "e5a7a2093e516d69f24ad7f29184829546ed84c2ac51d337f168fd1612712191",
+    "src/science/symbolic.py": "d6df86a697b2967d08966cd61ab388927c58d7fabd8b759708135c9460edd737",
+    "scripts/evaluate_science.py": "3e868081597775dde403a2c4683d1e74a442b6c85a47b49dc5508eb5b924a602",
+    "experiments/science/protocol.v1.json": "0599a05d7932c54952c9c605e2a3ae0ecc53e712a3293c8f3c8aeb1e3573fb98",
+    "experiments/science/supplement.v1.json": "5513ed403965f0d0355c8ca8edaa1f71ca0f71b46727f88486c070de977ba684",
+    "src/cognition/sandbox.py": "6b893f7c898e0d32aae605d9ec931e953d4ee9a477640471c35ad709b3d84fd8",
+    "src/cognition/sandbox_worker.py": "699c3a564d3ab7acac938189f0ec8e07de8a024b84fc96955c7121d25b985d85",
+    "experiments/science/corpus/human-context.observations.v1.json": "e37cc51fddcd58fb32f42a8628df4f901432cbf3b09019322b8a7b328b077ab3",
+    "experiments/science/corpus/nist-norris.metadata.v1.json": "100cfc5902644dc5506d25b25591fb095be3ff008e0cb4b3af1f4069a44fe8a4",
+    "experiments/science/corpus/nist-norris.observations.v1.json": "689a997f7844db7e380d28ee75f4d1a54215a0b7921aa04003331e9e6a512d11",
+    "experiments/science/corpus/prior-art.v1.json": "4d6e69524ed64290f3a9d37e358ea431bc574e126c95d9bd1b499046c2ab73d6",
+    "experiments/science/corpus/Norris.dat": "5ab6906c68a9c4b2eb1661c0cd7d2a09f5a469a6d4e05b6b691f190f5f7b944f",
+    "experiments/science/human-context.protocol.v1.json": "95a62f11590084591cb7cf1e3c1280055c36a3de06ef0d0e963004a1895a3f86"
+  },
+  "scored": false
+}

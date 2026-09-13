@@ -1,0 +1,38 @@
+{
+  "dataset_id": "tum-fr1-xyz-v1",
+  "dataset_kind": "measured",
+  "source_url": "https://cvg.cit.tum.de/rgbd/dataset/freiburg1/rgbd_dataset_freiburg1_xyz-groundtruth.txt",
+  "resolved_source_url": "https://webshare.cvg.cit.tum.de/g/rgbd/dataset/freiburg1/rgbd_dataset_freiburg1_xyz-groundtruth.txt",
+  "raw_filename": "tum-fr1-xyz-groundtruth.txt",
+  "sha256": "aac0319a6ef4e1cdf61e779d2152b95aa7e9f7b1749d6d18717b43ddabffede2",
+  "source_reverified_at": "2026-09-13T01:08:08.616471+00:00",
+  "upstream_bytes": 201100,
+  "attribution": "J. Sturm, N. Engelhard, F. Endres, W. Burgard, D. Cremers. A Benchmark for the Evaluation of RGB-D SLAM Systems. IROS 2012.",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "license_evidence_url": "https://cvg.cit.tum.de/data/datasets/rgbd-dataset",
+  "paper_url": "https://cvg.cit.tum.de/_media/spezial/bib/sturm12iros.pdf",
+  "format_url": "https://cvg.cit.tum.de/data/datasets/rgbd-dataset/file_formats",
+  "conditions_url": "https://cvg.cit.tum.de/data/datasets/rgbd-dataset/download#testing_and_debugging",
+  "units": {
+    "timestamp": "s since Unix epoch",
+    "x": "m",
+    "y": "m",
+    "z": "m",
+    "quaternion": "dimensionless"
+  },
+  "frame": "optical center of RGB camera in fixed motion-capture world frame; each world coordinate is analyzed independently",
+  "conditions": "Handheld Kinect facing an office desk; translations along camera principal axes with orientation mostly fixed; world-axis acceleration and applied forces were not controlled or provided.",
+  "measurement": "External MotionAnalysis motion-capture system, nominal 100 Hz; this is not Kinect depth accuracy.",
+  "uncertainty": {
+    "published_relative_frame_error_below_m": 0.001,
+    "published_absolute_area_error_below_m": 0.01,
+    "published_absolute_rotation_error_below_deg": 0.5,
+    "per_sample_covariance": null,
+    "time_uncertainty_s": null,
+    "temporal_error_correlation": null,
+    "note": "IROS 2012 section VI.C empirical bounds; not a calibrated probability distribution for every pose. Do not equate relative one-frame error with multi-second absolute prediction uncertainty."
+  },
+  "transformation": "Raw numeric text unchanged; evaluation makes timestamp-relative slices, decimates by timestamp, separates world x/y/z; no image or human identity data used.",
+  "physical_interpretation_approved": "Observed camera position-time data suitable for bounded kinematic falsification; does not measure force, mass, or unknown physical law."
+}

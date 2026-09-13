@@ -1,0 +1,65 @@
+{
+  "protocol": {
+    "schema_version": 1,
+    "id": "continuous-learning-pilot-v1",
+    "domain": "two explicitly identified scalar linear tasks y = w_task * x",
+    "seeds": [
+      71,
+      83,
+      97,
+      109,
+      127
+    ],
+    "training_x": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "validation_x": [
+      5,
+      6,
+      7
+    ],
+    "retention_x": [
+      -1,
+      -2,
+      -3
+    ],
+    "learner": "per-task least squares through origin; coefficients learned, task decomposition supplied",
+    "conditions": [
+      "new-task-only",
+      "experience-replay",
+      "preserve-old-module"
+    ],
+    "policy": {
+      "training_consent": true,
+      "min_gain": 0.01,
+      "max_validation_error": 1e-10,
+      "max_forgetting": 1e-10,
+      "protocol_id": "continuous-learning-pilot-v1",
+      "limit": 100
+    },
+    "decision": {
+      "first_task": "adopt iff validation improves and retention gate passes",
+      "second_task": "new-task-only must be rejected if old-task MSE rises; replay and modular preservation evaluated under same gate",
+      "withdrawal": "dependent active version disabled and dependent weights removed by explicit forget",
+      "changed_domain": "withdraw obsolete observations, fit new coefficient, and validate on new held-out targets"
+    },
+    "limits": [
+      "Synthetic software and learning-control experiment, not a scientific reserved test or neural learning claim",
+      "Task identifier and linear hypothesis class are supplied, not discovered",
+      "Selected training rows are disjoint by source ID and numerical content from held-out and retention rows",
+      "Protocol and source hashes are saved before fitting; wall time and RSS depend on machine"
+    ]
+  },
+  "sha256": {
+    "experiments/learning/protocol.v1.json": "cf6aa397ce02adb7fd1f8e8aee96dfa90a54481053efc5f2d188fee34862a201",
+    "scripts/evaluate_learning.py": "8f132cc9622dedeb431481f70cd6207bcb85b240944440bea5ef6802f05a9d1a",
+    "src/cognition/learning.py": "537db7af1525c82e507c7a576c5253711320d7dfac652416c421e65b637fb8fc",
+    "src/cognition/store.py": "b1c1e34630a616f063e0ec15eea6606f9396eefc35368e33b80fdfef0a47a34b"
+  },
+  "python": "3.9.6 (default, Dec  2 2025, 07:27:58) \n[Clang 17.0.0 (clang-1700.6.3.2)]",
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "registered_before_training": true
+}

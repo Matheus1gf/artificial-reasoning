@@ -20,6 +20,8 @@ def runtime_available():
 
 def start_local_runtime(settings):
     """Return an owned child process, or None for an existing/external provider."""
+    if getattr(settings, "research_mode", True):
+        return None
     executable = ROOT / ".runtime/ollama/ollama"
     if (settings.provider != "ollama" or settings.base_url.rstrip("/") not in
             {"http://127.0.0.1:11434", "http://localhost:11434"} or not executable.is_file()):

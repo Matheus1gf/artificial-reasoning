@@ -1,0 +1,16 @@
+{
+  "registered_at": "2026-09-09T02:23:49.419904+00:00",
+  "code_hashes": {
+    "src/science/__init__.py": "e73ebddfc6f6cf35f79422f6b8006bf132d69505f9e327af971f6cbee0e0db78",
+    "src/science/discovery.py": "24a0bc2882992162efd77c0269402ae74e796da7a6eb9a5d9e71060db4b937c0",
+    "src/science/evaluation.py": "52ac427ec5b01b2ff4919d86719d3725a0ebbbd6d6a5341712ec88f634306190",
+    "src/science/learning.py": "232211cfcbe562c5d915076eacedbcf1bd1aa79971b3486f5cb3602ce78cadbc",
+    "src/science/numerics.py": "343aaf1df30a99a7715861047be0fedaffd82de4248fcf01a0556d85103989b8",
+    "src/science/physics.py": "bb6b4ce260e1511f7684e834a6c2e6ce0916bae8cd966d2a834db2bde45e075e",
+    "src/science/quantum.py": "b0c6f697cdf27a2ea9deefb29de4306e036454b3c416ce90c954dcbabc65ab06",
+    "src/science/symbolic.py": "07141c426743f9f56252765f8a783f45e81cc5c107dc2d25bf973aeab2ab61ba",
+    "scripts/evaluate_science.py": "3e868081597775dde403a2c4683d1e74a442b6c85a47b49dc5508eb5b924a602",
+    "experiments/science/protocol.v1.json": "0599a05d7932c54952c9c605e2a3ae0ecc53e712a3293c8f3c8aeb1e3573fb98"
+  },
+  "scored": false
+}

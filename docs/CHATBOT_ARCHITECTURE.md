@@ -1,101 +1,116 @@
-# Arquitetura do chatbot
+# Arquitetura do núcleo conversacional
 
-> Este documento descreve a implementação atual, em que o modelo de linguagem ainda participa da extração e da resposta geral. A arquitetura pretendida, com processamento próprio da questão e raciocínio antes da redação pelo Qwen, está planejada no [TODO principal](../TODO.md). Os itens desse plano ainda precisam ser implementados e avaliados.
+Estado da implementação em setembro de 2026. O [TODO](../TODO.md) distingue requisitos aprovados, parciais e pendentes. A presente arquitetura substitui o fluxo em que Qwen extraía fatos e respondia com conhecimento próprio.
 
-## Objetivo e alcance
-
-Transformar experiências de conversa em conhecimento reutilizável e em propostas que possam ser revistas. O chatbot é o novo laboratório do projeto: o domínio não está limitado a pássaros e os dados do protótipo de visão não são carregados no seu banco.
-
-O núcleo implementa memória persistente e regras de inferência explícitas. Um modelo neural de uso geral é o interlocutor principal. A mensagem atual determina a resposta; o histórico da conversa resolve referências e continuidade; as memórias estruturadas são apoio opcional. Essa divisão permite observar quais conclusões dependem de conhecimentos ensinados durante o uso, sem atribuir ao aprendizado recente aquilo que já estava no treinamento do modelo.
+## Fronteira principal
 
 ```mermaid
 flowchart TD
-    A[Mensagem do usuário] --> B[Extração de afirmações]
-    B --> C[Validação de trecho, modalidade e escopo]
-    C --> D[Memória SQLite com origem]
-    A --> E[Histórico da conversa]
-    D --> F[Dedução com premissas explícitas]
-    D --> G[Recuperação de memórias relevantes]
-    F --> G
-    G --> H[Oposição, analogia e composição]
-    H --> I[Hipóteses e formas de verificação]
-    G --> J[Resposta simbólica ou neural]
-    I --> J
-    J --> E
-    K[Correção ou retirada] --> D
-    K --> L[Revisão das conclusões dependentes]
-    L --> G
+    M[Mensagem + contexto desta conversa] --> P[Processador próprio]
+    P --> S[ProblemSpec versionado]
+    S --> K[Núcleo de raciocínio]
+    E[Memória com origem e escopo] --> K
+    K --> L[Lógica, busca e cálculos]
+    K --> X[Laboratórios físicos e quânticos]
+    L --> V[Verificação]
+    X --> V
+    V --> A[AnswerPackage imutável]
+    A --> D[Renderização determinística]
+    A --> Q[Organizador opcional: ordem dos trechos]
+    Q --> F[Validação da permutação]
+    F -->|válida| R[Resposta persistida]
+    F -->|inválida ou indisponível| D
+    D --> R
+    R --> U[Texto exibido no chat]
+    S --> E
+    X --> E
+    E --> C[Consolidação e avaliação separadas]
+    C -->|ganho e retenção aprovados| E
 ```
 
-A resposta do assistente vai para o histórico. **Não existe uma seta que transforme automaticamente essa resposta em evidência factual.**
+A resposta do organizador não alimenta a memória como evidência. No modo de pesquisa, a aresta até Qwen não é executada; o adaptador de rede também bloqueia suas chamadas. Iniciar a aplicação nesse modo não inicia nem baixa modelos gerais.
 
-## Representação e origem
+## Contratos e responsabilidades
 
-Uma afirmação é representada por sujeito, relação, objeto, polaridade e escopo. Por exemplo:
-
-```text
-M1: cristal — emite — luz      [universal, informado pelo usuário]
-M2: neral   — é     — cristal  [instância, informado pelo usuário]
-M3: neral   — emite — luz      [dedução; depende de M1 e M2]
-```
-
-Os textos são normalizados para comparação, inclusive removendo acentos dos conceitos. A mensagem e a citação de origem preservam o texto original. Uma frase genérica como “um cristal emite luz” não vira uma regra para todos os cristais: no extrator local, a universalidade exige `todo`, `toda` ou `cada`.
-
-| Estado | Significado e uso |
+| Módulo | Responsabilidade |
 | --- | --- |
-| `asserted` | Informado pelo usuário; pode ser usado como premissa, sem alegação de verificação externa. |
-| `deduced` | Conclusão condicional apoiada em premissas ativas e regra de dedução. |
-| `hypothesis` | Proposta incerta, do usuário ou do motor; não fundamenta deduções factuais. |
-| `disputed` | Afirmação em conflito; seu uso como premissa fica suspenso. |
-| `retracted` | Retirada explicitamente ou por perda de uma premissa; permanece na trilha de auditoria. |
+| `src/cognition/processor.py` | Interpretar português controlado ou uma tarefa JSON; resolver referências, preservar informações fornecidas e indicar ambiguidade |
+| `src/chat/discourse.py` | Separar alvo, referência e suposição local; decompor funções, conjunções, negações e qualificações causais |
+| `src/chat/reasoner.py` | Gerar hipóteses por oposição/analogia e compor conversões; repetir a transformação no verificador antes da persistência |
+| `src/chat/memory.py` | Conservar premissas e fontes; revisar relações e invalidar hipóteses que perderam apoio |
+| `src/cognition/contracts.py` | Validar e congelar `ProblemSpec`/`AnswerPackage`; produzir hash e validar organização dos trechos |
+| `src/cognition/engine.py` | Escolher operação, executar mecanismos próprios e construir o conteúdo aprovado |
+| `src/cognition/reasoning.py` | Inferências com variáveis, verificação, busca de planos, hipóteses, intervenções e aritmética |
+| `src/cognition/store.py` | Guardar estruturas tipadas, fontes, escopos, incertezas, dependências e modelos versionados |
+| `src/cognition/learning.py` | Selecionar dados, medir ganho/ retenção e controlar adoção/reversão de versões |
+| `src/cognition/neural.py` | Treinar e consultar o classificador próprio de intenção; registrar a proposta sem lhe atribuir autoridade semântica |
+| `src/cognition/operators.py` | Ajustar transições, manter candidatos, selecionar consultas e compor programas verificáveis em uma família explícita |
+| `src/cognition/operator_runtime.py` | Integrar modelos e procedimentos ao chat, preservar contraprovas e recuperar operações concluídas sem repetir seus efeitos |
+| `src/science/` | Executar operações quantitativas em domínios explícitos e produzir resultados de teste |
+| `src/chat/engine.py` | Integrar histórico, núcleo, experiência e redação; persistir envios recuperáveis |
+| `src/chat/server.py` | API local, fila limitada, progresso, cancelamento, configuração e exportação |
+| `src/chat/web/` | Conversa e inspeção de evidências, sem interpretar HTML de mensagens |
 
-`sources` relaciona afirmações a mensagens do usuário e a trechos literais. `dependencies` registra as premissas das conclusões. `events` registra aprendizado, inferências, conflitos e retiradas. Uma conclusão pode passar a ter apoio direto se o usuário a afirmar explicitamente; isso representa uma nova fonte humana, não confirmação científica.
+`ProblemSpec` contém versão, mensagem, intenção, entidades, relações, fatos, pergunta, metas, restrições, contexto, ambiguidades e carga estruturada. `AnswerPackage` contém identidade do problema, status, trechos aprovados, conclusões, premissas, fontes, hipóteses, cálculos, verificações, incerteza, limitações, esclarecimentos, domínio e operações. Estados de saída: `answered`, `ambiguous`, `unknown`, `contradictory`, `budget_exhausted`.
 
-## Ciclo de uma interação
+Os contratos armazenam JSON canônico imutável; acessar suas propriedades devolve dados destacados. O hash identifica o conteúdo efetivamente aprovado. Validar o esquema não prova, por si só, a verdade de uma conclusão: cada operador registra a verificação correspondente e os pressupostos que delimitam seu resultado.
 
-1. Validar o pedido e verificar se o identificador de envio já foi processado.
-2. Recuperar o histórico e o referente recente da própria conversa.
-3. Extrair afirmações localmente e, quando necessário, com JSON estruturado do modelo neural. Perguntas e comandos reconhecidos não exigem essa segunda chamada. Validar trechos e rejeitar saídas sem apoio textual, perguntas, instruções e modalidades indevidamente omitidas.
-4. Registrar a mensagem e integrar afirmações, correções e conflitos.
-5. Aplicar deduções por pertencimento a uma classe e por regras universais explícitas. O ciclo é limitado a quatro passagens e até 32 propostas por passagem.
-6. Recuperar memórias por correspondência de conceitos e cobertura lexical, incluindo suporte às conclusões selecionadas. Um conceito explicitamente solicitado precisa estar representado na memória candidata: compartilhar apenas “buraco” ou “banco” não basta para confundir conceitos compostos diferentes. Priorizar fontes da conversa atual. O mecanismo ainda não usa embeddings.
-7. Executar a exploração solicitada: oposição, analogia ou composição. Guardar as propostas com suas premissas e sua condição de hipótese.
-8. Enviar histórico em mensagens nativas `user`/`assistant`, preservando turnos já respondidos, seguido da última mensagem do usuário. Incluir memória compacta como contexto auxiliar e gerar uma resposta direta ao pedido, usando conhecimento geral quando necessário. Transmitir o texto progressivamente, registrar os metadados e confirmar a transação.
+## Interpretação e inferência
 
-O mesmo identificador de envio retorna o mesmo resultado, sem aprender duas vezes. Uma falha inesperada ou na geração reverte o turno inteiro e exibe um erro para permitir reenvio. Falha na extração adicional não desativa a conversa neural. A trava local e a transação serializam os turnos, inclusive durante chamadas ao modelo; essa implementação prioriza consistência de um laboratório pessoal e pode bloquear outras leituras enquanto o modelo responde.
+O processador inicial é uma gramática finita de português e um protocolo JSON. Identifica afirmações, perguntas, correções, hipóteses, preferências e pedidos específicos. Mantém referentes e última resposta aprovada da conversa, além de quantidades, unidades, intervalos e expressões. Ambiguidade tem saída explícita. Cobertura fora do corpus e de estruturas declaradas não é prometida; os modelos próprios de compreensão são avaliados separadamente.
 
-`/api/chat/stream` transmite eventos NDJSON de texto e conclusão. O navegador exibe o texto durante a geração, e o servidor só informa sucesso após a persistência. A desconexão do navegador não cancela um turno já iniciado; o mesmo identificador permite recuperar seu resultado. Uma resposta parcial do provedor sem evento de conclusão gera erro. O histórico permanece separado por conversa, limitado a 24 mil caracteres recentes no contexto do modelo; isso não implica lembrança ilimitada de um diálogo longo.
+A memória de triplas anterior continua útil para enunciados como “Todo cristal emite luz” e “Neral é cristal”. A dedução resultante passa por um verificador próprio antes de entrar no texto, inclusive quando as premissas foram inseridas em ordem diferente. Afirmações humanas são premissas condicionais, e não evidência científica externa.
 
-## Como o raciocínio funciona
+Operadores estruturados permitem declarar relações, regras, estados, ações, observações, modelos causais, metas e orçamento. A dedução resolve variáveis e emite uma derivação verificável. Planejamento procura ações aplicáveis, confere a sequência e reconhece metas inalcançáveis no orçamento. Indução e abdução trabalham com classes candidatas explícitas; analogia requer correspondência de papéis. Contrafactuais dependem do modelo estrutural fornecido e não são identificados apenas por correlação.
 
-**Dedução:** se o usuário informa “Todo C possui P” e “X é C”, aplica P a X. A conclusão depende de ambas as premissas. Não há lógica de primeira ordem geral, quantificação existencial, raciocínio causal ou solução geral de contradições.
+Oposição linguística continua disponível como gerador limitado de hipóteses, com vocabulário declarado. Não prova a existência do oposto de uma entidade. Um pedido sobre “buraco de minhoca” não recupera “buraco negro” apenas por compartilhar uma palavra. Sem evidência pertinente, o núcleo responde com a lacuna específica.
 
-**Oposição:** inverte uma relação usando pares linguísticos iniciais ou pares ensinados com “O oposto de A é B”. Pode inverter palavras do nome ou propor “contraparte de X”. Inverter uma função gera uma possibilidade conceitual; não implica que todo fenômeno tenha um oposto realizável, nem que a entidade exista.
+### Correção do fluxo de conversa natural
 
-**Analogia:** procura entidades que compartilham relações e sugere testar uma propriedade adicional de uma delas na outra. Cada proposta referencia a propriedade transferida e as relações compartilhadas nas duas entidades. Uma afirmação negativa explícita bloqueia uma transferência incompatível. Não há garantia de equivalência estrutural profunda ou causal.
+Uma definição como “Neral é um dispositivo que armazena energia” produz uma relação de tipo e uma função, com a citação original. Conjunções preservam objetos e negações. Expressões causais são registradas como qualificações fornecidas; o mecanismo de oposição não transporta nem inverte causas. Definições antigas armazenadas numa única afirmação são lidas como projeções estruturadas com o mesmo ID e procedência, sem reescrever o histórico ou contar as projeções como evidências independentes.
 
-**Composição:** combina funções de dois ou três sujeitos relevantes em uma proposta de sistema e sugere verificar suas interfaces, compatibilidade e efeitos. A versão simbólica gera uma composição funcional simples; não sintetiza um projeto de engenharia nem mede sua novidade. O modelo neural pode desenvolver a apresentação da ideia, mas isso não a valida.
+O enquadramento da pergunta separa **alvo** e **referência**. “Considerando que Vetra é o inverso de Neral, o que Vetra faria?” aplica uma suposição restrita à pergunta. Perguntar se a relação existe não a ensina. Negar a suposição bloqueia sua aplicação, inclusive se a memória global contém a relação positiva. Uma pergunta sobre outra entidade não herda automaticamente essa suposição.
 
-## Revisão e contradições
+A oposição usa pares linguísticos declarados em `VERBAL_PAIRS` ou relações fornecidas. Uma relação fornecida substitui o mapeamento anterior aplicável; hipóteses antigas são reavaliadas e retiradas quando perdem apoio. Não há regra que invente nomes científicos por troca de cores. Para uma contraparte sem nome informado, o sistema usa uma descrição genérica. A analogia transfere uma propriedade como hipótese quando encontra características compartilhadas. A composição procura uma sequência de conversões que alcance a meta, com limite de seis etapas e orçamento finito.
 
-“Corrigindo: ...” substitui afirmações ativas com o mesmo sujeito, relação e escopo. A substituição não é limitada ao mesmo objeto: “Corrigindo: Neral absorve luz” pode substituir a relação anterior “Neral absorve energia”. Fora de uma correção explícita, uma relação pode ter vários objetos. É uma convenção do protótipo; para mudanças ambíguas, retire o conhecimento específico pelo painel.
+O verificador refaz a transformação e exige objetos, polaridade, escopo, componentes e premissas compatíveis. A verificação antecede a persistência e é repetida antes da apresentação. Relações negativas simétricas e fontes retiradas invalidam dependentes. Uma hipótese recuperada continua marcada como hipótese: repetir a resposta não fornece confirmação independente. O pacote inclui a operação, suas fontes, o escopo temporário quando aplicável e uma proposta de teste. No caso de composição, confere-se a cadeia simbólica; perdas, interfaces e mecanismos físicos continuam sem validação se não foram modelados.
 
-A perda de uma premissa invalida as conclusões dependentes em cascata. Conclusões com nova evidência podem ser deduzidas novamente. Retiradas explícitas são respeitadas e não reaparecem pela mera repetição da mesma pergunta. Repetir uma hipótese não aumenta sua autoridade. Tornar incerta uma premissa antes afirmada também revisa as deduções dependentes.
+Esses mecanismos ampliam o português controlado, mas continuam sendo operadores fornecidos pelo programa. O classificador neural próprio não recebeu autoridade para inventar premissas, e não há treinamento automático de pesos a cada mensagem. A correção conversacional tem avaliação de regressão própria; não amplia retroativamente os resultados científicos dos pilotos anteriores.
 
-Contradições detectadas são polaridades opostas da mesma relação e objeto, ou conclusões de regras universais incompatíveis com uma afirmação específica. Incompatibilidades semânticas como dois locais mutuamente exclusivos ainda exigem regras adicionais. O histórico não é reescrito: o painel e os cartões de evidência apresentam o estado atual; o modelo recebe também uma lista limitada de conhecimentos retirados.
+## Ciclo de um envio e recuperação
 
-## Provedores neurais
+1. Validar conteúdo/identificador, verificar cache e obter o contexto da conversa.
+2. Construir `ProblemSpec` antes de qualquer chamada ao organizador.
+3. Persistir mensagem e atualização imediata de premissas em transação curta.
+4. Registrar experiência, revisar dependências e selecionar conhecimento.
+5. Resolver e verificar o problema fora da transação do histórico.
+6. Construir pacote imutável; renderizar diretamente ou consultar o organizador opcional.
+7. Conferir a organização, persistir resposta/metadados e só então exibir o texto aprovado.
 
-O adaptador Ollama usa `/api/chat`, `format` com JSON Schema para extração e streaming para respostas da interface. O adaptador OpenAI usa `/v1/responses`, `text.format` com esquema estrito, eventos de resposta e `store: false`. Esse último parâmetro não substitui a política de tratamento de dados do provedor. A chave é lida somente de `OPENAI_API_KEY` no processo servidor. O histórico é enviado com seus papéis nativos em ambos os provedores, em vez de ser serializado junto com a pergunta em um único bloco JSON.
+Um turno interrompido conserva o problema e o identificador para retomada. A retomada não reaplica aprendizado/correção já persistidos. Envios concorrentes do mesmo identificador e conteúdo retornam a mesma resposta do cache, sem duplicar mensagens. Reutilizar o identificador para outro conteúdo é recusado.
 
-O modelo local instalado pelo projeto é `qwen3.5:9b`. `scripts/setup_local_model.py` prepara runtime e pesos. `runtime.py` inicia apenas o executável local conhecido e somente para o endereço local padrão, aproveitando um servidor que já esteja ativo. A aplicação encerra apenas os processos que ela própria iniciou. O instalador não altera a configuração para o novo modelo se o download falhar.
+Operações que alteram modelos e procedimentos gravam seus efeitos e o resultado recuperável na mesma transação curta da memória tipada. O cálculo e a busca ocorrem antes dessa transação. O pacote aprovado também é conservado no histórico antes da redação; a recuperação confere se suas fontes continuam ativas, inclusive premissas do histórico antigo. Uma fonte retirada durante a interrupção impede reapresentar o resultado pendente como válido.
 
-As mensagens, o referente e, para a resposta, o contexto selecionado são enviados ao provedor configurado. O prompt distingue conhecimentos do treinamento do modelo, premissas do usuário, deduções e hipóteses. Saídas malformadas são rejeitadas; os filtros textuais reduzem erros de extração, mas não provam que uma frase foi semanticamente interpretada corretamente. A qualidade precisa ser medida com o modelo escolhido.
+A fila local admite até oito participantes; o núcleo serializa turnos. Operações demoradas não seguram a transação do histórico. O cancelamento é cooperativo entre etapas, com limite mais forte no executor de programas. Uma chamada síncrona ao provedor pode esperar seu timeout antes de observar cancelamento. Desconectar a página não equivale a cancelar; é possível recuperar o envio pelo identificador.
 
-Referências de implementação: [API de chat do Ollama](https://docs.ollama.com/api/chat), [Structured Outputs do Ollama](https://docs.ollama.com/capabilities/structured-outputs), [Structured Outputs da OpenAI](https://developers.openai.com/api/docs/guides/structured-outputs) e [Responses API](https://developers.openai.com/api/reference/typescript/resources/responses/methods/create).
+## Redação fiel e streaming
 
-## Validação e limites
+Qwen recebe trechos completos com IDs e devolve apenas sua ordem. A resposta precisa conter cada ID exatamente uma vez, sem campos extras. Alterar conteúdo, inventar identificador, omitir trecho, repetir trecho ou falhar no provedor faz o sistema usar a ordem determinística. A prosa do modelo não é exibida.
 
-A suíte `tests/chat` usa bancos temporários, conceitos fictícios e servidores HTTP locais. Verifica aprendizado, correções, contexto, mudança de assunto e streaming. Os testes unitários dos provedores usam respostas simuladas. `scripts/evaluate_conversation.py` registra separadamente respostas de um modelo real para revisão qualitativa, com latência e memórias recuperadas. O modelo local já foi exercitado com perguntas gerais, referências à última resposta, mudança de assunto, resumo e código; isso não constitui uma avaliação ampla de sua confiabilidade.
+Essa decisão limita a melhoria estilística oferecida pelo Qwen. O benefício arquitetural testado é independência do núcleo e preservação literal dos fatos, números, unidades e negações dos trechos. Não alegamos ter um verificador geral de paráfrases nem de redação livre.
 
-O aprendizado atual altera memória e relações, não os pesos do modelo. A recuperação lexical, os verbos conhecidos pelo extrator simbólico, a leitura de toda a memória e o número limitado de passagens restringem cobertura e escala. Não há ainda avaliação de novidade, causalidade, aprendizagem de novas regras lógicas, verificador científico, treinamento incremental ou comparação experimental com um LLM sem memória. O [roteiro](CHATBOT_ROADMAP.md) define essas próximas etapas sem presumir resultados.
+`/api/chat/stream` separa eventos `progress`, `delta`, `done` e `error`. `delta` só contém a resposta já verificada e persistida. A interface apresenta o estado do processamento e permite expandir evidências e métricas sem impor JSON à leitura da resposta comum.
+
+## Aprendizado, física e operação
+
+O chat registra experiências imediatamente; o controlador de aprendizado aplica uma política separada para treinar e adotar pesos. Fontes de treino e da validação permanecem ligadas à versão. A retirada de uma dessas fontes impede reativação do modelo afetado. Consulte [memória, aprendizado e operação](research/MEMORY_LEARNING_OPERATIONS.md) para seleção, replay, módulos, migração, exclusão e privacidade.
+
+No fluxo conversacional `learn_operator` → `apply_operator` → `invent` → `test_operator`, observações do usuário ajustam um modelo condicional da família `y=a*x+b`, com coeficientes e domínio limitados. O núcleo pode compor esses operadores em um programa, executá-lo e conferir a meta. Uma contraprova revisa o modelo e invalida procedimentos dependentes. Essa aprendizagem local não promove as observações a fatos científicos nem ativa pesos globais. As redes próprias sugerem candidatos; compatibilidade com os exemplos é verificada separadamente.
+
+O classificador experimental de intenção é consultado e sua proposta é registrada no problema. Sua avaliação mostrou generalização insuficiente para decidir a semântica: a gramática e os contratos continuam determinando a interpretação. Bases polinomiais fornecidas ao aprendiz também são conhecimentos programados, e não representações descobertas pela rede.
+
+O primeiro ambiente físico representa uma partícula em 1D com aceleração constante; previsões são verificadas contra fórmulas analíticas. Há ajuste com ruído, busca de expressões e comparadores numéricos/neuronais. O laboratório quântico representa estados, evolução, observáveis e medição, com limites pequenos e hipóteses explícitas. Os [contratos científicos](research/SCIENCE_PROTOCOL.md) e [resultados](research/SCIENCE_RESULTS.md) distinguem código funcional, inferência aprendida e conclusões negativas.
+
+A [avaliação em trajetória medida](research/SCIENCE_MOTION_TRANSFER.md) usa posições obtidas por captura de movimento, com ajuste anterior às posições futuras avaliadas. O modelo de aceleração constante perdeu para persistência; a transferência e a expansão desse modelo foram rejeitadas. A resposta distingue execução correta do experimento de aprovação da hipótese testada.
+
+Programas propostos usam uma DSL numérica limitada em outro processo; Python arbitrário não é executado. Medições de tempo e operações acompanham as respostas e os pilotos. Os bancos pessoais ficam separados dos datasets experimentais. Multiusuário, publicação externa, acesso irrestrito a ferramentas e apagamento seletivo de conhecimento dentro de uma rede não são capacidades desta aplicação.

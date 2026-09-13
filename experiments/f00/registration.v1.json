@@ -1,0 +1,23 @@
+{
+  "registration_id": "f00-initial-v1-registration",
+  "registered_at_utc": "2026-09-09T01:51:53.168714+00:00",
+  "base_commit": "d2c32a33171819a25ba7b896991647019cac1ffb",
+  "protocol_path": "experiments/f00/protocol.v1.json",
+  "protocol_sha256": "b66d7a46fbd54cf4f1f2d6fa10eaa42d9df557e4504b22e76657c3732d8744d0",
+  "source_sha256": {
+    "src/research/worlds.py": "916e3976cab27e51f5671033d1b425645631ca499b3cd3e7b9d0a6b2b7a4a51a",
+    "src/research/baselines.py": "f77eb1f3c5686dc317c5eb32304ea2a99238a41d3a12c0e5e2eb9303d3c60c76",
+    "src/research/evaluation.py": "afbc1228586cae6cfba56dee0eabb3fa890786bea733e66dfa8b0f8b254bdb86",
+    "scripts/evaluate_f00.py": "0b72f20d07314f8c8dc7b4be060b9c3dde4c5a57bbc3188d97e70f14d2d4a6f6"
+  },
+  "status": "frozen_before_first_official_development_validation_report",
+  "changes_before_official_scoring": [
+    "Real rule variation: repeated/distinct main operator and distractor chain/cycle",
+    "QA fix: malformed outputs and comparator exceptions count as failed cases"
+  ],
+  "prior_checks": "QA functional cases and custom non-protocol seeds; no official initial report used for tuning",
+  "reserved_official_examples_generated": false,
+  "reserved_official_scores_computed": false,
+  "reserved_constructor_qa": "Invariants only with QA seeds outside protocol; no comparator or performance score",
+  "decision_document": "docs/research/F00_PROTOCOL.md"
+}

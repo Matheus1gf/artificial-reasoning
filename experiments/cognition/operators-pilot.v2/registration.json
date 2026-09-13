@@ -1,0 +1,19 @@
+{
+  "created_unix": 1789262011.584776,
+  "protocol_sha256": "07d0ab51d3e5b4e6b29c93a8eaa0fe260596c29c254d83ab275aee00f26ab13b",
+  "source_sha256": {
+    "src/cognition/operators.py": "036a8b0bfe145bd1d14fe43489719687170f23115262adab7032dea2205b7bc8",
+    "src/cognition/operator_runtime.py": "bcd180622129ec7574402181b1392b97309b8c19a6b0f2750f3b14f0a4562d7d",
+    "src/cognition/engine.py": "4d2fe7ab4934ad28186a0ed7000d4871df964219ae852e5db5f72a62134d667a",
+    "src/cognition/processor.py": "a9a316ee36d60c0dea53648c902a480877a7051509878954aa2e1fe7001c45b6",
+    "src/cognition/neural.py": "53874f8b0ce1c59db9038f8ed6461c65c334a99346fbc0a9d8e0d4ebc7af14dc",
+    "src/cognition/store.py": "805d8c49cb7333e52df6ababba6e7936d8abb76585485a1b593735be779e748f",
+    "src/cognition/sandbox.py": "6b893f7c898e0d32aae605d9ec931e953d4ee9a477640471c35ad709b3d84fd8",
+    "src/cognition/sandbox_worker.py": "699c3a564d3ab7acac938189f0ec8e07de8a024b84fc96955c7121d25b985d85",
+    "src/chat/engine.py": "f7762f9684c5bd4b0260c832ef88155b8b6a5698ef6a44e6f0a5d28aee7b7bd4",
+    "scripts/evaluate_operators.py": "a97d833d151b992fb3a31549df7beea76b2a47f9bf8ddb367d0704d7ebb1b585"
+  },
+  "python": "3.9.6",
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "started_scoring": false
+}

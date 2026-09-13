@@ -16,21 +16,16 @@ class RecordingModel:
 
     def __init__(self):
         self.calls = []
-        self.extractions = 0
-        self.extraction_error = False
+        self.fail = False
 
-    def complete(self, *args, **kwargs):
-        self.extractions += 1
-        if self.extraction_error:
-            raise ProviderError("Extração indisponível")
-        return {"assertions": []}
+    def complete(self, system, payload, schema):
+        self.calls.append(payload)
+        if self.fail:
+            raise ProviderError("Organizador indisponível")
+        return {"order": [item["id"] for item in reversed(payload["sentences"])]}
 
-    def chat(self, message, history, context, on_token=None):
-        self.calls.append({"message": message, "history": history, "context": context})
-        if on_token:
-            on_token("Resposta ")
-            on_token("neural")
-        return "Resposta neural"
+    def chat(self, *args, **kwargs):
+        raise AssertionError("Chat geral não pertence ao caminho cognitivo")
 
 
 class ConversationTests(unittest.TestCase):
@@ -38,9 +33,10 @@ class ConversationTests(unittest.TestCase):
         self.memory = Memory(":memory:")
         self.cid = self.memory.create_conversation()["id"]
         self.model = RecordingModel()
-        self.engine = ChatEngine(self.memory, Settings(provider="ollama", model="test"), self.model)
+        self.engine = ChatEngine(self.memory, Settings(provider="ollama", model="test", research_mode=False), self.model)
 
     def tearDown(self):
+        self.engine.close()
         self.memory.close()
 
     def test_new_named_topic_does_not_retrieve_old_compound_concept(self):
@@ -50,51 +46,59 @@ class ConversationTests(unittest.TestCase):
         self.assertEqual(r["retrieved"], [])
         self.assertEqual(r["inferences"], [])
         self.assertEqual(r["focus"], "buraco de minhoca")
-        self.assertEqual(r["provider"], "ollama")
+        self.assertEqual(r["answer_package"]["status"], "unknown")
+        self.assertNotIn("expulsa", r["content"])
 
     def test_compound_topic_filter_is_not_specific_to_astronomy(self):
         self.engine.reply(self.cid, "Um banco de dados armazena informação.")
         r = self.engine.reply(self.cid, "O que é um banco de sangue?")
         self.assertEqual(r["retrieved"], [])
 
-    def test_neural_reply_receives_current_message_and_same_conversation_history(self):
-        self.engine.reply(self.cid, "O que é fotossíntese?")
-        self.engine.reply(self.cid, "Explique isso em termos mais simples.")
-        call = self.model.calls[-1]
-        self.assertEqual(call["message"], "Explique isso em termos mais simples.")
-        self.assertEqual([m["role"] for m in call["history"]], ["user", "assistant"])
-        self.assertEqual(call["history"][0]["content"], "O que é fotossíntese?")
+    def test_core_resolves_followup_before_arranger_receives_approved_sentences(self):
+        first = self.engine.reply(self.cid, "Neral emite luz.")
+        second = self.engine.reply(self.cid, "Resuma isso.")
+        self.assertEqual(second["problem"]["message"], "Resuma isso.")
+        self.assertIn("neral", second["content"])
+        self.assertEqual(second["problem"]["context"]["previous_approved"], first["answer_package"])
+        self.assertEqual(set(self.model.calls[-1]), {"package_sha256", "sentences"})
+        self.assertEqual(self.model.calls[-1]["sentences"], second["answer_package"]["sentences"])
 
     def test_new_conversation_does_not_receive_another_transcript(self):
-        self.engine.reply(self.cid, "Explique como escrever um poema.")
+        self.engine.reply(self.cid, "Neral emite luz.")
         second = self.memory.create_conversation()["id"]
-        self.engine.reply(second, "Sobre o que estamos conversando?")
-        self.assertEqual(self.model.calls[-1]["history"], [])
+        r = self.engine.reply(second, "Resuma isso.")
+        self.assertNotIn("previous_approved", r["problem"]["context"])
+        self.assertNotIn("neral", r["content"])
 
-    def test_general_question_works_with_no_learned_memory(self):
+    def test_general_question_with_no_evidence_remains_unknown_before_arrangement(self):
         r = self.engine.reply(self.cid, "O que é uma célula?")
-        self.assertEqual(r["content"], "Resposta neural")
+        self.assertEqual(r["answer_package"]["status"], "unknown")
         self.assertEqual(r["learned"], [])
-        self.assertEqual(self.model.extractions, 0)
+        self.assertEqual(len(self.model.calls), 1)
+        self.assertEqual(r["content"], r["answer_package"]["sentences"][0]["text"])
 
-    def test_failed_extraction_does_not_disable_neural_response(self):
-        self.model.extraction_error = True
+    def test_failed_arrangement_preserves_local_extraction_and_verified_content(self):
+        self.model.fail = True
         r = self.engine.reply(self.cid, "Neral armazena energia.")
-        self.assertEqual(r["provider"], "ollama")
+        self.assertEqual(r["provider"], "symbolic")
         self.assertEqual(len(r["learned"]), 1)
-        self.assertEqual(r["content"], "Resposta neural")
+        self.assertIn("neral armazena energia", r["content"])
         self.assertTrue(r["warnings"])
+        self.assertEqual(r["rendering"]["mode"], "deterministic_fallback")
 
     def test_new_unknown_topic_does_not_inherit_old_subject(self):
         self.engine.reply(self.cid, "Neral armazena energia.")
-        self.engine.reply(self.cid, "Qual seria o oposto de Vetra?")
-        self.assertEqual(self.model.calls[-1]["context"]["memories"], [])
+        r = self.engine.reply(self.cid, "Qual seria o oposto de Vetra?")
+        self.assertEqual(r["retrieved"], [])
+        self.assertNotIn("neral", r["content"])
 
     def test_tokens_and_persisted_response_belong_to_same_turn(self):
         chunks = []
-        r = self.engine.reply(self.cid, "Explique a gravidade.", "stream-id", on_token=chunks.append)
+        def capture(chunk):
+            self.assertEqual(self.memory.messages(self.cid)[-1]["content"], chunk)
+            chunks.append(chunk)
+        r = self.engine.reply(self.cid, "Explique a gravidade.", "stream-id", on_token=capture)
         self.assertEqual("".join(chunks), r["content"])
-        self.assertEqual(self.memory.messages(self.cid)[-1]["content"], r["content"])
         retry_chunks = []
         self.assertEqual(self.engine.reply(self.cid, "Explique a gravidade.", "stream-id", on_token=retry_chunks.append), r)
         self.assertEqual(retry_chunks, [])
@@ -102,7 +106,7 @@ class ConversationTests(unittest.TestCase):
 
 class NativeMessageTests(unittest.TestCase):
     def test_ollama_preserves_answered_turns_and_puts_current_message_last(self):
-        lm = LanguageModel(Settings(provider="ollama", model="test"))
+        lm = LanguageModel(Settings(provider="ollama", model="test", research_mode=False))
         history = [{"role": "user", "content": "Primeira pergunta"},
                    {"role": "assistant", "content": "Resposta anterior", "metadata": {"provider": "ollama"}},
                    {"role": "user", "content": "Segunda pergunta"},
@@ -116,7 +120,7 @@ class NativeMessageTests(unittest.TestCase):
             self.assertEqual(body["messages"][-2]["content"], "Template antigo")
 
     def test_streamed_ollama_deltas_are_not_thinking(self):
-        lm = LanguageModel(Settings(provider="ollama", model="test"))
+        lm = LanguageModel(Settings(provider="ollama", model="test", research_mode=False))
         response = io.BytesIO(b'{"message":{"thinking":"private","content":"Ola "},"done":false}\n{"message":{"content":"mundo"},"done":true}\n')
         chunks = []
         with patch("src.chat.provider.request.build_opener") as opener:
@@ -125,17 +129,17 @@ class NativeMessageTests(unittest.TestCase):
         self.assertEqual(chunks, ["Ola ", "mundo"])
 
     def test_incomplete_stream_is_not_reported_as_success(self):
-        lm = LanguageModel(Settings(provider="ollama", model="test"))
+        lm = LanguageModel(Settings(provider="ollama", model="test", research_mode=False))
         with patch("src.chat.provider.request.build_opener") as opener:
             opener.return_value.open.return_value = io.BytesIO(b'{"message":{"content":"Parcial"},"done":false}\n')
             with self.assertRaises(ProviderError):
                 lm.chat("Oi", [], {}, on_token=lambda _: None)
 
-    def test_web_defaults_to_general_conversation(self):
+    def test_web_defaults_to_own_research_core(self):
         with tempfile.TemporaryDirectory() as folder:
             settings = Settings.load(Path(folder) / "settings.json")
-        self.assertEqual(settings.provider, "ollama")
-        self.assertTrue(settings.model)
+        self.assertEqual(settings.provider, "symbolic")
+        self.assertTrue(settings.research_mode)
 
 
 if __name__ == "__main__":

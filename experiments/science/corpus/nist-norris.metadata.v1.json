@@ -1,0 +1,39 @@
+{
+  "corpus_id": "nist-norris-v1",
+  "source_url": "https://www.itl.nist.gov/div898/strd/lls/data/LINKS/DATA/Norris.dat",
+  "source_page": "https://www.itl.nist.gov/div898/strd/lls/data/Norris.shtml",
+  "author": "Norris, J., National Institute of Standards and Technology",
+  "title": "Calibration of Ozone Monitors",
+  "retrieved_at": "2026-09-09T02:22:23.586988+00:00",
+  "license": {
+    "policy_url": "https://www.nist.gov/open/license",
+    "designation": "NIST employee-authored observed statistical reference data; attribution and NIST public-service terms apply",
+    "notice_file": "NOTICE-NIST.md",
+    "not_claimed": "Do not treat all NIST Standard Reference Data products as public domain; some SRD are licensed separately."
+  },
+  "units": {
+    "x": "unspecified",
+    "y": "unspecified"
+  },
+  "measurement_conditions": {
+    "x": "NIST ozone concentration measurement",
+    "y": "customer ozone concentration measurement",
+    "instrument_conditions": "not specified in available source",
+    "rows": 36
+  },
+  "uncertainty": {
+    "instrument": "not specified",
+    "published_residual_standard_deviation": 0.884796396144373,
+    "note": "regression residual is not instrument measurement uncertainty"
+  },
+  "data_kind": "observed",
+  "sha256": "5ab6906c68a9c4b2eb1661c0cd7d2a09f5a469a6d4e05b6b691f190f5f7b944f",
+  "observations_sha256": "689a997f7844db7e380d28ee75f4d1a54215a0b7921aa04003331e9e6a512d11",
+  "transformations": [
+    {
+      "date": "2026-09-09",
+      "operation": "parsed data section after Data: y x; reordered columns to x,y; preserved numeric values"
+    }
+  ],
+  "scientific_status": "published calibration relationship, controlled rediscovery only"
+}

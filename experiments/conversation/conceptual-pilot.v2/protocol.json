@@ -1,0 +1,455 @@
+{
+  "id": "known-conceptual-chat-regression-v1",
+  "corpus": [
+    {
+      "id": "reported_user_dialogue",
+      "turns": [
+        {
+          "message": "o que é um buraco negro?",
+          "expected": {
+            "status": "unknown",
+            "no_hypotheses": true,
+            "no_user_learning": true
+          }
+        },
+        {
+          "message": "buraco negro é um corpo celeste que absorve matéria e luz por causa da sua infinita gravidade.",
+          "expected": {
+            "user_triples": [
+              [
+                "buraco negro",
+                "é",
+                "corpo celeste",
+                true
+              ],
+              [
+                "buraco negro",
+                "absorve",
+                "materia",
+                true
+              ],
+              [
+                "buraco negro",
+                "absorve",
+                "luz",
+                true
+              ]
+            ],
+            "reported_cause": true
+          }
+        },
+        {
+          "message": "considerando um buraco negro, o que seria um buraco branco?",
+          "expected": {
+            "target": "buraco branco",
+            "no_hypotheses": true,
+            "no_user_learning": true
+          }
+        },
+        {
+          "message": "considerando que buraco branco é o inverso de um buraco negro, o que seria um buraco branco?",
+          "expected": {
+            "target": "buraco branco",
+            "reference": "buraco negro",
+            "temporary": true,
+            "hypotheses": [
+              [
+                "buraco branco",
+                "expulsa",
+                "materia"
+              ],
+              [
+                "buraco branco",
+                "expulsa",
+                "luz"
+              ]
+            ],
+            "no_user_learning": true,
+            "forbidden_hypothesis_terms": [
+              "gravidade",
+              "infinita"
+            ]
+          }
+        },
+        {
+          "message": "buraco branco é o inverso de um buraco negro?",
+          "expected": {
+            "no_user_learning": true
+          }
+        },
+        {
+          "message": "O que é Taven?",
+          "expected": {
+            "target": "taven",
+            "status": "unknown",
+            "no_hypotheses": true,
+            "no_user_learning": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "invented_names_orientation_and_revision",
+      "turns": [
+        {
+          "message": "Neral armazena energia. Vetra aquece água.",
+          "expected": {
+            "user_triples": [
+              [
+                "neral",
+                "armazena",
+                "energia",
+                true
+              ],
+              [
+                "vetra",
+                "aquece",
+                "agua",
+                true
+              ]
+            ]
+          }
+        },
+        {
+          "message": "Considerando que Neral é o inverso de Vetra, o que é Vetra?",
+          "expected": {
+            "target": "vetra",
+            "reference": "neral",
+            "temporary": true,
+            "hypotheses": [
+              [
+                "vetra",
+                "libera",
+                "energia"
+              ]
+            ],
+            "forbidden_hypotheses": [
+              [
+                "neral",
+                "resfria",
+                "agua"
+              ]
+            ],
+            "no_user_learning": true
+          }
+        },
+        {
+          "message": "Vetra é o oposto de Neral.",
+          "expected": {
+            "user_triples": [
+              [
+                "vetra",
+                "oposto_de",
+                "neral",
+                true
+              ]
+            ]
+          }
+        },
+        {
+          "message": "O que é Vetra?",
+          "expected": {
+            "target": "vetra",
+            "hypotheses": [
+              [
+                "vetra",
+                "libera",
+                "energia"
+              ]
+            ]
+          }
+        },
+        {
+          "message": "Considerando que Vetra não é o inverso de Neral, o que é Vetra?",
+          "expected": {
+            "target": "vetra",
+            "reference": "neral",
+            "no_user_learning": true,
+            "forbidden_hypotheses": [
+              [
+                "vetra",
+                "libera",
+                "energia"
+              ]
+            ]
+          }
+        },
+        {
+          "message": "Corrigindo: Neral não armazena energia.",
+          "expected": {
+            "user_triples": [
+              [
+                "neral",
+                "armazena",
+                "energia",
+                false
+              ]
+            ]
+          }
+        },
+        {
+          "message": "O que é Vetra?",
+          "expected": {
+            "target": "vetra",
+            "forbidden_hypotheses": [
+              [
+                "vetra",
+                "libera",
+                "energia"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "analogy_and_counterexample",
+      "turns": [
+        {
+          "message": "Mavon armazena energia. Mavon emite luz. Zedir armazena energia.",
+          "expected": {}
+        },
+        {
+          "message": "Faça uma analogia para Zedir.",
+          "expected": {
+            "hypotheses": [
+              [
+                "zedir",
+                "emite",
+                "luz"
+              ]
+            ],
+            "min_premises": 3,
+            "method": "analogy"
+          }
+        },
+        {
+          "message": "Zedir não emite luz.",
+          "expected": {}
+        },
+        {
+          "message": "Faça uma analogia para Zedir.",
+          "expected": {
+            "forbidden_hypotheses": [
+              [
+                "zedir",
+                "emite",
+                "luz"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "conversion_program_and_direction",
+      "turns": [
+        {
+          "message": "Plorin converte luz em energia. Xaret converte energia em movimento.",
+          "expected": {}
+        },
+        {
+          "message": "Crie uma solução para transformar luz em movimento.",
+          "expected": {
+            "hypotheses": [
+              [
+                "sistema de plorin e xaret",
+                "transforma",
+                "luz em movimento"
+              ]
+            ],
+            "min_premises": 2,
+            "method": "conversion_composition",
+            "symbolic_artifact": true
+          }
+        },
+        {
+          "message": "Crie uma solução para transformar movimento em luz.",
+          "expected": {
+            "no_hypotheses": true
+          }
+        },
+        {
+          "message": "Corrigindo: Xaret não converte energia em movimento.",
+          "expected": {}
+        },
+        {
+          "message": "Crie uma solução para transformar luz em movimento.",
+          "expected": {
+            "no_hypotheses": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "causal_qualification_1",
+      "turns": [
+        {
+          "message": "Xalor absorve energia em razão de sua força.",
+          "expected": {
+            "user_triples": [
+              [
+                "xalor",
+                "absorve",
+                "energia",
+                true
+              ]
+            ],
+            "reported_cause": true
+          }
+        },
+        {
+          "message": "Breno é o inverso de Xalor.",
+          "expected": {}
+        },
+        {
+          "message": "O que Breno faria em oposição a Xalor?",
+          "expected": {
+            "target": "breno",
+            "hypotheses": [
+              [
+                "breno",
+                "expulsa",
+                "energia"
+              ]
+            ],
+            "forbidden_hypothesis_terms": [
+              "forca",
+              "razao",
+              "conta",
+              "gracas"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "causal_qualification_2",
+      "turns": [
+        {
+          "message": "Xalor absorve energia por conta de sua força.",
+          "expected": {
+            "user_triples": [
+              [
+                "xalor",
+                "absorve",
+                "energia",
+                true
+              ]
+            ],
+            "reported_cause": true
+          }
+        },
+        {
+          "message": "Breno é o inverso de Xalor.",
+          "expected": {}
+        },
+        {
+          "message": "O que Breno faria em oposição a Xalor?",
+          "expected": {
+            "target": "breno",
+            "hypotheses": [
+              [
+                "breno",
+                "expulsa",
+                "energia"
+              ]
+            ],
+            "forbidden_hypothesis_terms": [
+              "forca",
+              "razao",
+              "conta",
+              "gracas"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "causal_qualification_3",
+      "turns": [
+        {
+          "message": "Xalor absorve energia graças a sua força.",
+          "expected": {
+            "user_triples": [
+              [
+                "xalor",
+                "absorve",
+                "energia",
+                true
+              ]
+            ],
+            "reported_cause": true
+          }
+        },
+        {
+          "message": "Breno é o inverso de Xalor.",
+          "expected": {}
+        },
+        {
+          "message": "O que Breno faria em oposição a Xalor?",
+          "expected": {
+            "target": "breno",
+            "hypotheses": [
+              [
+                "breno",
+                "expulsa",
+                "energia"
+              ]
+            ],
+            "forbidden_hypothesis_terms": [
+              "forca",
+              "razao",
+              "conta",
+              "gracas"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "corpus_status": "Known regression cases selected from the user's reported dialogue and independently written QA scenarios; NOT blind or reserved evaluation.",
+  "execution": {
+    "entrypoint": "ChatEngine.reply",
+    "provider": "symbolic",
+    "research_mode": true,
+    "general_models": "blocked by an adapter that raises on every model method",
+    "storage": "fresh in-memory SQLite per dialogue",
+    "repetitions": 1
+  },
+  "metrics": [
+    "explicit expected facts and targets",
+    "expected and prohibited hypotheses",
+    "temporary assumption scope",
+    "independent transformation verification recorded before rendering",
+    "active premise IDs and cited source quotes",
+    "novelty relative to supplied literal text only",
+    "symbolic artifact versus unverified physical feasibility",
+    "model calls"
+  ],
+  "decision": "Report every turn and failed check; exit nonzero on any failure, without replacing expectations after observing output.",
+  "source_files": [
+    "src/chat/discourse.py",
+    "src/chat/domain.py",
+    "src/chat/extraction.py",
+    "src/chat/memory.py",
+    "src/chat/reasoner.py",
+    "src/chat/engine.py",
+    "src/chat/provider.py",
+    "src/cognition/processor.py",
+    "src/cognition/engine.py",
+    "src/cognition/contracts.py",
+    "src/cognition/neural.py",
+    "src/cognition/store.py",
+    "src/cognition/telemetry.py",
+    "experiments/cognition/intent-model.v1.json",
+    "scripts/evaluate_conceptual_chat.py"
+  ],
+  "limitations": [
+    "Finite controlled Portuguese grammar and programmed transformation operators",
+    "Observed names and examples are known development regressions, not scientific evidence of generalization",
+    "Functional hypotheses do not prove existence, causation or physical feasibility",
+    "Surface novelty means a proposed triple was not literally supplied; it is not scientific novelty",
+    "No Qwen, external corpus, personal chat database, or F00 reserved scoring"
+  ]
+}

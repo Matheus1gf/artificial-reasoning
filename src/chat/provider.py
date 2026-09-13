@@ -17,8 +17,11 @@ class Settings:
     model: str = ""
     base_url: str = "http://127.0.0.1:11434"
     timeout: int = 60
+    research_mode: bool = True
 
     def validate(self):
+        if type(self.research_mode) is not bool:
+            raise ValueError("Modo de pesquisa deve ser booleano.")
         if not all(isinstance(v, str) for v in (self.provider, self.model, self.base_url)):
             raise ValueError("Provedor, modelo e endereço devem ser textos.")
         if self.provider not in {"symbolic", "ollama", "openai"}:
@@ -32,13 +35,13 @@ class Settings:
             raise ValueError("Use uma URL HTTP/HTTPS sem credenciais, parâmetros ou fragmentos.")
         if self.provider == "openai" and url.scheme != "https":
             raise ValueError("A conexão com a OpenAI requer HTTPS.")
-        if not isinstance(self.timeout, int) or not 1 <= self.timeout <= 120:
+        if type(self.timeout) is not int or not 1 <= self.timeout <= 120:
             raise ValueError("Tempo limite deve estar entre 1 e 120 segundos.")
         return self
 
     @classmethod
     def load(cls, path):
-        values = {"provider": "ollama", "model": LOCAL_MODEL, "timeout": 120}
+        values = {"provider": "symbolic", "model": LOCAL_MODEL, "timeout": 120, "research_mode": True}
         if Path(path).exists():
             try:
                 values = json.loads(Path(path).read_text(encoding="utf-8"))
@@ -46,6 +49,7 @@ class Settings:
                 values = {}
         if not isinstance(values, dict):
             raise ValueError("O arquivo de configuração deve conter um objeto JSON.")
+        values.setdefault("research_mode", True)
         for key in ("provider", "model", "base_url"):
             if os.environ.get("AR_" + key.upper()):
                 values[key] = os.environ["AR_" + key.upper()]
@@ -76,7 +80,7 @@ class LanguageModel:
 
     @property
     def enabled(self):
-        return self.settings.provider != "symbolic"
+        return self.settings.provider != "symbolic" and not self.settings.research_mode
 
     def complete(self, system, data, schema=None):
         """Structured extraction or small utility requests, not conversation replies."""

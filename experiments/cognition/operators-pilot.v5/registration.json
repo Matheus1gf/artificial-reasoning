@@ -1,0 +1,29 @@
+{
+  "created_unix": 1789265050.897095,
+  "protocol_sha256": "106459f9f551855cbb3484d211b7950a2781799ee69711dd111a22461c0b8288",
+  "source_sha256": {
+    "src/cognition/operators.py": "9b7c6d9a79863c06882d76e124db0e88b1b122ce140cf0ae1e3a6abee332fd5c",
+    "src/cognition/operator_runtime.py": "d603d9c45b1ca2a889be235729b3173cb0a4288094d72122e3812d541bf64b8b",
+    "src/cognition/engine.py": "31d4ea805475dca0346a8a0397e8d44c2503ec4e2a74413a9e18a398403e4c54",
+    "src/cognition/processor.py": "b0e87687100db5ad11c4d2e9bba1e53f6c359e35a1e9fa3de290efdc0495101b",
+    "src/cognition/neural.py": "53874f8b0ce1c59db9038f8ed6461c65c334a99346fbc0a9d8e0d4ebc7af14dc",
+    "src/cognition/contracts.py": "4fc2933d95793e842d1d8413591196fe91c68d96c7a90129921f69218e148463",
+    "src/cognition/store.py": "805d8c49cb7333e52df6ababba6e7936d8abb76585485a1b593735be779e748f",
+    "src/cognition/telemetry.py": "b4f581b00d4c117bf038e940a8fe7bc683c880deb6c851020eeeb0de0215311f",
+    "src/cognition/sandbox.py": "6b893f7c898e0d32aae605d9ec931e953d4ee9a477640471c35ad709b3d84fd8",
+    "src/cognition/sandbox_worker.py": "699c3a564d3ab7acac938189f0ec8e07de8a024b84fc96955c7121d25b985d85",
+    "src/chat/engine.py": "c1fb2a7abe719ed4a856e76e065fd65fcc64453f64dc37fefbc10a4833ac704f",
+    "src/chat/discourse.py": "57b79d72d6ec641a4db6bc5aac7bc553ac36163f3a894afe7e86f4e04ff419a6",
+    "src/chat/domain.py": "f7ff5302d6500dd9afb29eb45d1c1729aea6067a941c4ad893563e69b85b754c",
+    "src/chat/extraction.py": "1488a746c3a218cb16b18bb212b392412d7530d1a2e07942b4735498124f192f",
+    "src/chat/memory.py": "c85d4a08c73a08c38bdeb3e9b15dcce9583eb90f2efddd2a76a283e06f680283",
+    "src/chat/reasoner.py": "7cce039ce0d6612512ebf337a09f266b3f8f0f4b002cfcfc88b6fe41245dfe02",
+    "src/chat/provider.py": "d302054a4e3356804be0ed93d3548122106be47d35782ebdb2552a515d6d0918",
+    "src/science/numerics.py": "343aaf1df30a99a7715861047be0fedaffd82de4248fcf01a0556d85103989b8",
+    "experiments/cognition/intent-model.v1.json": "5485fa9780cbfe41fb6b43487f1acb80021b7e75705e3cd610c5941362679c5a",
+    "scripts/evaluate_operators.py": "2ec5e6fa57b4d47f9d0169f8dc61647a3d763f4ed53313b77c0d9eb54bd627e4"
+  },
+  "python": "3.9.6",
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "started_scoring": false
+}

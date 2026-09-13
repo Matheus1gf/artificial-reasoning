@@ -1,0 +1,185 @@
+{
+  "id": "learned-operators-pilot-v2",
+  "seeds": [
+    17,
+    29,
+    47
+  ],
+  "examples": [
+    1,
+    2,
+    4,
+    8,
+    16
+  ],
+  "noise_sigma": [
+    0,
+    0.1,
+    0.5
+  ],
+  "amendment": "After v1 results, add a same-polynomial-basis QR comparator so a supplied x^2 feature is not mistaken for a neural advantage. All v1/v2 outputs are preserved. This is expanded pilot analysis on already-observed cases, not a fresh blind test.",
+  "functions": {
+    "affine": [
+      [
+        2,
+        1
+      ],
+      [
+        -2,
+        3
+      ],
+      [
+        3,
+        -2
+      ],
+      [
+        1,
+        4
+      ]
+    ],
+    "quadratic": [
+      [
+        1,
+        0
+      ],
+      [
+        -1,
+        2
+      ]
+    ],
+    "piecewise": [
+      [
+        2,
+        1
+      ],
+      [
+        -1,
+        2
+      ]
+    ]
+  },
+  "training_domain": "distinct integer x sampled without replacement from [-8,8]",
+  "held_out_inputs": [
+    -7.5,
+    -6.5,
+    -5.5,
+    -4.5,
+    -3.5,
+    -2.5,
+    -1.5,
+    -0.5,
+    0.5,
+    1.5,
+    2.5,
+    3.5,
+    4.5,
+    5.5,
+    6.5,
+    7.5
+  ],
+  "split": "Per-task adaptation on integer inputs; scoring at disjoint half integers. New function families are structural transfer tests, not F00 reserved families.",
+  "network": {
+    "initialization": "project seeded random, no pretrained weights or metatraining",
+    "architecture": "one linear neuron over supplied degree 1 or 2 polynomial features",
+    "loss": "MSE",
+    "epochs": 300,
+    "learning_rate": 0.15
+  },
+  "comparators": [
+    "exact memory with abstention",
+    "nearest neighbour",
+    "least-squares affine",
+    "least-squares quadratic on identical features with rank-check abstention",
+    "finite affine hypothesis grammar with abstention",
+    "degree-1 neuron",
+    "degree-2 neuron"
+  ],
+  "metrics": [
+    "held-out MSE",
+    "coverage for abstaining comparators",
+    "training loss curve",
+    "training seconds",
+    "parameters",
+    "candidate count",
+    "query reduction",
+    "goal success",
+    "false approval",
+    "program actions and instructions",
+    "distinct canonical mechanisms"
+  ],
+  "active_query": {
+    "strategies": [
+      "active",
+      "random",
+      "smallest"
+    ],
+    "prior_examples": 1,
+    "queries": 1,
+    "families": "all a in [-3,3], b in [-5,5]; noiseless finite affine grammar",
+    "metric": "candidate-count reduction per supplied query; equal one-query budget"
+  },
+  "invention": {
+    "cases": [
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        -1,
+        5
+      ],
+      [
+        2,
+        9
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        0,
+        7
+      ]
+    ],
+    "max_steps": 6,
+    "max_operations": 2048,
+    "operators": "increment x+1 and double 2*x fitted independently from two observations each",
+    "success": "independent DSL execution matches goal and all intermediate operator inputs inside [-20,20]"
+  },
+  "ablations": {
+    "memory": "Discard previously supplied adaptation examples: retain latest x=0 observation only; report lost evidence explicitly.",
+    "neural": "Same examples, grammar, search and verification; no proposal network.",
+    "search": "Evaluate only zero/one action instead of composing; count unachieved multi-action goals.",
+    "verifier": "For 6 intentionally corrupted program candidates, compare approval without replay versus independent execution against target. Fault injection is not a measured natural error rate."
+  },
+  "decision_rules": {
+    "network": "Keep as optional experiment unless median MSE beats least squares or verified success improves; negative results retained.",
+    "representations": "Report degree-1 transfer failure and effect of supplied degree-2 basis; do not call supplied basis a learned abstraction.",
+    "active": "Keep acquisition rule only as optional policy if it does not outperform same-budget alternatives.",
+    "memory_search_verifier": "Retain operational components if removing evidence, composition or checks reduces success or permits known-invalid artifacts."
+  },
+  "source_files": [
+    "src/cognition/operators.py",
+    "src/cognition/operator_runtime.py",
+    "src/cognition/engine.py",
+    "src/cognition/processor.py",
+    "src/cognition/neural.py",
+    "src/cognition/store.py",
+    "src/cognition/sandbox.py",
+    "src/cognition/sandbox_worker.py",
+    "src/chat/engine.py",
+    "src/science/numerics.py",
+    "scripts/evaluate_operators.py"
+  ],
+  "limitations": [
+    "Synthetic scalar tasks, not scientific discovery or general intelligence",
+    "Affine grammar and polynomial bases supplied by programmer",
+    "Three seeds per function and condition are repeated computational trials, not independent real-world populations",
+    "No task-specific meta-training, no general model, no user data",
+    "Novelty means new canonical function in local procedure memory only"
+  ]
+}
